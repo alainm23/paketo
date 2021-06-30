@@ -1,0 +1,28 @@
+
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>confirmar-datos</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <h1 class="ion-text-center top-slider bottom-cero">Operación exitosa</h1>
+  <div class="div-center">
+    <ion-card class="card-slide top-slider"></ion-card>
+  </div>
+  <div class="ion-text-center div-top">
+    <h6 class="h6-black">Numero de pedido:</h6>
+    <p class="p-medium">{{ data?.codigo_pedido }}</p>
+  </div>
+  <div class="ion-text-center div-top-dos">
+    <h6 class="h6-black">Monto:</h6>
+    <p class="p-medium"></p>
+  </div>
+  <div class="ion-text-center div-top-dos">
+    <h6 class="h6-black">Fecha de compra:</h6>
+    <p class="p-medium">{{ data?.fecha }}</p>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border ion-text-center" mode="ios">
+  <ion-button mode="ios" class="btn-guardar" (click)="root ()">Regresar al inicio</ion-button>
+</ion-footer>

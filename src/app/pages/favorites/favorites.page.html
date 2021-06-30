@@ -1,0 +1,179 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <h1 class="titulo-header ion-text-center">My Wishlist</h1>
+
+  <ion-slides *ngIf="categorias.length > 0" pager="false" [options]="slideOpts" mode="ios">
+    <ion-slide *ngFor="let item of categorias" (click)="select_category (item.id)">
+      <h1 [class.tiutlo-slider-activo]="categoria_selected === item.id" class="tiutlo-slider">
+        {{ item.nombre }}
+      </h1>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid class="grid-padding-left-right">
+    <ion-row>
+      <ion-col *ngFor="let item of items" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button [disabled]="item.add_loading === true" (click)="add_carrito (item)" mode="ios" class="btn-cart-delete btn-cart">
+              <ion-spinner *ngIf="item.add_loading === true"></ion-spinner>
+              <img *ngIf="item.add_loading !== true" src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button (click)="delete_favorite (item)" mode="ios" class="btn-cart-delete btn-delete">
+              <ion-spinner *ngIf="item.loading === true"></ion-spinner>
+              <img *ngIf="item.loading !== true" src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar
+            [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
+            class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto">
+            <h6 class="h6-titulo-favorito">{{ item.nombre }}</h6>
+            <p class="p-especifiacion">{{ item.marca }}</p>
+            <ion-label class="label-categoria"></ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col *ngIf="loading && items.length <= 0" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button mode="ios" class="btn-cart-delete btn-cart">
+              <img src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button mode="ios" class="btn-cart-delete btn-delete">
+              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto" style="width: 50%;">
+            <h6 class="h6-titulo-favorito">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h6>
+            <p class="p-especifiacion">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </p>
+            <ion-label class="label-categoria">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading && items.length <= 0" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button mode="ios" class="btn-cart-delete btn-cart">
+              <img src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button mode="ios" class="btn-cart-delete btn-delete">
+              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto" style="width: 50%;">
+            <h6 class="h6-titulo-favorito">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h6>
+            <p class="p-especifiacion">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </p>
+            <ion-label class="label-categoria">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading && items.length <= 0" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button mode="ios" class="btn-cart-delete btn-cart">
+              <img src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button mode="ios" class="btn-cart-delete btn-delete">
+              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto" style="width: 50%;">
+            <h6 class="h6-titulo-favorito">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h6>
+            <p class="p-especifiacion">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </p>
+            <ion-label class="label-categoria">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading && items.length <= 0" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button mode="ios" class="btn-cart-delete btn-cart">
+              <img src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button mode="ios" class="btn-cart-delete btn-delete">
+              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto" style="width: 50%;">
+            <h6 class="h6-titulo-favorito">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h6>
+            <p class="p-especifiacion">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </p>
+            <ion-label class="label-categoria">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading && items.length <= 0" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <div class="div-btn-icon">
+            <ion-button mode="ios" class="btn-cart-delete btn-cart">
+              <img src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
+            </ion-button>
+            <ion-button mode="ios" class="btn-cart-delete btn-delete">
+              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+            </ion-button>
+          </div>
+          <ion-avatar class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto" style="width: 50%;">
+            <h6 class="h6-titulo-favorito">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </h6>
+            <p class="p-especifiacion">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </p>
+            <ion-label class="label-categoria">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="get_data ($event, true, 'infinite-scroll')">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

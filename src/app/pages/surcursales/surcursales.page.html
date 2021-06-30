@@ -1,0 +1,97 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>registro-sucursal-slider</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content [class.no-scroll]="index === 0 || index === 2">
+  <form [formGroup]="form">
+  <ion-slides (ionSlideDidChange)="ionSlideDidChange ()" pager="false" [options]="slideOpts">
+    <ion-slide>
+      <h1 class="ion-text-center top-slider bottom-cero">Ferreterías</h1>
+      <p class="p-medium ion-text-center p-top">Si tienes más de una ferretería, podrás registrarla más adelante</p>
+      <div class="div-top-uno">
+        <h6 class="h6-nombres-campos">Nombre</h6>
+        <ion-item lines="none" class="item-input">
+          <ion-input formControlName="denominacion" placeholder="Ingresa el nombre de la ferretería"></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-top-dos">
+        <h6 class="h6-nombres-campos h6-bottom-perfil">Foto de perfil</h6>
+        <div class="div-foto">
+          <!--En la etiqueta de ion-card las fotos lo ponees de fondo con la clase "card-fondo-img"-->
+          <ion-card
+            [class.card-fondo-img]="image_file !== null"
+            [ngStyle]="{'background-image': 'url(' + image_file?.webPath + ')'}"
+            (click)="selectImageSource (fileInput)"
+            class="card-foto">
+            <ion-button *ngIf="image_file === null" mode="ios" class="btn-add-fotos">
+              <ion-icon name="add-outline" class="icon-add"></ion-icon>
+            </ion-button>
+            <input hidden multiple type="file" accept="image/*" #fileInput (change)="changeListener($event)">
+          </ion-card>
+          <ion-label class="label-foto">Agrega tu foto</ion-label>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <h1 class="ion-text-center top-slider bottom-cero">Ubicación</h1>
+      <p class="p-medium ion-text-center p-top">Esta información es importante para que podamos entregar tu pedido lo más rápido posible</p>
+      <h6 class="h6-nombres-campos h6-top-bottom">Ubicación</h6>
+      <ion-item lines="none" class="item-input">
+        <ion-select (ionChange)="select_change ($event, 'provincias?departamento_id=', 'provincias')" placeholder="Departamento">
+          <ion-select-option [value]="item" *ngFor="let item of departamentos">
+            {{ item.nombre }}
+          </ion-select-option>
+        </ion-select>
+        <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
+      </ion-item>
+      <ion-item lines="none" class="item-input item-top">
+        <ion-select [disabled]="!show_privincia" (ionChange)="select_change ($event, 'distritos?provincia_id=', 'distritos')" placeholder="Provincia">
+          <ion-select-option *ngFor="let item of provincias" [value]="item">
+            {{ item.nombre }}
+          </ion-select-option>
+        </ion-select>
+        <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
+      </ion-item>
+      <ion-item lines="none" class="item-input item-top">
+        <ion-select [disabled]="!show_distrito" (ionChange)="get_googlemaps_position ($event)" formControlName="distrito" placeholder="Distrito">
+          <ion-select-option [value]="item" *ngFor="let item of distritos">
+            {{ item.nombre }}
+          </ion-select-option>
+        </ion-select>
+        <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
+      </ion-item>
+      <ion-item lines="none" class="item-input item-top">
+        <ion-input #searchbar placeholder="Dirección" formControlName="direccion"></ion-input>
+      </ion-item>
+      <ion-card [ngStyle]="{'opacity':form.controls.distrito.valid === true ? '1' : '0' }" class="card-mapa">
+        <div #map id="map"></div>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <h1 class="ion-text-center top-slider bottom-cero">Ubicación</h1>
+      <p class="p-medium ion-text-center p-top">¿Con quién nos debemos comunicar acerca de tus pedidos?</p>
+      <h6 class="h6-nombres-campos h6-top-bottom">Datos de tienda</h6>
+      <ion-item lines="none" class="item-input">
+        <ion-input formControlName="nombres_contacto" placeholder="Persona de contacto" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-input item-top">
+        <ion-input formControlName="telefono_contacto" placeholder="Telefono" type="tel"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-input item-top">
+        <ion-input formControlName="email_contacto" placeholder="Correo electrónico" type="email"></ion-input>
+      </ion-item>
+    </ion-slide>
+  </ion-slides>
+  </form>
+</ion-content>
+<ion-footer class="ion-no-border ion-text-center" mode="ios">
+  <ion-button *ngIf="index < 2" mode="ios" class="btn-guardar" (click)="submit_slide_next ()">
+    Empezamos
+  </ion-button>
+  <div *ngIf="index >= 2" class="ion-text-center div-absolute-slider">
+    <ion-button mode="ios" class="btn-guardar btn-widht-cero"(click)="submit (false)">Agregar sucursal</ion-button>
+    <ion-button mode="ios" class="btn-terminar" (click)="submit (true)">Terminar</ion-button>
+  </div>
+</ion-footer>

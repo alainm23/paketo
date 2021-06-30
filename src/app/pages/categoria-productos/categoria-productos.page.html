@@ -1,0 +1,158 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Buscar</ion-button>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
+    <ion-refresher-content refreshingSpinner="bubbles"></ion-refresher-content>
+  </ion-refresher>
+  
+  <h1 class="titulo-header">{{ item?.nombre }}</h1>
+  <div *ngIf="filtros.length > 0" class="div-filtro">
+    <ion-item class="ion-no-padding item-filtro" lines="none">
+      <ion-label class="label-filtro">Filtrar mi selección</ion-label>
+      <ion-button (click)="filter_toogled ()" slot="end" mode="ios" class="btn-acordion">
+        <ion-icon [ngStyle]="{'transform': show_filter ? 'rotate(45deg)' : 'none' }" name="add-outline" class="icon-acordion transition"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-list *ngIf="show_filter">
+      <ion-item *ngFor="let item of filtros" class="ion-no-padding item-check" lines="none" mode="md">
+        <ion-checkbox (ionChange)="filter ($event, item)" slot="start" class="check-filtro"></ion-checkbox>
+        <ion-label class="label-filtro ion-text-wrap">{{ item.nombre }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-grid class="grid-padding">
+    <ion-row>
+      <ion-col *ngIf="loading" size="6" size-md="3" class="col-padding-left-right">
+        <ion-card class="card-categorias" (click)="view_detalle_producto()">
+          <ion-avatar class="avatar-categoria"></ion-avatar>
+          <ion-card-header class="ion-no-padding ion-text-start">
+            <ion-card-title>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+            <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            <ion-button style="opacity: 0;" mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+          </ion-card-content>
+          <ion-button style="opacity: 0;" mode="ios" class="btn-list-categoria"><img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria"></ion-button>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="6" size-md="3" class="col-padding-left-right">
+        <ion-card class="card-categorias" (click)="view_detalle_producto()">
+          <ion-avatar class="avatar-categoria"></ion-avatar>
+          <ion-card-header class="ion-no-padding ion-text-start">
+            <ion-card-title>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+            <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            <ion-button style="opacity: 0;" mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+          </ion-card-content>
+          <ion-button style="opacity: 0;" mode="ios" class="btn-list-categoria"><img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria"></ion-button>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="6" size-md="3" class="col-padding-left-right">
+        <ion-card class="card-categorias" (click)="view_detalle_producto()">
+          <ion-avatar class="avatar-categoria"></ion-avatar>
+          <ion-card-header class="ion-no-padding ion-text-start">
+            <ion-card-title>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+            <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            <ion-button style="opacity: 0;" mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+          </ion-card-content>
+          <ion-button style="opacity: 0;" mode="ios" class="btn-list-categoria"><img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria"></ion-button>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="6" size-md="3" class="col-padding-left-right">
+        <ion-card class="card-categorias" (click)="view_detalle_producto()">
+          <ion-avatar class="avatar-categoria"></ion-avatar>
+          <ion-card-header class="ion-no-padding ion-text-start">
+            <ion-card-title>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+            <ion-skeleton-text style="width: 50%;" animated></ion-skeleton-text>
+            <ion-button style="opacity: 0;" mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+          </ion-card-content>
+          <ion-button style="opacity: 0;" mode="ios" class="btn-list-categoria"><img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria"></ion-button>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngFor="let item of items" size="6" size-md="3" class="col-padding-left-right">
+        <ion-card class="card-categorias">
+          <ion-avatar
+            [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
+            class="avatar-categoria">
+          </ion-avatar>
+          <ion-card-header class="ion-no-padding ion-text-start">
+            <ion-card-title>{{ item.nombre }}</ion-card-title>
+            <ion-card-subtitle>{{ item.marca }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+            <ion-label class="label-precio">{{ item.precio | currency:item.moneda }}</ion-label>
+            <ion-button mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+          </ion-card-content>
+          <ion-button
+              (click)="favorite_toggled (item)" mode="ios"
+              [class.btn-list-categoria-favorited]="item.tengo_favorito === true"
+              class="btn-list-categoria">
+              <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="get_data ($event, true, 'infinite-scroll')">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="toolbar-footer">
+    <div class="div-footer">
+      <ion-button (click)="go_root ('home')" mode="ios" class="btn-icon-footer btn-padding-left-cero">
+        <img src="assets/img/icon-feather-home.png" id="img-home">
+      </ion-button>
+      <ion-button (click)="go_page ('favorites')" mode="ios" class="btn-icon-footer">
+        <img src="assets/img/icon-material-playlist-add-check.png" id="img-list">
+      </ion-button>
+      <ion-button (click)="go_page ('carrito')" mode="ios" class="btn-icon-footer">
+        <img src="assets/img/icon-material-add-shopping-cart-1.png" id="img-cart-add">
+      </ion-button>
+      <ion-button (click)="go_page ('historial')"mode="ios" class="btn-icon-footer">
+        <img src="assets/img/icon-material-history.png" id="img-historial">
+      </ion-button>
+      <ion-button mode="ios" class="btn-icon-footer border-cero-right btn-padding-right-cero">
+        <img src="assets/img/icon-awesome-whatsapp.png" id="img-wassap">
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,21 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>categoria-interes</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <h1 class="ion-text-center top-slider">Categorias de interes</h1>
+  <p class="ion-text-center p-medium p-top-bottomcero">Ayúdanos sugerirte los productos mas adecuados a tus necesidades. No te preocupes, podrás modificar tu selección en cualquier momento</p>
+  <ion-grid class="ion-no-padding grip-top">
+    <ion-row>
+      <ion-col (click)="categoria_toggled (item)" *ngFor="let item of categorias" size="4" class="col-padding-left-right">
+        <ion-card [class.card-categoria-activo]="categoria_selected.has (item.id)" class="card-categorias">
+          <div class="div-circulo"></div>
+          <p class="ion-text-center p-catogoria">{{ item.nombre }}</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button mode="ios" class="btn-guardar" (click)="submit ()">Continuar</ion-button>
+</ion-content>

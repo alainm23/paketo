@@ -1,0 +1,291 @@
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/font/Avenir Book.ttf')
+}
+#map{
+    width: 100%;
+    height: 100%;
+}
+#map:after {
+    width: 22px;
+    height: 40px;
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 50%; left: 50%;
+    margin: -40px 0 0 -11px;
+    background: url('https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png');
+    background-size: 22px 40px;
+    pointer-events: none;
+}
+.no-scroll {
+    --overflow: hidden;
+}
+.card-mapa
+{
+    height: 256px;
+    margin: 0px;
+    background-color: transparent;
+    border: 8px solid #fff;
+    border-radius: 10px;
+    margin-top: 26px;
+    .img-mapa
+    {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+}
+ion-content
+{
+    --background: #ffffff;
+}
+h1
+{
+  font-family: PoppinsMedium;
+  color: #000000;
+  font-size: 1.375rem; 
+}
+.top-slider
+{
+    margin-top: 20%;
+}
+.p-medium
+{
+    color: #777777;
+    font-family: AvenirMedium;
+    font-size: 1.0625rem;
+}
+.p-top
+{
+    margin-bottom: 0px;
+    margin-top: 1.75rem;
+}
+.item-input
+{
+    --background: #EBEBEB;
+    --border-radius: 15px;
+    position: relative;
+    ion-input
+    {
+        height: 3.75rem;
+        font-family: Avenirlight;
+        --color: #000000;
+        font-size: 1.0625rem;
+        --placeholder-color: #000000;
+        --placeholder-opacity: 1;
+    }
+    ion-select
+    {
+        height: 3.75rem;
+        width: 100%;
+        font-family: Avenirlight;
+        --color: #000000;
+        font-size: 1.0625rem;
+        --placeholder-color: #000000;
+        --placeholder-opacity: 1;
+    }
+    ion-select::part(icon) 
+    {
+        display: none !important;
+    }
+    .icon-slect
+    {
+        position: absolute;
+        right: 1rem;
+        color: #707070;
+        font-size: 1.25rem;
+    }
+}
+.item-top
+{
+    margin-top: 0.375rem;
+}
+.item-check
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    margin-top: 2.5rem;
+    .label-check
+    {
+        color: #777777;
+        font-family: AvenirMedium;
+        font-size: 1rem;
+        margin-left: 1rem;
+    }
+    ion-checkbox
+    {
+        margin: 0px;
+        --size: 1.5625rem;
+        --background-checked: #FF0F0F;
+        --border-color-checked: #FF0F0F;
+    }
+}
+.h6-nombres-campos
+{
+    color: #000000;
+    font-family: AvenirMedium;
+    font-size: 1.0625rem;
+    margin-left: 0.5rem;
+    margin-top: 0px;
+    margin-bottom: 0.6875rem;
+    text-align: left;
+}
+.h6-top-bottom
+{
+    margin-top: 1rem !important;
+    margin-bottom: 0.6875rem !important;
+}
+.h6-bottom-perfil
+{
+    margin-bottom: 1.5625rem !important;
+}
+ion-slide
+{
+    display: block;
+    padding-left: 1.6875rem;
+    padding-right: 1.6875rem;
+    position: relative;
+}
+ion-slides
+{
+    height: 100%;
+    overflow-y: scroll;
+}
+.div-absolute-slider
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ion-footer 
+{
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+}
+.div-top-uno
+{
+    margin-top: 1rem;
+}
+.div-top-dos
+{
+    margin-top: 1.875rem;
+}
+.btn-guardar
+{
+    font-family: AvenirHeavy;
+    --background: #FF0F0F;
+    --background-activated: #FF0F0F;
+    --border-radius: 1.875rem;
+    font-size: 1.1875rem;
+    width: 70%;
+    margin: 0px;
+}
+.btn-widht-cero
+{
+    width: auto !important;
+}
+.btn-terminar
+{
+    font-family: AvenirHeavy;
+    --background: #4EC124;
+    --background-activated:#4EC124;
+    --border-radius: 1.875rem;
+    font-size: 1.1875rem;
+    margin: 0px;
+    margin-left: 0.375rem;
+}
+.div-foto
+{
+    display: flex;
+    align-items: center;
+}
+.card-foto
+{
+    margin: 0px;
+    background: #EBEBEB;
+    border-radius: 23px;
+    width: 5.625rem;
+    height: 5.625rem;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-fondo-img
+{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.label-foto
+{
+    font-family: Avenirlight;
+    font-size: 1.0625rem;
+    color: #000000;
+    margin-left: 1.5rem;
+}
+.btn-add-fotos
+{
+    --background: #FFFFFF;
+    --background-activated: #ffffff;
+    --border-radius: 50%;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0px;
+    font-size: 0px;
+    .icon-add
+    {
+        color: #AAAAAA;
+        font-size: 1.375rem;
+    }
+}
+.btn-link
+{
+    --background: #FFFFFF;
+    --background-activated: #ffffff;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --color: #6E6E6E;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    margin-top: 1rem;
+    margin-bottom: 0px;
+    font-family: AvenirBook;
+}
+@media (min-width: 768px)
+{
+    ion-slide
+    {
+        padding-left: 8.75rem;
+        padding-right: 8.75rem;
+    }
+    .btn-guardar
+    {
+        width: 45%;
+    }
+    .btn-link
+    {
+        margin-left: 1.875rem;
+    }
+    
+}

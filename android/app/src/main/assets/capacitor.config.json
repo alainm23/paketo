@@ -1,0 +1,6 @@
+{
+	"appId": "pe.com.paketo",
+	"appName": "Paketo",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Paketo</string>
+    <string name="title_activity_main">Paketo</string>
+    <string name="package_name">pe.com.paketo</string>
+    <string name="custom_url_scheme">pe.com.paketo</string>
+</resources>

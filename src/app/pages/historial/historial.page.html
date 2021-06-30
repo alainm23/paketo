@@ -1,0 +1,112 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button mode="ios" class="btn-atras" (click)="back ()">< Atrás</ion-button>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
+      {{ cart_item_count | async }}
+    </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <h1 class="titulo-header ion-text-center">Historial</h1>
+  <ion-list>
+    <ion-item lines="none" class="item-date">
+      <ion-datetime [max]="today" (ionChange)="filter ()" [(ngModel)]="desde" displayFormat="DD/MMM/YYYY" placeholder="Desde fecha" mode="ios"></ion-datetime>
+      <ion-icon name="chevron-down-outline" class="icon-bottom"></ion-icon>
+    </ion-item>
+    <ion-item lines="none" class="item-date">
+      <ion-datetime [max]="today" (ionChange)="filter ()" [(ngModel)]="hasta" displayFormat="DD/MMM/YYYY" placeholder="Hasta fecha" mode="ios"></ion-datetime>
+      <ion-icon name="chevron-down-outline" class="icon-bottom"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-grid class="grid-padding-left-right">
+    <ion-row>
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
+          <p class="p-sucursal"><ion-skeleton-text animated></ion-skeleton-text></p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha"><ion-skeleton-text animated></ion-skeleton-text></p>
+            <p class="p-monto"><ion-skeleton-text animated></ion-skeleton-text></p>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col *ngFor="let item of items" (click)="detalles (item)" size="12" size-md="6" class="col-favoritos">
+        <ion-card class="card-favorito">
+          <h6 class="h6-titulo-historial">Numero de pedido: {{ item.codigo_pedido }}</h6>
+          <p class="p-sucursal">Sucursal: {{ item.sucursal }}</p>
+          <div class="div-flex-fecha">
+            <p class="p-fecha">Fecha de compra: {{ get_format_date (item.fecha, 'l') }}</p>
+            <p class="p-monto">Monto: {{ item.total.soles | currency:'S/' }} - {{ item.total.dolares | currency:'USD' }}</p>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="get_data ($event, true, 'infinite-scroll')">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

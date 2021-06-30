@@ -1,0 +1,29 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>confirmar-datos</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+    <h1 class="ion-text-center top-slider bottom-cero">Confirmar datos</h1>
+    <div class="ion-text-center div-top">
+      <h6 class="h6-black">Razón social:</h6>
+      <p class="p-medium">{{ razon_social }}</p>
+    </div>
+    <div class="ion-text-center div-top">
+      <h6 class="h6-black">RUC:</h6>
+      <p class="p-medium">{{ ruc }}</p>
+    </div>
+    <div class="ion-text-center div-top">
+      <h6 class="h6-black">Persona de contacto:</h6>
+      <p class="p-medium">{{ persona_contacto }}</p>
+    </div>
+    <div class="ion-text-center div-top">
+      <h6 class="h6-black">Telefono:</h6>
+      <p class="p-medium">{{ telefono }}</p>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border ion-text-center" mode="ios">
+    <ion-button mode="ios" class="btn-confirmar" (click)="submit ()">Confirmar datos</ion-button>
+    <ion-button mode="ios" class="btn-guardar" (click)="modificar ()">Modificar datos</ion-button>
+</ion-footer>

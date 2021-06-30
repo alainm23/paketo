@@ -24,3 +24,27 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+
+.toast-custom-class {
+    --color:#ffffff;
+    --border-radius: 25px;
+    --background: #4EC126;
+    font-family: PoppinsMedium;
+}
+.toast-custom-class::part(container)
+{
+    height: 7.375rem;
+}
+.toast-custom-class::part(header)
+{
+    font-size: 1.3125rem;
+}
+.toast-custom-class::part(message)
+{
+    font-size: 0.8125rem;
+}

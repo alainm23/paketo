@@ -1,0 +1,103 @@
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: PoppinsRegular;
+    src : url('/assets/font/Poppins-Regular.ttf')
+}
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+ion-content
+{
+    --background: #ffffff;
+    --padding-start: 1.6875rem;
+    --padding-end: 1.6875rem;
+}
+h1
+{
+  font-family: PoppinsMedium;
+  color: #000000;
+  font-size: 1.375rem; 
+  margin-bottom: 0px;
+}
+.top-slider
+{
+    margin-top: 3.5rem;
+}
+.h6-black
+{
+    font-family: AvenirMedium;
+    color: #000000;
+    margin: 0px;
+    font-size: 1.0625rem;
+}
+.p-medium
+{
+    color: #6E6E6E;
+    font-family: PoppinsRegular;
+    font-size: 1.0625rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0px;
+}
+.div-top
+{
+    margin-top: 1.25rem;
+}
+.div-top-dos
+{
+    margin-top: 0.6875rem;
+}
+.div-center
+{
+    display: flex;
+    justify-content: center;
+}
+.card-slide
+{
+    border-radius: 1.25rem;
+    --background: #EAEAEA;
+    width: 10.75rem;
+    height: 10.875rem;
+    margin-bottom: 0px;
+}
+.btn-guardar
+{
+    font-family: AvenirHeavy;
+    --background: #FF0F0F;
+    --background-activated: #FF0F0F;
+    --border-radius: 1.875rem;
+    font-size: 1.1875rem;
+    width: 70%;
+    margin: 0px;
+    margin-top: 0.625rem;
+}
+ion-footer 
+{
+    padding-bottom: 2rem;
+}
+@media (min-width: 768px)
+{
+    ion-content
+    {
+        --padding-start: 8.75rem;
+        --padding-end: 8.75rem;
+    }
+    .btn-guardar
+    {
+        width: 45%;
+        margin-top: 0rem;
+        margin-left: 0.625rem;
+    }
+    .btn-confirmar
+    {
+        width: 45%;
+    }
+    
+}

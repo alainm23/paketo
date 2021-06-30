@@ -1,0 +1,77 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>update-sent-data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input placeholder="Razón social" formControlName="razon_social"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="RUC" formControlName="ruc"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Persona de contacto" formControlName="persona_contacto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Telefono" formControlName="telefono"></ion-input>
+    </ion-item>
+  </form>
+
+  <div>
+    <ul style="padding-left: 1.5rem; color: #FF0F0F; line-height: 1.5;">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+
+  <ion-button (click)="submit ()">
+    Guardar
+  </ion-button>
+</ion-content> -->
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>onboarding-no-usuario</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <h1 class="ion-text-center top-slider bottom-cero">Bienvenidos a Paketo</h1>
+  <p class="p-medium ion-text-center p-top">Necesitamos solo unos datos básicos para poder abrir tu cuenta.</p>
+  <form [formGroup]="form">
+    <ion-item lines="none" class="item-input item-top-primero">
+      <ion-input formControlName="razon_social" placeholder="Razón social" type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="item-input item-top">
+      <ion-input formControlName="ruc" placeholder="RUC" type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="item-input item-top">
+      <ion-input formControlName="persona_contacto" placeholder="Persona de contacto" type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="item-input item-top">
+      <ion-input formControlName="telefono" placeholder="Teléfono" type="number"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="nuevo_usuario === true" lines="none" class="item-input item-top">
+      <ion-input formControlName="email" placeholder="Correo electrónico" type="email"></ion-input>
+    </ion-item>
+  </form>
+
+  <div>
+    <ul style="padding-left: 1.5rem; color: #FF0F0F; line-height: 1.5;">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border ion-text-center" mode="ios">
+  <ion-button mode="ios" class="btn-guardar" (click)="submit ()">
+    Enviar
+  </ion-button>
+</ion-footer>

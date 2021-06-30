@@ -1,0 +1,135 @@
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/font/Avenir Book.ttf')
+}
+ion-menu::part(container) {
+    border-radius: 0px 38px 38px 0px;
+    box-shadow: 40px 3px 57px #00000060;
+    position: relative;
+    padding-top: 5rem;
+    padding-left: 1.1875rem;
+    padding-right: 1.9375rem;
+    padding-bottom: 0px;
+    overflow-y: scroll;
+}
+ion-header
+{
+    position: relative;
+}
+.btn-close-menu
+{
+    --background: #fff;
+    --background-activated: #fff;
+    --border-radius: 50%;
+    --box-shadow: -1px 7px 15px #00000029;
+    margin: 0px;
+    width: 2.625rem;
+    height: 2.625rem;
+    font-size: 0px;
+    position: absolute;
+    right: 1.25rem;
+    top: 1rem;
+    z-index: 9999;
+    .icon-close
+    {
+        color: #000;
+        font-size: 1.5625rem;
+
+    }
+}
+.card-nav
+{
+    display: flex;
+    box-shadow: none;
+    margin: 0px;
+    ion-avatar
+    {
+        margin-right: 0.5625rem;
+        background: #EAEAEA;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 3.875rem;
+        height: 3.875rem;
+        --border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon-person
+        {
+            color: #fff;
+            font-size: 2.25rem;
+        }
+    }
+    .label-nombre
+    {
+        color: #000000;
+        font-family: AvenirMedium;
+        font-size: 0.9375rem;
+    }
+    .h1-nombre-empresa
+    {
+        color: #000000;
+        font-family: PoppinsMedium;
+        font-size: 1.375rem;
+        margin: 0px;
+    }
+}
+ion-list
+{
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+ion-item
+{
+    --inner-padding-end: 0px;
+    align-items: baseline;
+}
+.iconos-menu
+{
+    color: #000000;
+    margin-right: 0.6875rem !important;
+    margin: 0px;
+}
+.p-nombres-menu
+{
+    color: #000000;
+    font-family: AvenirMedium;
+    font-size: 1.0625rem;
+    margin: 0;
+    line-height: 1;
+}
+.p-descripciones
+{
+    color: #6E6E6E !important;
+    font-family: AvenirBook !important;
+    font-size: 0.8125rem !important;
+    margin: 0px;
+}
+.icon-flecha
+{
+    color: #000000;
+    font-size: 1.4375rem;
+    margin-right: 0px;
+}
+.item-top
+{
+    margin-top: 1.25rem;
+}
+.item-cerrar
+{
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    margin-top: 2.5rem;
+    --padding-start: 0px;
+    --padding-top: 1.125rem;
+    --padding-bottom: 1.1875rem;
+}

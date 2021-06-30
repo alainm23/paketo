@@ -1,0 +1,40 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <div class="div-center">
+    <ion-card class="card-slide top-slider"></ion-card>
+  </div>
+  <h1 class="ion-text-center top-titulo">Ingresa a tu cuenta</h1>
+  <form [formGroup]="form">
+    <ion-item lines="none" class="item-input" mode="ios">
+      <ion-input formControlName="email" mode="ios" type="email" placeholder="Correo *"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="item-input item-top" mode="ios">
+      <ion-input formControlName="password" mode="ios" [type]="type_password" placeholder="Contraseña *" class=""></ion-input>
+      <ion-icon (click)="password_toggled ()" [name]="type_password === 'password' ? 'eye': 'eye-off'" class="iconinterrogativo"></ion-icon>
+    </ion-item>
+  </form>
+
+  <div>
+    <ul style="padding-left: 1.5rem; color: #FF0F0F; line-height: 1.5;">
+      <li *ngFor="let error of errors">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+
+  <ion-button mode="ios" class="btn-login" [disabled]="loadings.login === true" (click)="submit ()">
+    <span *ngIf="!loadings.login">Entrar</span>
+    <span *ngIf="loadings.login">Verificando...</span>
+    <ion-spinner *ngIf="loadings.login"></ion-spinner>
+  </ion-button>
+  <p class="p-contrasena ion-text-center">¿Olvidaste tu contraseña? <span><ins>Recuperala aqui</ins></span></p>
+</ion-content>
+<ion-footer class="ion-no-border" mode="ios">
+  <p class="p-foooter">¿No tienes usuario?</p>
+  <ion-button class="btn-footer"(click)="go_page ('onboarding-no-usuario')" mode="ios">Contáctanos</ion-button>
+</ion-footer>
