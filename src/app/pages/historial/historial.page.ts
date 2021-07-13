@@ -93,4 +93,20 @@ export class HistorialPage implements OnInit {
     console.log (item);
     this.navController.navigateForward (['pedido-detalle', item.id]);
   }
+
+  get_estado (estado: any) {
+    let text = '';
+
+    if (estado == 1) {
+      text = 'Solicitado';
+    } else if (estado == 2) {
+      text = 'Cancelado';
+    } else if (estado == 3) {
+      text = 'Pendiente';
+    } else if (estado == 4) {
+      text = 'Entregado';
+    }
+
+    return text;
+  }
 }

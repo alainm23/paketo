@@ -1,6 +1,6 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-button (click)="back ()" mode="ios" class="btn-atras">< regresar al carrito</ion-button>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Regresar al carrito</ion-button>
     <!-- <img src="assets/img/cart.png" class="icon-cart-menu">
     <ion-badge mode="ios" class="badge-rojo">9</ion-badge> -->
   </ion-toolbar>
@@ -8,6 +8,7 @@
 
 <ion-content>
   <h1 class="titulo-header ion-text-center">Caja</h1>
+  
   <div class="div-pedidos">
     <h6 class="h6-resumen">Resumen del pedido:</h6>
     <ion-list class="list-pedios">
@@ -16,26 +17,18 @@
         <ion-label slot="end"  class="lable-pedido">{{ item.precio * item.cantidad | currency:item.moneda }}</ion-label>
       </div>
     </ion-list>
-    <!-- <div class="div-linea"></div> -->
-    <!-- <ion-list class="list-pedios">
-      <div lines="none" class="item-productos">
-        <p  class="lable-pedido p-widht-pedido">Subtotal</p>
-        <ion-label slot="end"  class="lable-pedido">S/4,872</ion-label>
-      </div>
-      <div lines="none" class="item-productos">
-        <p  class="lable-pedido p-widht-pedido">IGV</p>
-        <ion-label slot="end"  class="lable-pedido">S/841</ion-label>
-      </div>
-    </ion-list> -->
   </div>
+
   <ion-card class="card-total-pagar">
     <p class="p-pagar-total">Total a pagar (USD):</p>
     <p class="p-pagar-total">{{ get_total ('USD') | currency:'USD' }}</p>
   </ion-card>
+
   <ion-card class="card-total-pagar">
     <p class="p-pagar-total">Total a pagar (S/.):</p>
     <p class="p-pagar-total">{{ get_total ('S/.') | currency:'S/.' }}</p>
   </ion-card>
+
   <div class="div-pago">
     <h6 class="h6-nombres-campos h6-top-bottom">Destino:</h6>
     <ion-item lines="none" class="item-input">
@@ -47,18 +40,7 @@
       <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
     </ion-item>
   </div>
-  <!-- <div class="div-pago">
-    <h6 class="h6-nombres-campos h6-top-bottom">Cuando lo necesitas?</h6>
-    <ion-item lines="none" class="item-input">
-      <ion-select interface="action-sheet" placeholder="Lo más antes posible">
-        <ion-select-option value="brown">Brown</ion-select-option>
-        <ion-select-option value="blonde">Blonde</ion-select-option>
-        <ion-select-option value="black">Black</ion-select-option>
-        <ion-select-option value="red">Red</ion-select-option>
-      </ion-select>
-      <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
-    </ion-item>
-  </div> -->
+
   <div class="div-pago">
     <h6 class="h6-nombres-campos h6-top-bottom">Metodo de pago:</h6>
     <ion-segment [(ngModel)]="selected_segment" value="deposito" (ionChange)="segmentChanged($event)">

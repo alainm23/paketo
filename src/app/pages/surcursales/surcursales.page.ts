@@ -8,6 +8,7 @@ import { ActionSheetController, IonContent, IonSlides, LoadingController, NavCon
 import { UtilsService } from '../../services/utils.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 declare var google: any;
 
 @Component({
@@ -31,6 +32,8 @@ export class SurcursalesPage implements OnInit {
   provincias: any [] = [];
   distritos: any [] = [];
 
+  departamento: any;
+
   departamento_nombre: string = '';
   provincias_nombre: string = '';
 
@@ -46,15 +49,27 @@ export class SurcursalesPage implements OnInit {
     centeredSlides: true,
   };
 
+  surcursal: any;
+  page: any;
+  ver_mapa: boolean = false;
+
   constructor (private actionSheetController: ActionSheetController,
     private utils: UtilsService,
     private database: DatabaseService,
     private auth: AuthService,
     private loadingController: LoadingController,
-    private navController: NavController) { }
+    private navController: NavController,
+    private route: ActivatedRoute) { }
 
   async ngOnInit () {
+    this.surcursal = this.route.snapshot.paramMap.get ('surcursal');
+    this.page = this.route.snapshot.paramMap.get ('page');
+
+    console.log (this.surcursal);
+    console.log (this.page);
+
     this.form = new FormGroup ({
+      id: new FormControl ('', []),
       denominacion: new FormControl ('', [Validators.required]),
       distrito: new FormControl ('', [Validators.required]),
       direccion: new FormControl ('', [Validators.required]),
@@ -63,10 +78,27 @@ export class SurcursalesPage implements OnInit {
       nombres_contacto: new FormControl ('', [Validators.required]),
       telefono_contacto: new FormControl ('', [Validators.required]),
       email_contacto: new FormControl ('', [Validators.required, Validators.email]),
-      foto: new FormControl ('', [Validators.required])
+      foto: new FormControl ('', [Validators.required]),
+      departamento: new FormControl ()
     });
 
-    console.log (this.form.controls.distrito.valid);
+    if (this.surcursal !== 'new') {
+      let data: any = JSON.parse (this.surcursal);
+      console.log (JSON.parse (this.surcursal));
+
+      this.form.controls ['id'].setValue (data.id);
+      this.form.controls ['denominacion'].setValue (data.denominacion);
+      this.form.controls ['direccion'].setValue (data.direccion);
+      this.form.controls ['nombres_contacto'].setValue (data.nombres_contacto);
+      this.form.controls ['telefono_contacto'].setValue (data.telefono_contacto);
+      this.form.controls ['email_contacto'].setValue (data.email_contacto);
+
+      this.image_file = {
+        webPath: data.foto,
+        blob: null,
+        name: new Date ().getTime ().toString ()
+      };
+    }
 
     const loading = await this.loadingController.create ({
       translucent: true,
@@ -189,8 +221,6 @@ export class SurcursalesPage implements OnInit {
   }
 
   async submit (terminar: boolean) {
-    console.log (this.form);
-
     if (this.form.controls ['nombres_contacto'].hasError ('required')) {
       this.utils.presentToast ('El nombre de contacto es requerido', 'danger');
       return;
@@ -222,6 +252,7 @@ export class SurcursalesPage implements OnInit {
     console.log (this.form.value);
 
     const formData: FormData = new FormData ();
+    formData.append ('id', this.form.value.id);
     formData.append ('denominacion', this.form.value.denominacion);
     formData.append ('id_distrito', this.form.value.distrito.id);
     formData.append ('direccion', this.form.value.direccion);
@@ -230,37 +261,59 @@ export class SurcursalesPage implements OnInit {
     formData.append ('nombres_contacto', this.form.value.nombres_contacto);
     formData.append ('telefono_contacto', this.form.value.telefono_contacto);
     formData.append ('email_contacto', this.form.value.email_contacto);
-    formData.append ('foto', this.image_file.blob, this.image_file.name);
+
+    console.log (this.image_file);
+
+    if (this.image_file.blob !== null) {
+      formData.append ('foto', this.image_file.blob, this.image_file.name);
+    }
 
     formData.forEach ((value, key) => {
       console.log ('Key:', key)
       console.log ('Value:', value);
     });
 
-    this.auth.guardar_sucursal (formData).subscribe ((res: any) => {
-      loading.dismiss ();
-      console.log (res);
-      if (res.status === true) {
-        if (terminar) {
-          this.navController.navigateForward (['categorias-interes']);
+    if (this.surcursal === 'new') {
+      this.auth.guardar_sucursal (formData).subscribe ((res: any) => {
+        this.valid_response (terminar, loading, res);
+      }, error => {
+        loading.dismiss ();
+        console.log (error);
+      });
+    } else {
+      this.auth.update_sucursal (formData).toPromise ().then ((res: any) => {
+        this.valid_response (terminar, loading, res);
+      }).catch ((error: any) =>{
+        loading.dismiss ();
+        console.log (error);
+      });
+    }
+  }
+
+  valid_response (terminar: boolean, loading: any, res: any) {
+    loading.dismiss ();
+    console.log (res);
+    if (res.status === true) {
+      if (terminar) {
+        if (this.page === 'sucursales-editar') {
+          this.navController.back ();
         } else {
-          this.slides.lockSwipes (false);
-          this.slides.slideTo (0);
+          this.navController.navigateForward (['categorias-interes', 'home']);
+        }
+      } else {
+        this.slides.lockSwipes (false);
+        this.slides.slideTo (0);
 
-          this.form.reset ();
-          this.image_file = null;
-          this.show_distrito = false;
-          this.show_privincia = false;
+        this.form.reset ();
+        this.image_file = null;
+        this.show_distrito = false;
+        this.show_privincia = false;
 
-          setTimeout (() => {
-            this.slides.lockSwipes (true);
-          }, 400);
-        } 
-      }
-    }, error => {
-      loading.dismiss ();
-      console.log (error);
-    });
+        setTimeout (() => {
+          this.slides.lockSwipes (true);
+        }, 400);
+      } 
+    }
   }
 
   async getActiveIndex () {
@@ -414,5 +467,9 @@ export class SurcursalesPage implements OnInit {
       this.map.setZoom (17);
       this.map.panTo (place.geometry.location);
     });
+  }
+
+  ver_mapa_f () {
+    this.ver_mapa = true;
   }
 }

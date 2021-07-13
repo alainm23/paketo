@@ -28,15 +28,39 @@
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
       </span></ion-label>
     </ion-item>
-    <ion-item lines="none" class="ion-no-padding item-datos">
+
+    <ion-item *ngIf="pedido?.total?.soles" lines="none" class="ion-no-padding item-datos">
       <img src="assets/img/icon-awesome-calculadora-alt-1.png" class="img-datos">
-      <ion-label class="lable-dato">Monto pagado: <span>S/ 5,723.00</span></ion-label>
+      <ion-label class="lable-dato">Monto total (S/): <span>{{ pedido?.total?.soles | currency:'S/.' }}</span></ion-label>
     </ion-item>
+
+    <ion-item *ngIf="pedido?.total?.dolares" lines="none" class="ion-no-padding item-datos">
+      <img src="assets/img/icon-awesome-calculadora-alt-1.png" class="img-datos">
+      <ion-label class="lable-dato">Monto total (USD): <span>{{ pedido?.total?.dolares | currency:'USD' }}</span></ion-label>
+    </ion-item>
+
     <ion-item lines="none" class="ion-no-padding item-datos">
       <img src="assets/img/icon-metro-shop.png" class="img-datos">
       <ion-label class="lable-dato">Sucursal: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
         {{ pedido?.sucursal }}
+      </span></ion-label>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding item-datos">
+      <img src="assets/img/icon-metro-shop.png" class="img-datos">
+      <ion-label class="lable-dato">Estado: <span>
+        <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
+        {{ get_estado (pedido?.estado) }}
+      </span></ion-label>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding item-datos">
+      <img src="assets/img/icon-metro-shop.png" class="img-datos">
+      <ion-label class="lable-dato">Proceso: <span>
+        <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
+        <span *ngIf="pedido?.procesado == 1">Pagado</span>
+        <span *ngIf="pedido?.procesado == 0">Pendiente de pago</span>
       </span></ion-label>
     </ion-item>
   </ion-list>
@@ -76,12 +100,12 @@
     </ion-list> -->
   </div>
   <ion-card class="card-total-pagar">
-    <p class="p-pagar-total">Total a pagar (USD):</p>
-    <p class="p-pagar-total">{{ get_total ('USD') | currency:'USD' }}</p>
-  </ion-card>
-  <ion-card class="card-total-pagar">
     <p class="p-pagar-total">Total a pagar (S/.):</p>
     <p class="p-pagar-total">{{ get_total ('S/.') | currency:'S/.' }}</p>
+  </ion-card>
+  <ion-card class="card-total-pagar">
+    <p class="p-pagar-total">Total a pagar (USD):</p>
+    <p class="p-pagar-total">{{ get_total ('USD') | currency:'USD' }}</p>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center" mode="ios">

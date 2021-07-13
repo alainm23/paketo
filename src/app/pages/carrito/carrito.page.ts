@@ -77,13 +77,39 @@ export class CarritoPage implements OnInit {
     return total;
   }
 
+  validar_cantidades () {
+    let returned: boolean = true;
+
+    this.cart.forEach ((item: any) => {
+      if (item.cantidad <= 0) {
+        returned = false;
+      }
+    });
+
+    return returned;
+  }
+
   submit () {
+    if (!this.validar_cantidades ()) {
+      this.utils.presentToast ('Ingrese un producto con una cantidad valida', 'danger');
+      return;
+    }
+
     this.navController.navigateForward (['checkout']);
   }
 
   valid_change (event: any, item: any) {
     console.log (event);
     console.log (item);
+
+    if (event <= 0) {
+      this.utils.presentToast ('Ingrese un producto con una cantidad valida', 'danger');
+      setTimeout(() => {
+        item.cantidad = 1;
+      }, 250);
+      return;
+    }
+    
 
     let action: string = '';
     if (event > item.cantidad) {
@@ -109,7 +135,7 @@ export class CarritoPage implements OnInit {
     }, error => {
       item.cantidad = item.cantidad_disponible;
       console.log (error);
-      this.utils.presentToast (error.error.message, 'danger');
+      this.utils.present_toast_confirm (error.error.message, 'danger');
     });
   }
 

@@ -1,0 +1,294 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+@font-face{
+    font-family: AvenirBlack;
+    src : url('/assets/font/Avenir-Black.otf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/font/Avenir Book.ttf')
+}
+ion-header
+{
+    background-color: #FFFFFF;
+}
+ion-toolbar
+{
+    --background: #FFFFFF;
+    --padding-top: 1.875rem;
+    --padding-start: 2.5rem;;
+    --padding-end: 0rem;
+    --padding-bottom: 1.875rem;
+}
+.titulo-header
+{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-family: PoppinsMedium;
+    font-size: 1.375rem;
+    margin-top: 0rem;
+    margin-bottom: 0px;
+}
+ion-content
+{
+    --background: #FFFFFF;
+}
+.div-flex-header
+{
+    position: relative;
+    padding: 0px 2.8125rem;
+}
+.btn-atras
+{
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --color: #000000;
+    font-size: 1.125rem;
+    font-family: PoppinsMedium;
+    --background: #FFFFFF;
+    --background-activated: #ffffff;
+    margin: 0px;
+    height: auto;
+}
+.icon-cart-menu
+{
+    color: #000000;
+    width: 1.4375rem;
+    position: absolute;
+    top: 2rem;
+    right: 2.8125rem;
+}
+.badge-rojo
+{
+    --background: #FF0000;
+    border-radius: 50%;
+    --color: #fff;
+    font-family: AvenirHeavy;
+    font-size: 0.8125rem;
+    --padding-start: 0px; 
+    --padding-end: 0px;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    right: 2.5rem;
+    top: 1.5625rem;
+}
+.grid-padding-left-right
+{
+    padding-left: 0.90625rem;
+    padding-right: 0.90625rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 1.875rem;
+}
+.card-favorito
+{
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    box-shadow: none;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #E2E2E2;
+    padding-bottom: 0.875rem;
+    margin-top: 1.25rem;
+    border-radius: 0px;
+    .avatar-favorito
+    {
+        width: 4rem;
+        height: 4rem;
+        --border-radius: 10px;
+        background: #EAEAEA;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: 0px;
+        margin-right: 0.8125rem;
+    }
+    .div-titulo-texto
+    {
+        .h6-titulo-favorito
+        {
+            color: #000000;
+            font-family: AvenirMedium;
+            font-size: 0.9375rem;
+            margin: 0px;
+        }
+        .p-especifiacion
+        {
+            color: #AAAAAA;
+            font-family: AvenirBook;
+            font-size: 0.8125rem;
+            margin: 0px;
+        }
+        .label-categoria
+        {
+            color: #AAAAAA;
+            font-family: AvenirHeavy;
+            font-size: 0.8125rem;
+            margin-top: 0.625rem;
+        }
+    }
+    ion-card-content
+    {
+        margin-top: 1rem;
+        padding: 0.625rem 0.625rem;
+        background: #F7F7F7;
+        position: relative;
+        .h6-favorito
+        {
+            color: #4B4B4B;
+            font-family: AvenirBlack;
+            margin: 0px;
+            font-size: 0.8125rem;
+        }
+        .p-descrip-favorito
+        {
+            color: #4B4B4B;
+            font-family: AvenirMedium;
+            margin: 0px;
+            font-size: 0.8125rem;
+        }
+        ion-fab-button
+        {
+            width: 1.875rem;
+            height: 1.875rem;
+            --background: #FFFFFF;
+            --background-activated: #ffffff;
+            --close-icon-font-size: #4B4B4B;
+            --color: #4B4B4B;
+            --close-icon-font-size: 1.125rem;
+            font-size: 0px;
+            ion-icon
+            {
+                color: #4B4B4B; 
+            }
+        }
+        ion-fab-list
+        {
+            margin-bottom: 2.0625rem;
+            margin-left: -0.8125rem;
+            margin-top: 0px;
+        }
+        .btn-edit-delete
+        {
+            position: absolute;
+            right: 1rem;
+            --background: #FFFFFF;
+            --background-activated: #ffffff;
+            --padding-start: 0px;
+            --padding-end: 0px;
+            width: 2.1875rem;
+            height: 2.1875rem;
+            margin: 0px;
+            --border-radius: 8px;
+            ion-icon
+            {
+                color: #4B4B4B; 
+            } 
+        }
+        .edit-bottom
+        {
+            bottom: 3.4375rem;
+        }
+        .delete-bottom
+        {
+            bottom: 0.625rem;
+        }
+    }
+}
+.col-favoritos
+{
+    padding: 0px;
+}
+ion-footer 
+{
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    .btn-add-footer
+    {
+        --border-radius: 50%;
+        --background: #EBEBEB;
+        --background-activated: #EBEBEB;
+        --padding-start: 0px;
+        --padding-end: 0px;
+        width: 2rem;
+        height: 2rem; 
+        margin: 0px;
+    }
+    .label-footer
+    {
+        font-family: AvenirBook;
+        font-size: 0.8125rem;
+        color: #6E6E6E;
+        margin-left: 1rem;
+    }
+}
+@media (min-width: 540px)
+{
+    .grid-padding-left-right
+    {
+        padding-left: 1.875rem;
+        padding-right: 1.875rem;
+    }
+    .card-favorito
+    {
+        ion-card-content
+        {
+            padding: 0.625rem 1.875rem;
+        }
+    }
+}
+@media (min-width: 768px)
+{
+    ion-toolbar
+    {
+        --padding-start: 5rem;
+    }
+    .icon-cart-menu
+    {
+        right: 5rem;
+    }
+    .badge-rojo
+    {
+        right: 4.6875rem;
+    }
+    .titulo-header
+    {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+    .col-favoritos
+    {
+        padding: 0px 1rem;
+    }
+    .card-favorito
+    {
+        ion-card-content
+        {
+            padding: 0.625rem 0.625rem;
+        }
+    }
+}

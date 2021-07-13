@@ -17,5 +17,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-button mode="ios" class="btn-guardar" (click)="submit ()">Continuar</ion-button>
+  <ion-button mode="ios" class="btn-guardar" (click)="submit ()">
+    <span *ngIf="type === 'black'">
+      Guardar
+    </span>
+    <span *ngIf="type !== 'black'">
+      Continuar
+    </span>
+  </ion-button>
 </ion-content>

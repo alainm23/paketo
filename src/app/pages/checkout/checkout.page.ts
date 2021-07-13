@@ -104,7 +104,11 @@ export class CheckoutPage implements OnInit {
     });
 
     this.database.crear_pedido (formData).subscribe ((pedido: any) => {
+      pedido.pedido.soles = this.get_total ('S/.');
+      pedido.pedido.dolares = this.get_total ('USD');
+
       console.log (pedido);
+
       if (pedido.status === true) {
         this.database.vaciar_carrito ().subscribe ((res: any) => {
           loading.dismiss ();
@@ -118,6 +122,7 @@ export class CheckoutPage implements OnInit {
         });
       }
     }, error => {
+      loading.dismiss ();
       console.log (error);
     });
   }

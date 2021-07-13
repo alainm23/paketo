@@ -1,0 +1,35 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
+      {{ cart_item_count | async }}
+    </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="titulo-header ion-text-center">Ajustes de cuenta</h1>
+  <ion-grid class="grid-padding-left-right">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="7" class="col-favoritos">
+        <ion-item (click)="go_page ('sucursales-editar')" lines="none" button class="ion-no-padding">
+          <ion-label class="h6-nombres-campos ion-text-wrap ion-no-margin" >
+            Administrar Sucursales
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="editar_categloria ()" lines="none" button class="ion-no-padding">
+          <ion-label class="h6-nombres-campos ion-text-wrap ion-no-margin" >
+            Administrar Categorías de interes
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-label class="h6-nombres-campos ion-text-wrap ion-no-margin" >
+            Notificaciones <br> <span class="span-toogle">Activar o desactivar</span>
+          </ion-label>
+          <ion-toggle [(ngModel)]="notificaciones" mode="ios"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

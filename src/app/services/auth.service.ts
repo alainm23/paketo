@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   get_user_data () {
-    return this.storage.get ('USER_DATA');
+    return this.storage.get ('PAKETO_USER_DATA');
   }
 
   get_fields (fields: string []) {
@@ -120,12 +120,56 @@ export class AuthService {
     return this.http.post (URL, request, { headers });
   }
 
-  update_user_data () {
+  async update_user_data () {
     const request: any = {
-      fields: ['categorias', 'datos_confirmados', 'password_updated_user', 'sucursales', 'confianza']
+      fields: ['categorias', 'name', 'razon_social', 'persona_contacto', 'datos_confirmados', 'password_updated_user', 'sucursales', 'confianza']
     };
 
     const URL: string = this.BASE_URL + '/user/get/specifics/fields';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    };
+
+    const response: any = await this.http.post (URL, request, { headers }).toPromise ();
+    
+    await this.storage.set ('PAKETO_USER_DATA', JSON.stringify (response));
+
+    return response;
+  }
+
+  recuperar_password (email: string) {
+    const URL: string = this.BASE_URL + '/password/email';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.post (URL, {email: email}, { headers });
+  }
+
+  get_sucursales () {
+    const URL: string = this.BASE_URL + '/user/sucursales';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.get (URL, { headers });
+  }
+
+  delete_sucursal (id: string) {
+    const URL: string = this.BASE_URL + '/user/borrar/sucursal';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.post (URL, {id: id}, { headers });
+  }
+
+  update_sucursal (request: any) {
+    const URL: string = this.BASE_URL + '/user/actualizar/sucursal';
 
     const headers = {
       'Authorization': 'Bearer ' + this.USER_ACCESS.access_token

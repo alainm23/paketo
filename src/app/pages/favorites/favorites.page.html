@@ -22,14 +22,22 @@
   </ion-slides>
   <ion-grid class="grid-padding-left-right">
     <ion-row>
+      <ion-col *ngIf="items.length <= 0" size="12" size-md="12" class="col-favoritos">
+        <ion-item class="ion-text-center">
+          <ion-label class="ion-text-wrap">
+            <h2>Ningun favorito</h2>
+            <p>Aún no has agregado ningún elemento a tu lista de favoritos</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
       <ion-col *ngFor="let item of items" size="12" size-md="6" class="col-favoritos">
-        <ion-card class="card-favorito">
+        <ion-card (click)="add_carrito (item)" class="card-favorito">
           <div class="div-btn-icon">
-            <ion-button [disabled]="item.add_loading === true" (click)="add_carrito (item)" mode="ios" class="btn-cart-delete btn-cart">
+            <ion-button [disabled]="item.add_loading === true" mode="ios" class="btn-cart-delete btn-cart">
               <ion-spinner *ngIf="item.add_loading === true"></ion-spinner>
               <img *ngIf="item.add_loading !== true" src="assets/img/icon-material-add-shopping-cart.png" class="img-cart">
             </ion-button>
-            <ion-button (click)="delete_favorite (item)" mode="ios" class="btn-cart-delete btn-delete">
+            <ion-button (click)="delete_favorite (item, $event)" mode="ios" class="btn-cart-delete btn-delete">
               <ion-spinner *ngIf="item.loading === true"></ion-spinner>
               <img *ngIf="item.loading !== true" src="assets/img/icon-feather-trash.png" class="img-delete">
             </ion-button>

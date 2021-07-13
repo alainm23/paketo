@@ -51,6 +51,7 @@ export class CreatePasswordPage implements OnInit {
     this.form_erros_description.set ('equalTo', 'confirmar contraseña no coincide');
 
     this.user = JSON.parse (await this.auth.get_user_data ());
+    console.log (this.user);
   }
 
   submit () {

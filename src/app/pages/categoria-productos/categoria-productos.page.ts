@@ -126,11 +126,12 @@ export class CategoriaProductosPage implements OnInit {
     this.navController.navigateRoot (page);
   }
 
-  favorite_toggled (item: any) {
+  favorite_toggled (item: any, event: any) {
+    event.stopPropagation ();
     item.tengo_favorito = !item.tengo_favorito;
 
     const request: any = {
-      id_variante: item.id
+      id_producto: item.id
     };
 
     // if (item.tengo_favorito) {
@@ -146,5 +147,13 @@ export class CategoriaProductosPage implements OnInit {
       item.tengo_favorito = !item.tengo_favorito;
       console.log (error);
     });
+  }
+
+  detalle (item: any) {
+    this.navController.navigateForward (['producto-detalle', item.id]);
+  }
+
+  share_wp () {
+    window.open ('https://wa.me/51996280066', '_system', 'location=yes');
   }
 }

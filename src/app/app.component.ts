@@ -19,7 +19,7 @@ export class AppComponent {
   constructor (public storage: Storage,
       public platform: Platform,
       private cartService: CartService,
-      private auth: AuthService,
+      public auth: AuthService,
       private location: Location,
       private navController: NavController,
       private menuController: MenuController,
@@ -56,35 +56,23 @@ export class AppComponent {
     let user_data: any = JSON.parse (await this.storage.get ('PAKETO_USER_DATA'));
     let user_access: any = JSON.parse (await this.storage.get ('PAKETO_USER_ACCESS'));
 
-    console.log (user_data);
-    console.log (user_access);
-
     if (user_data !== null && user_access !== null) {
       this.auth.USER_DATA = user_data;
       this.auth.USER_ACCESS = user_access;
 
       this.cartService.get_cloud_cart ();
 
-      this.auth.update_user_data ().subscribe ((res: any) => {
+      this.auth.update_user_data ().then ((res: any) => {
         console.log (res);
-
-        this.auth.USER_DATA.categorias = res.categorias.length;
-        this.auth.USER_DATA.datos_confirmados = res.datos_confirmados
-        this.auth.USER_DATA.password_updated_user = res.password_updated_user;
-        this.auth.USER_DATA.sucursales = res.sucursales;
-        this.auth.USER_DATA.confianza = res.confianza;
-
-        this.storage.set ('PAKETO_USER_DATA', JSON.stringify (this.auth.USER_DATA)).then (() => {
-          if (this.auth.USER_DATA.password_updated_user <= 0) {
-            this.navController.navigateForward ('create-password');
-          } else if (this.auth.USER_DATA.datos_confirmados <= 0) {
-            this.navController.navigateForward ('confirm-data-intro');
-          } else if (this.auth.USER_DATA.sucursales <= 0) {
-            this.navController.navigateForward ('surcursales');
-          } else if (this.auth.USER_DATA.categorias <= 0) {
-            this.navController.navigateForward ('categorias-interes');
-          }
-        });
+        if (this.auth.USER_DATA.password_updated_user <= 0) {
+          this.navController.navigateForward ('create-password');
+        } else if (this.auth.USER_DATA.datos_confirmados <= 0) {
+          this.navController.navigateForward ('confirm-data-intro');
+        } else if (this.auth.USER_DATA.sucursales <= 0) {
+          this.navController.navigateForward ('surcursales');
+        } else if (this.auth.USER_DATA.categorias <= 0) {
+          this.navController.navigateForward ('categorias-interes');
+        }
       });
     }
   }

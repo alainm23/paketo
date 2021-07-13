@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // Services
 import { LoadingController, NavController } from '@ionic/angular';
@@ -15,13 +16,17 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class CategoriasInteresPage implements OnInit {
   categorias: any [] = [];
   categoria_selected: Map <number, any> = new Map <number, any> ();
+  type: string;
   constructor (private database: DatabaseService,
     private utils: UtilsService,
     private auth: AuthService,
     private navController: NavController,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    private route: ActivatedRoute) { }
 
   async ngOnInit() {
+    this.type = this.route.snapshot.paramMap.get ('type');
+
     const loading = await this.loadingController.create ({
       translucent: true,
       spinner: 'lines-small',
@@ -31,9 +36,15 @@ export class CategoriasInteresPage implements OnInit {
     await loading.present ();
 
     this.database.get_datos ('categorias').subscribe ((res: any) => {
-      console.log (res);
       loading.dismiss ();
       this.categorias = res;
+
+      if (this.type === 'black') {
+        console.log (this.auth.USER_DATA);
+        this.auth.USER_DATA.categorias.forEach ((categoria: any) => {
+          this.categoria_selected.set (categoria.id, categoria);
+        });
+      }
     }, error => {
       loading.dismiss ();
       console.log (error);
@@ -73,9 +84,21 @@ export class CategoriasInteresPage implements OnInit {
 
     this.auth.asignar_categorias ({categorias: categorias}).subscribe ((res: any) => {
       console.log (res);
-      loading.dismiss ();
       if (res.status === true) {
-        this.navController.navigateRoot (['home']);
+        if (this.type === 'black') {
+          this.utils.presentToast ('Las categorias fueron actualizadas', 'success').then (() => {
+            loading.dismiss ();
+            this.navController.back ();
+          });
+        } else {
+          this.auth.update_user_data ().then ((res: any) => {
+            loading.dismiss ();
+            this.navController.navigateRoot (['home']);
+          }, error => {
+            loading.dismiss ();
+            this.navController.navigateRoot (['home']);
+          });
+        }
       }
     }, error => {
       loading.dismiss ();

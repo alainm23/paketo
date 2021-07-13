@@ -1,0 +1,328 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: PoppinsMedium;
+    src : url('/assets/font/Poppins-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: PoppinsRegular;
+    src : url('/assets/font/Poppins-Regular.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+@font-face{
+    font-family: AvenirBlack;
+    src : url('/assets/font/Avenir-Black.otf')
+}
+ion-header
+{
+    background-color: #FFFFFF;
+}
+ion-toolbar
+{
+    --background: #FFFFFF;
+    --padding-top: 1.875rem;
+    --padding-start: 2.5rem;
+    --padding-bottom: 1.875rem;
+}
+ion-content
+{
+    --background: #FFFFFF;
+}
+.div-flex-header
+{
+    position: relative;
+    padding: 0px 2.8125rem;
+}
+.btn-atras
+{
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --color: #000000;
+    font-size: 1.125rem;
+    font-family: PoppinsMedium;
+    --background: #FFFFFF;
+    --background-activated: #ffffff;
+    margin: 0px;
+    height: auto;
+}
+.icon-cart-menu
+{
+    color: #000000;
+    width: 1.4375rem;
+    position: absolute;
+    top: 2.1875rem;
+    right: 2.8125rem;
+}
+.badge-rojo
+{
+    --background: #FF0000;
+    border-radius: 50%;
+    --color: #fff;
+    font-family: AvenirHeavy;
+    font-size: 0.8125rem;
+    --padding-start: 0px; 
+    --padding-end: 0px;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    right: 2.5rem;
+    top: 1.875rem;
+}
+.div-flex-card
+{
+    display: flex;
+    padding-left: 0.8125rem;
+    padding-right: 0.6875rem;
+    width: 100%;
+    justify-content: space-between;
+}
+.div-card-foto
+{
+    width: 16.875rem;
+    .tituloproducto
+    {
+        color: #000000;
+        font-size: 1.375rem;
+        font-family: PoppinsMedium;
+        margin-top: 0.5rem;
+        margin-left: 1.6875rem;
+        padding-right: 1.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 3.25rem;
+    }
+    .avatar-foto
+    {
+        width: 100%;
+        --border-radius: 23px;
+        height: 16.8125rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover !important;
+        background: #EAEAEA;
+    }
+}
+.div-card-fotos
+{
+    width: 3.4375rem;
+    .avatar-fotos
+    {
+        width: 100%;
+        height: 3.4375rem;
+        --border-radius: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover !important;
+    }
+    .avatar-top
+    {
+        margin-top: 0.25rem;
+    }
+}
+.div-padding-left-right
+{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    margin-top: 1.125rem;
+}
+.subtitulo-h6
+{
+    color: #000000;
+    font-family: AvenirMedium;
+    font-size: 1.0625rem;
+    margin: 0px;
+    font-weight: bold;
+}
+.p-descripcion
+{
+    color: #6E6E6E;
+    font-family: PoppinsRegular;
+    font-size: 0.9375rem;
+    margin: 0px;
+    margin-top: 0.125rem !important;
+}
+.subtitulo-top
+{
+    margin-top: 1.3125rem !important;
+}
+ion-slides
+{
+    background: #EBEBEB;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    margin-top: 0.8125rem;
+    ion-slide
+    {
+        width: auto !important;
+        .tiutlo-slider
+        {
+            color: #000000;
+            font-family: Avenirlight;
+            font-size: 1.0625rem;
+            margin: 0px;
+        }
+        .tiutlo-slider-activo
+        {
+            font-family: AvenirBlack !important;
+            text-decoration: underline;
+        }
+    }
+}
+.item-contador
+{
+    --inner-padding-end: 0px;
+    height: 1.875rem;
+    align-items: baseline;
+    .label-nombre
+    {
+        color: #6E6E6E;
+        font-family: PoppinsRegular;
+        font-size: 0.9375rem;
+        margin: 0px;
+    }
+    .label-right-primero
+    {
+        width: 50%;
+        padding-right: 1.25rem;
+    }
+    .label-right-segundo
+    {
+        margin-right: 1.125rem;
+    }
+}
+.div-contador
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn-add-rest
+    {
+        margin: 0px;
+        --background: #D9D9D9;
+        --background-activated: #D9D9D9;
+        --color: #000000;
+        font-size: 0.9375rem;
+        font-family: PoppinsMedium;
+        width: 1.5rem;
+        height: 1.5rem;
+        --border-radius: 5px;
+    }
+    .input-number
+    {
+        width: 1.25rem;
+        margin-left: 0.5625rem;
+        margin-right: 0.5625rem;
+        --padding-start: 0px;
+        --padding-end: 0px;
+        --color: #000000;
+        font-size: 0.9375rem;
+        font-family: PoppinsMedium;
+        text-align: center;
+        height: 1.5rem;
+    }
+}
+ion-list
+{
+    margin-top: 0.625rem;
+}
+ion-footer
+{
+    background: #fff;
+}
+.div-footer
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.875rem 1.875rem;
+    border-radius: 24px 24px 0px 0px;
+    box-shadow: 0px -7px 17px #00000029;
+}
+.p-footer
+{
+    color: #000000;
+    font-family: PoppinsMedium;
+    font-size: 1.0625rem;
+    margin: 0px;
+}
+.btn-add-footer
+{
+    --background: #FF0F0F;
+    --background-activated: #FF0F0F;
+    --color: #fff;
+    font-family: AvenirHeavy;
+    --border-radius: 50%;
+    width: 4.5625rem;
+    height: 4.5625rem;
+    font-size: 1.8125rem;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin: 0px;
+    margin-top: -3.125rem;
+    --box-shadow: 0px 2px 5px #0000000D;
+}
+.div-bottom
+{
+    margin-bottom: 3.125rem;
+}
+@media (min-width: 540px)
+{
+    .div-flex-card
+    {
+        padding-left: 3.125rem;
+        padding-right: 3.125rem;
+        justify-content: space-evenly;
+    }
+    .item-contador
+    {
+        .label-right-primero
+        {
+            width: 70%;
+        }
+    }
+    .div-footer
+    {
+        justify-content: space-evenly;
+    }
+}
+@media (min-width: 768px)
+{
+    ion-toolbar
+    {
+        --padding-start: 5rem;
+    }
+    .icon-cart-menu
+    {
+        right: 5rem;
+    }
+    .badge-rojo
+    {
+        right: 4.6875rem;
+    }
+    .div-flex-card
+    {
+        justify-content: center;
+    }
+    .div-card-fotos
+    {
+        margin-left: 0.625rem;
+    }
+    .div-padding-left-right
+    {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}

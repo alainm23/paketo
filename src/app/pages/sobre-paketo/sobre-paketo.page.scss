@@ -1,0 +1,176 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: PoppinsRegular;
+    src : url('/assets/font/Poppins-Regular.ttf')
+}
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/font/Avenir Book.ttf')
+}
+ion-header
+{
+    background-color: #FFFFFF;
+}
+ion-toolbar
+{
+    --background: #FFFFFF;
+    --padding-top: 1.875rem;
+    --padding-start: 2.5rem;;
+    --padding-end: 0rem;
+    --padding-bottom: 1.875rem;
+}
+.titulo-header
+{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-family: PoppinsMedium;
+    font-size: 1.375rem;
+    margin-top: 0rem;
+    margin-bottom: 0px;
+}
+ion-content
+{
+    --background: #FFFFFF;
+}
+.div-flex-header
+{
+    position: relative;
+    padding: 0px 2.8125rem;
+}
+.p-descripciones
+{
+    font-family: PoppinsRegular;
+    color: #6E6E6E;
+    margin: 0px;
+    font-size: 0.9375rem;
+}
+.btn-atras
+{
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --color: #000000;
+    font-size: 1.125rem;
+    font-family: PoppinsMedium;
+    --background: #FFFFFF;
+    --background-activated: #ffffff;
+    margin: 0px;
+    height: auto;
+}
+.icon-cart-menu
+{
+    color: #000000;
+    width: 1.4375rem;
+    position: absolute;
+    top: 2rem;
+    right: 2.8125rem;
+}
+.badge-rojo
+{
+    --background: #FF0000;
+    border-radius: 50%;
+    --color: #fff;
+    font-family: AvenirHeavy;
+    font-size: 0.8125rem;
+    --padding-start: 0px; 
+    --padding-end: 0px;
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    right: 2.5rem;
+    top: 1.5625rem;
+}
+.grid-padding-left-right
+{
+    padding-left: 3.4375rem;
+    padding-right: 3.4375rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 1.875rem;
+}
+.div-center
+{
+    display: flex;
+    justify-content: center;
+}
+.card-slide
+{
+    border-radius: 1.25rem;
+    --background: #EAEAEA;
+    width: 10.75rem;
+    height: 10.875rem;
+    margin-bottom: 0px;
+}
+.top-slider
+{
+    margin-top: 3.5rem;
+    margin-bottom: 2.5rem;
+}
+.col-favoritos
+{
+    padding: 0px;
+}
+ion-footer 
+{
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1.25rem;
+    .btn-add-footer
+    {
+        --border-radius: 50%;
+        --background: #EBEBEB;
+        --background-activated: #EBEBEB;
+        --padding-start: 0px;
+        --padding-end: 0px;
+        width: 2rem;
+        height: 2rem; 
+        margin: 0px;
+    }
+    .label-footer
+    {
+        font-family: AvenirBook;
+        font-size: 0.8125rem;
+        color: #6E6E6E;
+        margin-left: 1rem;
+    }
+}
+@media (min-width: 540px)
+{
+    .grid-padding-left-right
+    {
+        padding-left: 1.875rem;
+        padding-right: 1.875rem;
+    }
+}
+@media (min-width: 768px)
+{
+    ion-toolbar
+    {
+        --padding-start: 5rem;
+    }
+    .icon-cart-menu
+    {
+        right: 5rem;
+    }
+    .badge-rojo
+    {
+        right: 4.6875rem;
+    }
+    .titulo-header
+    {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+    .col-favoritos
+    {
+        padding: 0px 1rem;
+    }
+}

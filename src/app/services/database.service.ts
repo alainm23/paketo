@@ -46,6 +46,16 @@ export class DatabaseService {
     return this.http.get (URL, { headers });
   }
 
+  get_promociones () {
+    const URL: string = this.BASE_URL + '/productos/promociones';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.get (URL, { headers });
+  }
+
   get_productos_categoria (request: any) {
     const URL: string = this.BASE_URL + '/productos/por/categoria';
 
@@ -94,6 +104,16 @@ export class DatabaseService {
     }
 
     return this.http.post (URL, {id_variante: id_variante}, { headers });
+  }
+
+  add_carrito_lista (request: any) {
+    const URL: string = this.BASE_URL + '/productos/agregar/carrito/lista';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (URL, request, { headers });
   }
 
   get_carrito () {
@@ -184,5 +204,15 @@ export class DatabaseService {
     }
 
     return this.http.post (URL, { busqueda: busqueda }, { headers });
+  }
+
+  get_producto_detalle (id: string) {
+    const URL: string = this.BASE_URL + '/productos/detalle';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (URL, { id_producto: id }, { headers });
   }
 }

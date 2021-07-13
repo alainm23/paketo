@@ -70,11 +70,6 @@ export class ConfirmDataPage implements OnInit {
   }
 
   async submit () {
-    console.log (this.razon_social);
-    console.log (this.ruc);
-    console.log (this.telefono);
-    console.log (this.persona_contacto);
-
     if (this.razon_social === '' || this.razon_social === null) {
       this.utils.presentToast ('La Razon Social es requerido', 'danger');
       this.modificar ();
@@ -120,7 +115,7 @@ export class ConfirmDataPage implements OnInit {
       loading.dismiss ();
 
       if (res.status === true) {
-        this.navController.navigateForward (['surcursales']);
+        this.navController.navigateForward (['surcursales', 'new', 'categorias-interes']);
       }
     }, error => {
       loading.dismiss ();

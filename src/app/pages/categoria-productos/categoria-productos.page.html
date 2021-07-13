@@ -105,7 +105,7 @@
       </ion-col>
 
       <ion-col *ngFor="let item of items" size="6" size-md="3" class="col-padding-left-right">
-        <ion-card class="card-categorias">
+        <ion-card (click)="detalle (item)" class="card-categorias">
           <ion-avatar
             [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
             class="avatar-categoria">
@@ -116,10 +116,12 @@
           </ion-card-header>
           <ion-card-content class="ion-no-padding">
             <ion-label class="label-precio">{{ item.precio | currency:item.moneda }}</ion-label>
-            <ion-button mode="ios" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+            <ion-button mode="ios" class="btn-add-categoria">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-button>
           </ion-card-content>
           <ion-button
-              (click)="favorite_toggled (item)" mode="ios"
+              (click)="favorite_toggled (item, $event)" mode="ios"
               [class.btn-list-categoria-favorited]="item.tengo_favorito === true"
               class="btn-list-categoria">
               <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
@@ -150,7 +152,7 @@
       <ion-button (click)="go_page ('historial')"mode="ios" class="btn-icon-footer">
         <img src="assets/img/icon-material-history.png" id="img-historial">
       </ion-button>
-      <ion-button mode="ios" class="btn-icon-footer border-cero-right btn-padding-right-cero">
+      <ion-button (click)="share_wp ()" mode="ios" class="btn-icon-footer border-cero-right btn-padding-right-cero">
         <img src="assets/img/icon-awesome-whatsapp.png" id="img-wassap">
       </ion-button>
     </div>

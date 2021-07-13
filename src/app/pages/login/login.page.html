@@ -32,7 +32,7 @@
     <span *ngIf="loadings.login">Verificando...</span>
     <ion-spinner *ngIf="loadings.login"></ion-spinner>
   </ion-button>
-  <p class="p-contrasena ion-text-center">¿Olvidaste tu contraseña? <span><ins>Recuperala aqui</ins></span></p>
+  <p class="p-contrasena ion-text-center">¿Olvidaste tu contraseña? <span><ins (click)="emial_alert ()">Recuperala aqui</ins></span></p>
 </ion-content>
 <ion-footer class="ion-no-border" mode="ios">
   <p class="p-foooter">¿No tienes usuario?</p>

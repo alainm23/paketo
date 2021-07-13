@@ -6,6 +6,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { CartService } from '../../services/cart.service';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,18 @@ export class HomePage implements OnInit {
   ofertas: any [] = [];
   categorias_preferentes: any [] = [];
   categorias: any [] = [];
+  search_result: any = {
+    categorias: [],
+    productos: []
+  };
+  promociones: any;
 
   loadins: any = {
     ofertas: false,
     categorias_preferentes: false,
-    categorias: false
+    categorias: false,
+    promociones: false,
+    search: false
   }
 
   slideOpts = {
@@ -30,13 +38,15 @@ export class HomePage implements OnInit {
   };
 
   segment: string = 'home';
+  search_text: string = '';
   cart_item_count: BehaviorSubject<number>;
 
   constructor (private database: DatabaseService,
     private navController: NavController,
     private utils: UtilsService,
     private cartService: CartService,
-    private menuController: MenuController) { }
+    private menuController: MenuController,
+    private auth: AuthService) { }
 
   async ngOnInit () {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -73,6 +83,22 @@ export class HomePage implements OnInit {
       this.loadins.categorias_preferentes = false;
       this.check_main_loading (event);
     });
+
+    this.loadins.promociones = true;
+    this.database.get_promociones ().subscribe ((res: any []) => {
+      this.loadins.promociones = false;
+      console.log (res);
+
+      this.promociones = res [0];
+
+      if (event) {
+        this.check_main_loading (event);
+      }
+    }, error => {
+      console.log (error);
+      this.loadins.promociones = false;
+      this.check_main_loading (event);
+    });
   }
 
   get_categorias () {
@@ -88,7 +114,8 @@ export class HomePage implements OnInit {
   }
 
   check_main_loading (event: any) {
-    if (this.loadins.ofertas === false && this.loadins.categorias_preferentes === false) {
+    if (this.loadins.ofertas === false && this.loadins.categorias_preferentes === false
+        && this.loadins.promociones === false) {
       event.target.complete ();
     }
   }
@@ -116,11 +143,12 @@ export class HomePage implements OnInit {
     this.navController.navigateForward (['categoria-productos', JSON.stringify (item)]);
   }
 
-  favorite_toggled (item: any) {
+  favorite_toggled (item: any, event: any) {
+    event.stopPropagation ();
     item.tengo_favorito = !item.tengo_favorito;
-
+    
     const request: any = {
-      id_variante: item.id
+      id_producto: item.id
     };
 
     // if (item.tengo_favorito) {
@@ -139,10 +167,19 @@ export class HomePage implements OnInit {
   }
 
   go_page (page: string) {
-    this.navController.navigateForward (page);
+    console.log (page)
+    this.navController.navigateForward (page).then ((res) => {
+      console.log (res);
+    }).catch ((error: any) => {
+      console.log (error);
+    });
   }
 
-  add_carrito (item: any) {
+  add_carrito (item: any, event=null) {
+    if (event !== null) {
+      event.stopPropagation ();
+    }
+
     console.log (item);
 
     item.loading = true;
@@ -163,11 +200,38 @@ export class HomePage implements OnInit {
   }
 
   search_change (event: any) {
+    this.search_result.categorias = [];
+    this.search_result.productos = [];
+
     console.log (event.detail.value);
-    this.database.buscar_producto (event.detail.value).subscribe ((res: any) => {
-      console.log (res);
-    }, error => {
-      console.log (error);
-    });
+
+    if (this.search_text.trim () !== '') {
+      this.loadins.search = true;
+      this.database.buscar_producto (event.detail.value).subscribe ((res: any) => {
+        this.search_result = res;
+        console.log (res);
+        this.loadins.search = false;
+      }, error => {
+        this.loadins.search = false;
+        console.log (error);
+      });
+    }
+  }
+
+  get_search_visible () {
+    return (this.search_result.categorias.length + this.search_result.productos.length) > 0;
+  }
+
+  ver_pedido (item: any) {
+    console.log (item);
+    this.navController.navigateForward (['producto-detalle', item.id]);
+  }
+
+  _ver_pedido (id: string) {
+    this.navController.navigateForward (['producto-detalle', id]);
+  }
+
+  share_wp () {
+    window.open ('https://wa.me/51996280066', '_system', 'location=yes');
   }
 }

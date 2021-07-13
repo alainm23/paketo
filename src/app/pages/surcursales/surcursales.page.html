@@ -4,12 +4,19 @@
   </ion-toolbar>
 </ion-header>-->
 
-<ion-content [class.no-scroll]="index === 0 || index === 2">
+<ion-content>
   <form [formGroup]="form">
   <ion-slides (ionSlideDidChange)="ionSlideDidChange ()" pager="false" [options]="slideOpts">
     <ion-slide>
-      <h1 class="ion-text-center top-slider bottom-cero">Ferreterías</h1>
-      <p class="p-medium ion-text-center p-top">Si tienes más de una ferretería, podrás registrarla más adelante</p>
+      <h1 class="ion-text-center top-slider bottom-cero">
+        Ferreterías
+      </h1>
+      <p *ngIf="surcursal !== 'new'" class="p-medium ion-text-center p-top">
+        Actualiza la información que necesitas. y al final del proceso solo debería haber el botón de actualizar quitar agregar sucursal
+      </p>
+      <p *ngIf="surcursal === 'new'" class="p-medium ion-text-center p-top">
+        Si tienes más de una ferretería, podrás registrarla más adelante
+      </p>
       <div class="div-top-uno">
         <h6 class="h6-nombres-campos">Nombre</h6>
         <ion-item lines="none" class="item-input">
@@ -39,7 +46,7 @@
       <p class="p-medium ion-text-center p-top">Esta información es importante para que podamos entregar tu pedido lo más rápido posible</p>
       <h6 class="h6-nombres-campos h6-top-bottom">Ubicación</h6>
       <ion-item lines="none" class="item-input">
-        <ion-select (ionChange)="select_change ($event, 'provincias?departamento_id=', 'provincias')" placeholder="Departamento">
+        <ion-select formControlName="departamento" (ionChange)="select_change ($event, 'provincias?departamento_id=', 'provincias')" placeholder="Departamento">
           <ion-select-option [value]="item" *ngFor="let item of departamentos">
             {{ item.nombre }}
           </ion-select-option>
@@ -65,12 +72,13 @@
       <ion-item lines="none" class="item-input item-top">
         <ion-input #searchbar placeholder="Dirección" formControlName="direccion"></ion-input>
       </ion-item>
-      <ion-card [ngStyle]="{'opacity':form.controls.distrito.valid === true ? '1' : '0' }" class="card-mapa">
+      <ion-button (click)="ver_mapa_f ()">Mostrar mapa</ion-button>
+      <ion-card [ngStyle]="{'opacity':ver_mapa === true ? '1' : '0' }" class="card-mapa">
         <div #map id="map"></div>
       </ion-card>
     </ion-slide>
     <ion-slide>
-      <h1 class="ion-text-center top-slider bottom-cero">Ubicación</h1>
+      <h1 class="ion-text-center top-slider bottom-cero">Datos de contacto</h1>
       <p class="p-medium ion-text-center p-top">¿Con quién nos debemos comunicar acerca de tus pedidos?</p>
       <h6 class="h6-nombres-campos h6-top-bottom">Datos de tienda</h6>
       <ion-item lines="none" class="item-input">
@@ -87,11 +95,17 @@
   </form>
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center" mode="ios">
-  <ion-button *ngIf="index < 2" mode="ios" class="btn-guardar" (click)="submit_slide_next ()">
-    Empezamos
+  <ion-button *ngIf="index === 0 || index === 1" mode="ios" class="btn-guardar" (click)="submit_slide_next ()">
+    Continuar
   </ion-button>
-  <div *ngIf="index >= 2" class="ion-text-center div-absolute-slider">
-    <ion-button mode="ios" class="btn-guardar btn-widht-cero"(click)="submit (false)">Agregar sucursal</ion-button>
-    <ion-button mode="ios" class="btn-terminar" (click)="submit (true)">Terminar</ion-button>
+  <div *ngIf="index === 2" class="ion-text-center div-absolute-slider">
+    <ng-container *ngIf="surcursal === 'new'">
+      <ion-button mode="ios" class="btn-guardar btn-widht-cero"(click)="submit (false)">Agregar sucursal</ion-button>
+      <ion-button mode="ios" class="btn-terminar" (click)="submit (true)">Terminar</ion-button>
+    </ng-container>
+
+    <ng-container *ngIf="surcursal !== 'new'">
+      <ion-button mode="ios" class="btn-terminar" (click)="submit (true)">Terminar</ion-button>
+    </ng-container>
   </div>
 </ion-footer>

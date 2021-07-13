@@ -1,9 +1,61 @@
-<ion-header>
+<ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>producto-detalle</ion-title>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+      <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
+        {{ cart_item_count | async }}
+      </ion-badge>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="div-flex-card">
+    <div class="div-card-foto">
+      <ion-avatar
+        [ngStyle]="{'background-image': 'url(' + imagen + ')'}"
+        class="avatar-foto"></ion-avatar>
+      <h1 class="tituloproducto">{{ producto?.nombre }}</h1>
+    </div>
+    <div class="div-card-fotos">
+      <ion-avatar
+        *ngFor="let item of galeria"
+        (click)="imagen = item?.imagen"
+        [ngStyle]="{'background-image': 'url(' + item?.imagen + ')'}"
+        class="avatar-fotos avatar-top">
+      </ion-avatar>
+    </div>
+  </div>
+  <div class="div-padding-left-right">
+    <h6 class="subtitulo-h6">Descripción:</h6>
+    <p class="p-descripcion">{{ producto?.descripcion }}</p>
+  </div>
+  <div class="div-padding-left-right">
+    <h6 class="subtitulo-h6">Variaciones:</h6>
+    <ion-list class="ion-no-padding">
+      <ion-item *ngFor="let item of producto?.variantes" class="ion-no-padding item-contador" lines="none">
+        <p class="label-nombre label-right-primero">{{ item.nombre }}</p>
+        <div class="div-contador">
+          <p class="label-nombre label-right-segundo">
+            {{ item.precio_venta | currency:producto.moneda }}
+          </p>
+          <div class="div-contador">
+            <ion-button (click)="update (-1, item)" mode="ios" class="btn-add-rest">-</ion-button>
+            <ion-input (ionChange)="valid_change ($event, item)" type="number" [value]="cart.get (item.id).cantidad" class="input-number"></ion-input>
+            <ion-button (click)="update (+1, item)" mode="ios" class="btn-add-rest">+</ion-button>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="div-padding-left-right div-bottom">
+    <h6 class="subtitulo-h6 subtitulo-top">Especificaciones técnicas:</h6>
+    <p class="p-descripcion">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et.</p>
+  </div>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <div class="div-footer">
+    <p class="p-footer">Items ({{ get_total_productos () }})</p>
+    <ion-button mode="ios" class="btn-add-footer" (click)="submit ()">+</ion-button>
+    <p class="p-footer">Total: {{ get_total () | currency:producto?.moneda }}</p>
+  </div>
+</ion-footer>

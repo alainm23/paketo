@@ -6,8 +6,8 @@
         <ion-card class="card-nav">
           <ion-avatar><ion-icon name="person" class="icon-person"></ion-icon></ion-avatar>
           <div>
-            <ion-label class="label-nombre">Nombre de usuario</ion-label>
-            <h1 class="h1-nombre-empresa">Nombre de empresa</h1>
+            <ion-label class="label-nombre">{{ auth?.USER_DATA?.persona_contacto }}</ion-label>
+            <h1 class="h1-nombre-empresa">{{ auth?.USER_DATA?.name }}</h1>
           </div>
         </ion-card>
       </ion-toolbar>
@@ -57,7 +57,7 @@
         </ion-menu-toggle>
 
         <ion-menu-toggle auto-hide="false">
-          <ion-item class="ion-no-padding item-top" lines="none">
+          <ion-item [routerLink]="['/ajustes-perfil']" class="ion-no-padding item-top" lines="none">
             <ion-icon name="person" slot="start" class="iconos-menu"></ion-icon>
             <div>
               <p class="p-nombres-menu">Ajustes de perfil</p>
@@ -68,7 +68,7 @@
         </ion-menu-toggle>
         
         <ion-menu-toggle auto-hide="false">
-          <ion-item class="ion-no-padding item-top" lines="none" [routerLink]="['/sobre-paketo']" (click)="closeFirst()">
+          <ion-item [routerLink]="['/sobre-paketo']" class="ion-no-padding item-top" lines="none" [routerLink]="['/sobre-paketo']" (click)="closeFirst()">
             <ion-icon name="folder-open" slot="start" class="iconos-menu"></ion-icon>
             <div>
               <p class="p-nombres-menu">Sobre Paketo</p>

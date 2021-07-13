@@ -42,8 +42,18 @@
 </ion-header>-->
 
 <ion-content>
-  <h1 class="ion-text-center top-slider bottom-cero">Bienvenidos a Paketo</h1>
-  <p class="p-medium ion-text-center p-top">Necesitamos solo unos datos básicos para poder abrir tu cuenta.</p>
+  <h1 *ngIf="nuevo_usuario === false" class="ion-text-center top-slider bottom-cero">
+    Bienvenidos a Paketo
+  </h1>
+  <h1 *ngIf="nuevo_usuario" class="ion-text-center top-slider bottom-cero">
+    Formulario de solicitud
+  </h1>
+  <p *ngIf="nuevo_usuario === false" class="p-medium ion-text-center p-top">
+    Necesitamos solo unos datos básicos para poder abrir tu cuenta
+  </p>
+  <p *ngIf="nuevo_usuario" class="p-medium ion-text-center p-top">
+    Por favor complete el siguiente formulario. Procesaremos su solicitud en un plazo máximo de 24 horas
+  </p>
   <form [formGroup]="form">
     <ion-item lines="none" class="item-input item-top-primero">
       <ion-input formControlName="razon_social" placeholder="Razón social" type="text"></ion-input>

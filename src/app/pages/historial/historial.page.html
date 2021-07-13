@@ -26,6 +26,15 @@
   </ion-list>
   <ion-grid class="grid-padding-left-right">
     <ion-row>
+      <ion-col *ngIf="items.length <= 0" size="12" size-md="12" class="col-favoritos">
+        <ion-item class="ion-text-center">
+          <ion-label class="ion-text-wrap">
+            <h2>Ningúna pedido</h2>
+            <p>No encontramos ningun registro dentro del rango de fechas seleccionado</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+
       <ion-col *ngIf="loading" size="12" size-md="6" class="col-favoritos">
         <ion-card class="card-favorito">
           <h6 class="h6-titulo-historial"><ion-skeleton-text animated></ion-skeleton-text></h6>
@@ -95,8 +104,11 @@
         <ion-card class="card-favorito">
           <h6 class="h6-titulo-historial">Numero de pedido: {{ item.codigo_pedido }}</h6>
           <p class="p-sucursal">Sucursal: {{ item.sucursal }}</p>
+          <p class="p-sucursal">Estado: {{ get_estado (item.estado) }}</p>
+          <p class="p-sucursal" *ngIf="item.procesado == 1">Pagado</p>
+          <p class="p-sucursal" *ngIf="item.procesado == 0">Pendiente de pago</p>
           <div class="div-flex-fecha">
-            <p class="p-fecha">Fecha de compra: {{ get_format_date (item.fecha, 'l') }}</p>
+            <p class="p-fecha">Fecha de pedido: {{ get_format_date (item.fecha, 'l') }}</p>
             <p class="p-monto">Monto: {{ item.total.soles | currency:'S/' }} - {{ item.total.dolares | currency:'USD' }}</p>
           </div>
         </ion-card>

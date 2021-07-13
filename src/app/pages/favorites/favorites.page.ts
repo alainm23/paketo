@@ -86,13 +86,14 @@ export class FavoritesPage implements OnInit {
     this.navController.back ();
   }
 
-  delete_favorite (item: any) {
+  delete_favorite (item: any, event: any) {
+    event.stopPropagation ();
     console.log (item);
 
     item.loading = true;
 
     const request: any = {
-      id_variante: item.id
+      id_producto: item.id
     };
 
     this.database.set_favorito (request).subscribe ((res: any) => {
@@ -123,18 +124,24 @@ export class FavoritesPage implements OnInit {
   }
 
   add_carrito (item: any) {
+    this.ver_pedido (item);
+    // console.log (item);
+
+    // item.add_loading = true;
+
+    // this.database.add_carrito (item.id).subscribe ((res: any) => {
+    //   console.log (res);
+    //   if (res.status === true) {
+    //     item.add_loading = false;
+    //     this.cartService.add_product (item);
+    //   }
+    // }, error => {
+    //   console.log (error);
+    // });
+  }
+
+  ver_pedido (item: any) {
     console.log (item);
-
-    item.add_loading = true;
-
-    this.database.add_carrito (item.id).subscribe ((res: any) => {
-      console.log (res);
-      if (res.status === true) {
-        item.add_loading = false;
-        this.cartService.add_product (item);
-      }
-    }, error => {
-      console.log (error);
-    });
+    this.navController.navigateForward (['producto-detalle', item.id]);
   }
 }

@@ -20,7 +20,7 @@ export class CartService {
 
   async get_cloud_cart (reset: boolean=false): Promise<boolean> {
     if (reset === true) {
-      this.clear_cart (); 
+      this.cart = [];
     }
 
     return await new Promise ((resolve, reject) => {
@@ -28,7 +28,7 @@ export class CartService {
         console.log (res);
         res.items.forEach ((producto: any) => {
           this.cart.push (producto);
-          this.cart_item_count.next (this.cart_item_count.value + producto.cantidad);
+          this.cart_item_count.next (this.cart.length);
         });
         resolve (true);
       }, error => {
@@ -59,45 +59,43 @@ export class CartService {
         if (notify) {
           this.utils.presen_css_toast ('Agregado correctamente', 'Para editar la cantidad, anda a "Mi Carrito"');
         }
+
         break;
       }
     }
     if (!added) {
       product.cantidad = 1;
       this.cart.push (product);
+      this.cart_item_count.next (this.cart.length);
       if (notify) {
         this.utils.presen_css_toast ('Agregado correctamente', 'Para editar la cantidad, anda a "Mi Carrito"');
       }
     }
-
-    this.cart_item_count.next (this.cart_item_count.value + 1);
   }
 
   decrease_product (product: any) {
     for (let [index, p] of this.cart.entries ()) {
       if (p.id === product.id) {
         p.cantidad -= 1;
-        if (p.cantidad == 0) {
+        if (p.cantidad <= 0) {
           this.cart.splice (index, 1);
+          this.cart_item_count.next (this.cart.length);
         }
       }
     }
-
-    this.cart_item_count.next (this.cart_item_count.value - 1);
   }
 
   remove_product (product: any) {
     for (let [index, p] of this.cart.entries ()) {
       if (p.id === product.id) {
-        this.cart_item_count.next (this.cart_item_count.value - p.cantidad);
         this.cart.splice (index, 1);
+        this.cart_item_count.next (this.cart.length);
       }
     }
   }
 
   clear_cart () {
-    this.cart.forEach ((product: any) => {
-      this.remove_product (product);
-    });
+    this.cart = [];
+    this.cart_item_count.next (this.cart.length);
   }
 }

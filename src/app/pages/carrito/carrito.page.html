@@ -34,14 +34,14 @@
           </ion-avatar>
           <div class="div-titulo-texto">
             <h6 class="h6-titulo-favorito">{{ item.nombre }}</h6>
-            <p class="p-especifiacion">Especificación</p>
-            <ion-label class="label-categoria">Categoria</ion-label>
+            <p class="p-especifiacion">{{ item.precio | currency:item.moneda }}</p>
+            <ion-label class="label-categoria">{{ item.marca }}</ion-label>
           </div>
           <div>
             <div class="div-contador">
-              <ion-button (click)="update_cantidad ('restar', item)" mode="ios" class="btn-add-rest">-</ion-button>
+              <ion-button [disabled]="item.cantidad <= 1" (click)="update_cantidad ('restar', item)" mode="ios" class="btn-add-rest">-</ion-button>
               <ion-input
-                debounce="2500"
+                debounce="1500"
                 (ngModelChange)="valid_change ($event, item)"
                 [(ngModel)]="item.cantidad"
                 [max]="item.cantidad_disponible"
@@ -53,7 +53,12 @@
             <p class="ion-text-center p-precio">
               {{ item.precio * item.cantidad | currency:item.moneda }}
             </p>
-            <p *ngIf="item.cantidad > item.cantidad_disponible">Disponible {{ item.cantidad_disponible }}</p>
+            <p *ngIf="item.cantidad > item.cantidad_disponible">
+              Disponible {{ item.cantidad_disponible }}
+            </p>
+            <p *ngIf="item.cantidad <= 0" style="color: red">
+              Cantidad invalida
+            </p>
           </div>
         </ion-card>
       </ion-col>
@@ -64,6 +69,6 @@
   <div class="div-footer">
     <p class="p-footer">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
     <p class="p-footer">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
-    <ion-button mode="ios" (click)="submit ()" class="btn-caja">Ir a la caja</ion-button>
+    <ion-button mode="ios" [disabled]="cart.length <= 0" (click)="submit ()" class="btn-caja">Ir a la caja</ion-button>
   </div>
 </ion-footer>

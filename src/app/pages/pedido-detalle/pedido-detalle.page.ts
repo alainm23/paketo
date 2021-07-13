@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-pedido-detalle',
@@ -22,7 +23,8 @@ export class PedidoDetallePage implements OnInit {
     private route: ActivatedRoute,
     private navController: NavController,
     private cartService: CartService,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    private utils: UtilsService) { }
 
   ngOnInit() {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -81,6 +83,7 @@ export class PedidoDetallePage implements OnInit {
       
       if (res.status === true) {
         this.cartService.get_cloud_cart ().then (() => {
+          this.utils.presen_css_toast ('Agregado correctamente', 'El pedido a sido agregado al carrito nuevamente');
           this.navController.navigateForward (['carrito']);
         });
       }
@@ -92,5 +95,21 @@ export class PedidoDetallePage implements OnInit {
 
   get_format (date: string, format: string) {
     return moment (date).format (format);
+  }
+
+  get_estado (estado: any) {
+    let text = '';
+
+    if (estado == 1) {
+      text = 'Solicitado';
+    } else if (estado == 2) {
+      text = 'Cancelado';
+    } else if (estado == 3) {
+      text = 'Pendiente';
+    } else if (estado == 4) {
+      text = 'Entregado';
+    }
+
+    return text;
   }
 }

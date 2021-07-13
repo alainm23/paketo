@@ -107,7 +107,7 @@ export class UpdateSentDataPage implements OnInit {
     }, error => {
       loading.dismiss ();
       console.log (error);
-      this.show_api_error (error.error, ['email']);
+      this.show_api_error (error.error, ['email', 'name', 'razon_social', 'ruc', 'telefono', 'persona_contacto']);
     });
   }
 

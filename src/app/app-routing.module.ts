@@ -37,12 +37,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/confirm-data-intro/confirm-data-intro.module').then( m => m.ConfirmDataIntroPageModule)
   },
   {
-    path: 'surcursales',
+    path: 'surcursales/:surcursal/:page',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/surcursales/surcursales.module').then( m => m.SurcursalesPageModule)
   },
   {
-    path: 'categorias-interes',
+    path: 'categorias-interes/:type',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/categorias-interes/categorias-interes.module').then( m => m.CategoriasInteresPageModule)
   },
@@ -98,6 +98,21 @@ const routes: Routes = [
     path: 'pedido-detalle/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pedido-detalle/pedido-detalle.module').then( m => m.PedidoDetallePageModule)
+  },
+  {
+    path: 'sobre-paketo',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/sobre-paketo/sobre-paketo.module').then( m => m.SobrePaketoPageModule)
+  },
+  {
+    path: 'ajustes-perfil',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/ajustes-perfil/ajustes-perfil.module').then( m => m.AjustesPerfilPageModule)
+  },
+  {
+    path: 'sucursales-editar',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/sucursales-editar/sucursales-editar.module').then( m => m.SucursalesEditarPageModule)
   }
 ];
 

@@ -27,6 +27,22 @@ export class UtilsService {
     
   }
 
+  async present_toast_confirm (message: any, color: string) {
+    const toast = await this.toastController.create ({
+      message: message,
+      color: color,
+      duration: 0,
+      position: 'top',
+      mode: 'ios',
+      buttons: [{
+        side: 'end',
+        text: 'Ok'
+      }]
+    });
+
+    toast.present ();
+  }
+
   async presen_css_toast (header: string, message: string) {
     this.toastController.create({
       header: header,

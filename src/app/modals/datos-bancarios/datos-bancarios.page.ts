@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-datos-bancarios',
@@ -8,12 +9,30 @@ import { ModalController } from '@ionic/angular';
 })
 export class DatosBancariosPage implements OnInit {
 
-  constructor (private modalController: ModalController) { }
+  constructor (private modalController: ModalController, private database: DatabaseService,
+    private loadingController: LoadingController) { }
 
-  ngOnInit() {
+  async ngOnInit () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
+    this.database.get_datos ('bancos').toPromise ().then ((res: any) => {
+      console.log (res);
+      loading.dismiss ();
+    }, error => {
+      loading.dismiss ();
+      console.log (error);
+    });
   }
 
   view_checkout () {
     this.modalController.dismiss ();
   }
+
+
 }
