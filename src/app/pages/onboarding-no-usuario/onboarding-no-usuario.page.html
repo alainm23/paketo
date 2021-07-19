@@ -8,38 +8,40 @@
   <h1 class="ion-text-center top-slider bottom-cero">Bienvenidos a Paketo</h1>
   <p class="p-medium ion-text-center p-top">Vemos que todavía no tienes cuenta con nosotros, lo corregiremos de inmediato :)</p>
   <h6 class="ion-text-center h6-negro">Porque ser socio de Paketo?</h6>
-  <ion-grid class="ion-no-padding grip-top">
-    <ion-row>
-      <ion-col size="6" class="col-padding-left-right">
-        <ion-card class="card-categorias card-categoria-activo">
-          <div class="div-circulo"></div>
-          <p class="ion-text-center p-catogoria">Beneficio 1</p>
+  <div class="div-top-slider">
+    <div id="div-left-slider" (click)="slidePrev()">
+      <ion-icon name="chevron-back-outline" class="icon-slider"></ion-icon>
+    </div>
+    <div  id="div-right-slider" (click)="slideNext()">
+      <ion-icon name="chevron-forward-outline" class="icon-slider"></ion-icon>
+    </div>
+    <ion-slides pager="false" [options]="slideOpts" class="ion-padding-top ion-padding-bottom">
+      <ion-slide>
+        <ion-card class="card-slide">
+          <ion-avatar>
+            <img src="assets/img/grupo-2639.png">
+          </ion-avatar>          
+          <h1 class="ion-text-center ion-no-margin">Facilita tu compra</h1>
         </ion-card>
-        <div class="div-linea-bottom"></div>
-        <div class="div-linea-right"></div>
-      </ion-col>
-      <ion-col size="6" class="col-padding-left-right">
-        <ion-card class="card-categorias card-categoria-activo">
-          <div class="div-circulo"></div>
-          <p class="ion-text-center p-catogoria">Beneficio 2</p>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="card-slide">
+          <ion-avatar>
+            <img src="assets/img/grupo-2640.png">
+          </ion-avatar> 
+          <h1 class="ion-text-center ion-no-margin">Ahorra tiempo</h1>
         </ion-card>
-        <div class="div-linea-bottom"></div>
-      </ion-col>
-      <ion-col size="6" class="col-padding-left-right">
-        <ion-card class="card-categorias card-categoria-activo">
-          <div class="div-circulo"></div>
-          <p class="ion-text-center p-catogoria">Beneficio 3</p>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="card-slide">
+          <ion-avatar>
+            <img src="assets/img/grupo-2606.png">
+          </ion-avatar> 
+          <h1 class="ion-text-center ion-no-margin">Los mejores precios</h1>
         </ion-card>
-        <div class="div-linea-right"></div>
-      </ion-col>
-      <ion-col size="6" class="col-padding-left-right">
-        <ion-card class="card-categorias card-categoria-activo">
-          <div class="div-circulo"></div>
-          <p class="ion-text-center p-catogoria">Beneficio 4</p>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center" mode="ios">
   <ion-button mode="ios" class="btn-guardar" (click)="editar ()">

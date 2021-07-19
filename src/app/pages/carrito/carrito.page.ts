@@ -144,4 +144,8 @@ export class CarritoPage implements OnInit {
       event.target.complete ();
     });
   }
+
+  go_page (page: string) {
+    this.navController.navigateForward (page);
+  }
 }

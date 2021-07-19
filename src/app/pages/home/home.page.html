@@ -16,7 +16,7 @@
         <ion-spinner *ngIf="loadins.search"></ion-spinner>
       </ion-item>
       <ion-button (click)="toggle_view ()" mode="ios" class="btn-filtro">
-        <ion-icon [name]="segment === 'home' ? 'list': 'home-sharp'" class="icon-filtro"></ion-icon>
+        <img [src]="segment === 'home' ? 'assets/img/grupo-8.png': 'assets/img/grupo-2305.png'">
       </ion-button>
     </div>
     
@@ -47,18 +47,48 @@
   </ion-refresher>
 
   <ng-container *ngIf="segment === 'home'">
-    <ion-card
-      [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
-      class="card-banner">
-      <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
-      <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
-    </ion-card>
+    <ion-slides pager="false" [options]="slideOptscard" style="padding-left: 0px;margin-top: 0px;;">
+      <ion-slide class="ion-no-padding">
+        <ion-card
+          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
+          class="card-banner">
+          <div class="div-banner">
+            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
+            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide class="ion-no-padding">
+        <ion-card
+          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
+          class="card-banner">
+          <div class="div-banner">
+            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
+            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
+          </div>
+        </ion-card>
+      </ion-slide>
+      <ion-slide class="ion-no-padding">
+        <ion-card
+          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
+          class="card-banner">
+          <div class="div-banner">
+            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
+            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
+          </div>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
 
     <div class="div-categoria-list">
       <h6 class="h6-categorias">Ultimas ofertas</h6>
       <ion-slides pager="false" [options]="slideOpts" mode="ios">
-        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0">
+        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0" class="slider-card">
           <ion-card class="card-categorias">
+            <ion-badge class="bag-porcentaje">15%</ion-badge>
+            <ion-button mode="ios" class="btn-favorito">
+              <img src="assets/img/icon-feather-heart.png">
+            </ion-button>
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
             <ion-card-header class="ion-no-padding ion-text-start">
@@ -71,13 +101,19 @@
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
               <ion-skeleton-text style="width: 50%;" class="label-precio" animated></ion-skeleton-text>
-              <ion-button mode="ios" style="opacity: 0;" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+              <ion-button mode="ios" class="btn-add-categoria">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </ion-button>
             </ion-card-content>
           </ion-card>
         </ion-slide>
 
-        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0">
+        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0" class="slider-card">
           <ion-card class="card-categorias">
+            <ion-badge class="bag-porcentaje">15%</ion-badge>
+            <ion-button mode="ios" class="btn-favorito">
+              <img src="assets/img/icon-feather-heart.png">
+            </ion-button>
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
             <ion-card-header class="ion-no-padding ion-text-start">
@@ -90,13 +126,19 @@
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
               <ion-skeleton-text style="width: 50%;" class="label-precio" animated></ion-skeleton-text>
-              <ion-button mode="ios" style="opacity: 0;" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+              <ion-button mode="ios" class="btn-add-categoria">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </ion-button>
             </ion-card-content>
           </ion-card>
         </ion-slide>
 
-        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0">
+        <ion-slide *ngIf="loadins.ofertas && ofertas.length <= 0" class="slider-card">
           <ion-card class="card-categorias">
+            <ion-badge class="bag-porcentaje">15%</ion-badge>
+            <ion-button mode="ios" class="btn-favorito">
+              <img src="assets/img/icon-feather-heart.png">
+            </ion-button>
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
             <ion-card-header class="ion-no-padding ion-text-start">
@@ -109,13 +151,16 @@
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
               <ion-skeleton-text style="width: 50%;" class="label-precio" animated></ion-skeleton-text>
-              <ion-button mode="ios" style="opacity: 0;" class="btn-add-categoria"><ion-icon name="add" class="icon-add"></ion-icon></ion-button>
+              <ion-button mode="ios" class="btn-add-categoria">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </ion-button>
             </ion-card-content>
           </ion-card>
         </ion-slide>
 
-        <ion-slide *ngFor="let item of ofertas">
+        <ion-slide *ngFor="let item of ofertas" class="slider-card">
           <ion-card (click)="_ver_pedido (item.id_producto)" class="card-categorias">
+            <ion-badge class="bag-porcentaje">15%</ion-badge>
             <ion-avatar
               [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
               class="avatar-categoria">
@@ -129,10 +174,13 @@
                 {{ item.precio | currency:item.moneda }}
                 {{ item.descuento }}%
               </ion-label>
-              <ion-button [disabled]="item.loading === true" (click)="add_carrito (item, $event)" mode="ios" class="btn-add-categoria">
+              <ion-button mode="ios" class="btn-add-categoria">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </ion-button>
+              <!--<ion-button [disabled]="item.loading === true" (click)="add_carrito (item, $event)" mode="ios" class="btn-add-categoria">
                 <ion-spinner *ngIf="item.loading === true"></ion-spinner>
                 <ion-icon *ngIf="item.loading !== true" name="add" class="icon-add"></ion-icon>
-              </ion-button>
+              </ion-button>-->
             </ion-card-content>
             <!-- <ion-button
               (click)="favorite_toggled (item)" mode="ios"
@@ -140,6 +188,10 @@
               class="btn-list-categoria">
               <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
             </ion-button> -->
+            <ion-button mode="ios"  (click)="favorite_toggled (item, $event)" mode="ios"
+            [class.btn-favorito-avtivo]="item.tengo_favorito === true" class="btn-favorito" >
+              <ion-icon [name]="item.tengo_favorito === true ? 'heart': 'heart-outline'"></ion-icon>
+            </ion-button>
           </ion-card>
         </ion-slide>
       </ion-slides>
@@ -148,7 +200,7 @@
     <div *ngIf="loadins.categorias_preferentes && categorias_preferentes.length <= 0" class="div-categoria-list">
       <h6 class="h6-categorias"><ion-skeleton-text animated></ion-skeleton-text></h6>
       <ion-slides pager="false" [options]="slideOpts" mode="ios">
-        <ion-slide>
+        <ion-slide class="slider-card">
           <ion-card class="card-categorias">
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
@@ -169,7 +221,7 @@
           </ion-card>
         </ion-slide>
 
-        <ion-slide>
+        <ion-slide class="slider-card">
           <ion-card class="card-categorias">
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
@@ -188,7 +240,7 @@
           </ion-card>
         </ion-slide>
 
-        <ion-slide>
+        <ion-slide class="slider-card">
           <ion-card class="card-categorias">
             <ion-avatar class="avatar-categoria">
             </ion-avatar>
@@ -212,7 +264,7 @@
     <div *ngFor="let categoria of categorias_preferentes" class="div-categoria-list">
       <h6 class="h6-categorias">{{ categoria.categoria.nombre }}</h6>
       <ion-slides pager="false" [options]="slideOpts" mode="ios">
-        <ion-slide *ngFor="let item of categoria.items">
+        <ion-slide *ngFor="let item of categoria.items" class="slider-card">
           <ion-card (click)="ver_pedido (item)" class="card-categorias">
             <ion-avatar
               [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
@@ -228,11 +280,15 @@
                 <ion-icon name="chevron-forward-outline"></ion-icon>
               </ion-button>
             </ion-card-content>
-            <ion-button mode="ios"
+            <!--<ion-button mode="ios"
               (click)="favorite_toggled (item, $event)" mode="ios"
               [class.btn-list-categoria-favorited]="item.tengo_favorito === true"
               class="btn-list-categoria">
               <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
+            </ion-button>-->
+            <ion-button mode="ios"   (click)="favorite_toggled (item, $event)" mode="ios"
+            [class.btn-favorito-avtivo]="item.tengo_favorito === true" class="btn-favorito" >
+              <ion-icon [name]="item.tengo_favorito === true ? 'heart': 'heart-outline'"></ion-icon>
             </ion-button>
           </ion-card>
         </ion-slide>
@@ -337,6 +393,10 @@
               class="btn-list-categoria">
               <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
             </ion-button> -->
+            <ion-button mode="ios"   (click)="favorite_toggled (item)" mode="ios"
+            [class.btn-favorito-avtivo]="item.tengo_favorito === true" class="btn-favorito" >
+            <ion-icon [name]="item.tengo_favorito === true ? 'heart': 'heart-outline'"></ion-icon>
+            </ion-button>
           </ion-card>
         </ion-slide>
       </ion-slides>
@@ -347,21 +407,37 @@
 <ion-footer class="ion-no-border">
   <ion-toolbar class="toolbar-footer">
     <div class="div-footer">
-      <ion-button mode="ios" class="btn-icon-footer btn-padding-left-cero">
-        <img src="assets/img/icon-feather-home.png" id="img-home">
-      </ion-button>
-      <ion-button (click)="go_page ('favorites')" mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-playlist-add-check.png" id="img-list">
-      </ion-button>
-      <ion-button (click)="go_page ('carrito')" mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-add-shopping-cart-1.png" id="img-cart-add">
-      </ion-button>
-      <ion-button (click)="go_page ('historial')" mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-history.png" id="img-historial">
-      </ion-button>
-      <ion-button (click)="share_wp ()" mode="ios" class="btn-icon-footer border-cero-right btn-padding-right-cero">
-        <img src="assets/img/icon-awesome-whatsapp.png" id="img-wassap">
-      </ion-button>
+      <div class="div-footer-tag ion-text-center">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2835.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Inicio</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('favorites')">
+        <div class="div-img-footer">
+          <img src="assets/img/icon-feather-heart-footer.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Favoritos</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('carrito')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2745.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Carrito</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('historial')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2747.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Historial</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="share_wp ()">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2744.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Contacto</p>
+      </div>
     </div>
   </ion-toolbar>
+  <div class="div-linea-azul"></div>
 </ion-footer>

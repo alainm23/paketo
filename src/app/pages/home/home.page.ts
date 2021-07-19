@@ -37,6 +37,12 @@ export class HomePage implements OnInit {
     spaceBetween: 10,
   };
 
+  slideOptscard = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    spaceBetween: 0,
+  };
+
   segment: string = 'home';
   search_text: string = '';
   cart_item_count: BehaviorSubject<number>;

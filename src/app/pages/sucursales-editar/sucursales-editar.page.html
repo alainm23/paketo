@@ -1,6 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
     <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
     <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
       {{ cart_item_count | async }}
@@ -86,10 +87,47 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+      <ion-col size="12" class="col-agregar-surcusal" (click)="agregar_surcursal ()">
+        <ion-button mode="ios" class="btn-add-footer"><ion-icon name="add-outline"></ion-icon></ion-button>
+        <ion-label class="label-footer">Agrega nueva sucursal</ion-label>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer (click)="agregar_surcursal ()" class="ion-no-border">
-  <ion-button mode="ios" class="btn-add-footer"><ion-icon name="add-outline"></ion-icon></ion-button>
-  <ion-label class="label-footer">Agrega nueva sucursal</ion-label>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="toolbar-footer">
+    <div class="div-footer">
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('home')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2746.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Inicio</p>
+      </div>
+      <div class="div-footer-tag ion-text-center">
+        <div class="div-img-footer">
+          <img src="assets/img/icon-feather-heart-footer.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Favoritos</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('carrito')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2745.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Carrito</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('historial')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2747.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Historial</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="share_wp ()">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2744.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Contacto</p>
+      </div>
+    </div>
+  </ion-toolbar>
+  <div class="div-linea-azul"></div>
 </ion-footer>

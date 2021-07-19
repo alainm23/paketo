@@ -98,4 +98,8 @@ export class SucursalesEditarPage implements OnInit {
   editar (item: any) {
     this.navController.navigateForward (['surcursales', JSON.stringify (item), 'sucursales-editar']);
   }
+
+  go_page (page: string) {
+    this.navController.navigateForward (page);
+  }
 }

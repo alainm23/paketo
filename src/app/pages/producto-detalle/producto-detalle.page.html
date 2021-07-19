@@ -1,6 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
     <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
       <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
         {{ cart_item_count | async }}
@@ -10,6 +11,7 @@
 
 <ion-content>
   <div class="div-flex-card">
+    <div class="div-car-abosulute"></div>
     <div class="div-card-foto">
       <ion-avatar
         [ngStyle]="{'background-image': 'url(' + imagen + ')'}"

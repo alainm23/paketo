@@ -1,6 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
     <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
     <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
       {{ cart_item_count | async }}
@@ -14,8 +15,9 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="7" class="col-favoritos">
         <p class="p-descripciones">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et. <br><br>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et.
+          Paketo es la plataforma digital que simplifica tu negocio ferretero y lo impulsa hacia el mercado moderno, para que puedas competir con las grandes empresas y logres la seguridad que buscas para tu futuro y el de tu familia.<br><br>
+          En nuestra app, podrás encontrar los productos que necesitas para abastecer tu ferretería, sin tener que preocuparte de atender a varios distribuidores al mismo tiempo. De esta manera, podrás enfocarte en aumentar tus ventas y hacer crecer tu negocio.<br><br> 
+          Paketo ha sido pensado en aquellos ferreteros con ganas de progresar y nuestro equipo trabajará constantemente para brindarte las herramientas adecuadas para impulsar tu negocio.
         </p>
       </ion-col>
     </ion-row>
@@ -25,6 +27,6 @@
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
-  <ion-button mode="ios" class="btn-add-footer"><ion-icon name="add-outline"></ion-icon></ion-button>
-  <ion-label class="label-footer">Hecho con por Manya</ion-label>
+  <img src="assets/img/icon-feather-mail.png" >
+  <ion-label class="label-footer">contacto@paketo.pe</ion-label>
 </ion-footer>

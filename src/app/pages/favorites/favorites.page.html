@@ -1,6 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
     <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
     <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
   </ion-toolbar>
@@ -11,7 +12,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <h1 class="titulo-header ion-text-center">My Wishlist</h1>
+  <h1 class="titulo-header ion-text-center">Favoritos</h1>
 
   <ion-slides *ngIf="categorias.length > 0" pager="false" [options]="slideOpts" mode="ios">
     <ion-slide *ngFor="let item of categorias" (click)="select_category (item.id)">
@@ -32,6 +33,14 @@
       </ion-col>
       <ion-col *ngFor="let item of items" size="12" size-md="6" class="col-favoritos">
         <ion-card (click)="add_carrito (item)" class="card-favorito">
+          <ion-avatar
+            [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
+            class="avatar-favorito"></ion-avatar>
+          <div class="div-titulo-texto">
+            <h6 class="h6-titulo-favorito">{{ item.nombre }}</h6>
+            <p class="p-especifiacion">{{ item.marca }}</p>
+            <ion-label class="label-categoria"></ion-label>
+          </div>
           <div class="div-btn-icon">
             <ion-button [disabled]="item.add_loading === true" mode="ios" class="btn-cart-delete btn-cart">
               <ion-spinner *ngIf="item.add_loading === true"></ion-spinner>
@@ -41,14 +50,6 @@
               <ion-spinner *ngIf="item.loading === true"></ion-spinner>
               <img *ngIf="item.loading !== true" src="assets/img/icon-feather-trash.png" class="img-delete">
             </ion-button>
-          </div>
-          <ion-avatar
-            [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
-            class="avatar-favorito"></ion-avatar>
-          <div class="div-titulo-texto">
-            <h6 class="h6-titulo-favorito">{{ item.nombre }}</h6>
-            <p class="p-especifiacion">{{ item.marca }}</p>
-            <ion-label class="label-categoria"></ion-label>
           </div>
         </ion-card>
       </ion-col>
@@ -185,3 +186,41 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="toolbar-footer">
+    <div class="div-footer">
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('home')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2746.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Inicio</p>
+      </div>
+      <div class="div-footer-tag ion-text-center">
+        <div class="div-img-footer">
+          <img src="assets/img/icon-feather-heart-active-footer.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Favoritos</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('carrito')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2745.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Carrito</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('historial')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2747.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Historial</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="share_wp ()">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2744.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Contacto</p>
+      </div>
+    </div>
+  </ion-toolbar>
+  <div class="div-linea-azul"></div>
+</ion-footer>

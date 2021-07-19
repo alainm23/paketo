@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AlertController, LoadingController, ModalController, NavController, IonSlides } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { UpdateSentDataPage } from '../../modals/update-sent-data/update-sent-data.page';
+
 @Component({
   selector: 'app-onboarding-no-usuario',
   templateUrl: './onboarding-no-usuario.page.html',
@@ -58,4 +59,18 @@ export class OnboardingNoUsuarioPage implements OnInit {
 
     await alert.present ();
   }
+
+  @ViewChild(IonSlides) slides: IonSlides;
+  slidePrev() {
+    this.slides.slidePrev();
+  }
+  slideNext() {
+    this.slides.slideNext();
+  }
+
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400,
+    spaceBetween: 80,
+  };
 }

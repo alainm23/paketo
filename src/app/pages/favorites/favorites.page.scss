@@ -22,13 +22,18 @@
     font-family: AvenirBook;
     src : url('/assets/font/Avenir Book.ttf')
 }
+@font-face{
+    font-family: PoppinsSemiBold;
+    src : url('/assets/font/Poppins-SemiBold.ttf')
+}
 ion-header
 {
     background-color: #FFFFFF;
 }
 ion-toolbar
 {
-    --background: #FFFFFF;
+    --background: #29A0EC;
+    border-radius: 0px 0px 20px 20px;
     --padding-top: 1.875rem;
     --padding-start: 2.5rem;;
     --padding-end: 0rem;
@@ -40,7 +45,7 @@ ion-toolbar
     padding-right: 2.5rem;
     font-family: PoppinsMedium;
     font-size: 1.375rem;
-    margin-top: 0rem;
+    margin-top: 1.625rem;
     margin-bottom: 0px;
 }
 ion-content
@@ -58,25 +63,33 @@ ion-content
     --padding-end: 0px;
     --padding-top: 0px;
     --padding-bottom: 0px;
-    --color: #000000;
+    --color: #fff;
     font-size: 1.125rem;
     font-family: PoppinsMedium;
-    --background: #FFFFFF;
-    --background-activated: #ffffff;
+    --background: #29A0EC;
+    --background-activated: #29A0EC;
     margin: 0px;
     height: auto;
+}
+.icon-serach
+{
+    color: #fff;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
+    font-size: 1.75rem;
 }
 .icon-cart-menu
 {
     color: #000000;
     width: 1.4375rem;
     position: absolute;
-    top: 2rem;
+    top: 2.125rem;
     right: 2.8125rem;
 }
 .badge-rojo
 {
-    --background: #FF0000;
+    --background: #FF640A;
     border-radius: 50%;
     --color: #fff;
     font-family: AvenirHeavy;
@@ -91,7 +104,7 @@ ion-content
 }
 ion-slides
 {
-    background: #EBEBEB;
+    background: #FF640A;
     padding-top: 1.125rem;
     padding-bottom: 1.125rem;
     margin-top: 1rem;
@@ -100,7 +113,7 @@ ion-slides
         width: auto !important;
         .tiutlo-slider
         {
-            color: #000000;
+            color: #fff;
             font-family: Avenirlight;
             font-size: 1.0625rem;
             margin: 0px;
@@ -134,6 +147,7 @@ ion-slides
     padding-bottom: 0.875rem;
     margin-top: 1.25rem;
     border-radius: 0px;
+    justify-content: space-evenly;
     .div-btn-icon
     {
         width: 2.4375rem;
@@ -180,6 +194,7 @@ ion-slides
     }
     .div-titulo-texto
     {
+        width: 60%;
         .h6-titulo-favorito
         {
             color: #000000;
@@ -207,12 +222,70 @@ ion-slides
 {
     padding: 0px;
 }
+ion-footer
+{
+    background: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    .toolbar-footer
+    {
+        --background: #fff;
+        --padding-start: 0.75rem;
+        --padding-end: 0.75rem;
+        --padding-top: 0.75rem;
+        --padding-bottom: 0.75rem;
+        border-radius: 35px;
+        box-shadow: 0px 5px 28px #1B39547E;
+    }
+    .div-linea-azul
+    {
+        width: 40%;
+        height: 7px;
+        border-radius: 6px;
+        background-color: #005A96;
+        margin-left: 30%;
+        margin-top: 0.875rem;
+    }
+}
+.div-footer
+{
+    display: flex;
+    justify-content: space-between;
+    .div-footer-tag
+    {
+        width: 20%;
+        .div-img-footer
+        {
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .p-footer-plomo
+        {
+            color: #A3A3A3;
+            font-family: PoppinsSemiBold;
+            font-size: 0.625rem;
+        }
+    }
+}
 @media (min-width: 540px)
 {
     .grid-padding-left-right
     {
         padding-left: 1.875rem;
         padding-right: 1.875rem;
+    }
+    ion-footer
+    {
+        padding-left: 3rem;
+        padding-right: 3rem;
+        .toolbar-footer
+        {
+            --padding-start: 1.25rem;
+            --padding-end: 1.25rem;
+        }
     }
 }
 @media (min-width: 768px)
@@ -237,5 +310,26 @@ ion-slides
     .col-favoritos
     {
         padding: 0px 1rem;
+    }
+    .card-favorito
+    {
+        .div-titulo-texto
+        {
+            width: 59%;
+        }
+    }
+    .icon-serach
+    {
+        right: 8rem;
+    }
+    ion-footer
+    {
+        padding-left: 10rem;
+        padding-right: 10rem;
+        .toolbar-footer
+        {
+            --padding-start: 1.25rem;
+            --padding-end: 1.25rem;
+        }
     }
 }

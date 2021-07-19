@@ -28,10 +28,11 @@ ion-header
 }
 ion-toolbar
 {
-    --background: #FFFFFF;
+    --background: #29A0EC;
     --padding-top: 1.875rem;
     --padding-start: 2.5rem;
     --padding-bottom: 1.875rem;
+    border-radius: 0px 0px 20px 20px;
 }
 ion-content
 {
@@ -48,13 +49,21 @@ ion-content
     --padding-end: 0px;
     --padding-top: 0px;
     --padding-bottom: 0px;
-    --color: #000000;
+    --color: #fff;
     font-size: 1.125rem;
     font-family: PoppinsMedium;
-    --background: #FFFFFF;
-    --background-activated: #ffffff;
+    --background: #29A0EC;
+    --background-activated: #29A0EC;
     margin: 0px;
     height: auto;
+}
+.icon-serach
+{
+    color: #fff;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
+    font-size: 1.75rem;
 }
 .icon-cart-menu
 {
@@ -66,7 +75,7 @@ ion-content
 }
 .badge-rojo
 {
-    --background: #FF0000;
+    --background: #FF640A;
     border-radius: 50%;
     --color: #fff;
     font-family: AvenirHeavy;
@@ -86,6 +95,18 @@ ion-content
     padding-right: 0.6875rem;
     width: 100%;
     justify-content: space-between;
+    margin-top: 1rem;
+    position: relative;
+}
+.div-car-abosulute
+{
+    width: 77%;
+    background-color: #e1ddff33;
+    height: 8.75rem;
+    border-radius: 0px 0px 23px 23px;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
 }
 .div-card-foto
 {
@@ -253,15 +274,15 @@ ion-footer
 }
 .p-footer
 {
-    color: #000000;
+    color: #005A96;
     font-family: PoppinsMedium;
     font-size: 1.0625rem;
     margin: 0px;
 }
 .btn-add-footer
 {
-    --background: #FF0F0F;
-    --background-activated: #FF0F0F;
+    --background: #FF640A;
+    --background-activated: #FF640A;
     --color: #fff;
     font-family: AvenirHeavy;
     --border-radius: 50%;
@@ -324,5 +345,9 @@ ion-footer
     {
         padding-left: 5rem;
         padding-right: 5rem;
+    }
+    .icon-serach
+    {
+        right: 8rem;
     }
 }

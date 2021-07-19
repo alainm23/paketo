@@ -42,6 +42,13 @@
   </div>
 
   <div class="div-pago">
+    <h6 class="h6-nombres-campos h6-top-bottom">Comentario adicional (opcional)</h6>
+    <ion-item lines="none" class="item-input">
+      <ion-textarea placeholder="Escribe tu comentario aqui"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div class="div-pago">
     <h6 class="h6-nombres-campos h6-top-bottom">Metodo de pago:</h6>
     <ion-segment [(ngModel)]="selected_segment" value="deposito" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="deposito_bancario">
@@ -81,8 +88,8 @@
         <p *ngIf="user.confianza === 1" class="p-descripcion-tajeta p-top-tarjeta">
           Puedes completar tu pedido en el momento que tengas el deposito hecho, solo ingresa al carrito
         </p>
-        <p *ngIf="user.confianza === 0">
-          Usted no puede hacer uso de este servicio
+        <p *ngIf="user.confianza === 0" class="p-top-card">
+          Esta es alguna nota sobre la modalidad de pago contra entrega según la política de la empresa.
         </p>
       </ion-card-content>
     </ion-card>

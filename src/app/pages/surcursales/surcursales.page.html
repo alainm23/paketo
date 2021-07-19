@@ -9,18 +9,18 @@
   <ion-slides (ionSlideDidChange)="ionSlideDidChange ()" pager="false" [options]="slideOpts">
     <ion-slide>
       <h1 class="ion-text-center top-slider bottom-cero">
-        Ferreterías
+        Sucursales
       </h1>
       <p *ngIf="surcursal !== 'new'" class="p-medium ion-text-center p-top">
         Actualiza la información que necesitas. y al final del proceso solo debería haber el botón de actualizar quitar agregar sucursal
       </p>
       <p *ngIf="surcursal === 'new'" class="p-medium ion-text-center p-top">
-        Si tienes más de una ferretería, podrás registrarla más adelante
+        Comencemos, si tiene más que una sucursal la podrá registrar más adelante.
       </p>
       <div class="div-top-uno">
         <h6 class="h6-nombres-campos">Nombre</h6>
         <ion-item lines="none" class="item-input">
-          <ion-input formControlName="denominacion" placeholder="Ingresa el nombre de la ferretería"></ion-input>
+          <ion-input formControlName="denominacion" placeholder="Ingresa el nombre de la sucursal"></ion-input>
         </ion-item>
       </div>
       <div class="div-top-dos">
@@ -72,15 +72,19 @@
       <ion-item lines="none" class="item-input item-top">
         <ion-input #searchbar placeholder="Dirección" formControlName="direccion"></ion-input>
       </ion-item>
-      <ion-button (click)="ver_mapa_f ()">Mostrar mapa</ion-button>
+      <ion-button (click)="ver_mapa_f ()" class="btn-mapa" mode="ios">Mostrar mapa</ion-button>
       <ion-card [ngStyle]="{'opacity':ver_mapa === true ? '1' : '0' }" class="card-mapa">
         <div #map id="map"></div>
       </ion-card>
     </ion-slide>
     <ion-slide>
-      <h1 class="ion-text-center top-slider bottom-cero">Datos de contacto</h1>
+      <h1 class="ion-text-center top-slider bottom-cero">Contacto</h1>
       <p class="p-medium ion-text-center p-top">¿Con quién nos debemos comunicar acerca de tus pedidos?</p>
       <h6 class="h6-nombres-campos h6-top-bottom">Datos de tienda</h6>
+      <ion-item lines="none" class="item-checbox">
+        <ion-label class="ion-text-wrap label-check">Yo mismo seré la persona de contacto</ion-label>
+        <ion-checkbox slot="start"></ion-checkbox>
+      </ion-item>
       <ion-item lines="none" class="item-input">
         <ion-input formControlName="nombres_contacto" placeholder="Persona de contacto" type="text"></ion-input>
       </ion-item>

@@ -44,8 +44,8 @@ h1
 .btn-guardar
 {
     font-family: AvenirHeavy;
-    --background: #FF0F0F;
-    --background-activated: #FF0F0F;
+    --background: #FF640A;
+    --background-activated: #FF640A;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
     width: 70%;
@@ -84,13 +84,14 @@ ion-footer
     {
         color: #6E6E6E;
         font-family: AvenirBook;
-        font-size: 0.8125rem;
+        font-size: 0.75rem;
         margin-top: 0.1875rem;
         margin-bottom: 0px;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        height: 2rem;
     }
 }
 .card-categoria-activo

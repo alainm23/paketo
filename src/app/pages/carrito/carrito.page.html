@@ -1,10 +1,11 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Agregar más</ion-button>
-
+    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
+    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh ($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -64,6 +65,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-card class="car-fixed ion-text-center">
+    <h6 class="ion-no-margin h6-titulo-card">Atencion:</h6>
+    <p class="p-cad-fixed">El monto mínimo para pedido es de S/XXX, por favor agregue al carrito</p>
+  </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border">
   <div class="div-footer">

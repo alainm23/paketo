@@ -53,8 +53,8 @@ h1
 .btn-guardar
 {
     font-family: AvenirHeavy;
-    --background: #FF0F0F;
-    --background-activated: #FF0F0F;
+    --background: #FF640A;
+    --background-activated: #FF640A;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
     width: 70%;
@@ -129,6 +129,62 @@ ion-footer
         overflow: hidden;
         width: 100%;
     }
+}
+.card-slide
+{
+    box-shadow: 0px 15px 23px #00000029;
+    height: 18.5rem;
+    margin: 0px;
+    width: 14.625rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    ion-avatar
+    {
+        width: 13rem;
+        height: 12.3125rem;
+        margin-bottom: 0.6875rem;
+        --border-radius: 0px;
+    }
+}
+.div-top-slider
+{
+    margin-top: 1.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+#div-left-slider
+{
+    position: absolute;
+    top: 50%;
+    left: -1.25rem;
+    z-index: 2;
+}
+#div-right-slider
+{
+    position: absolute;
+    top: 50%;
+    right: -1.25rem;
+    z-index: 2;
+}
+.icon-slider
+{
+    color: #FE640E;
+    font-size: 3.125rem;
+}
+@media (min-width: 540px)
+{
+    #div-left-slider
+    {
+        left: 0rem;
+    }
+    #div-right-slider
+    {
+        right: 0rem;
+    }
+    
 }
 @media (min-width: 768px)
 {

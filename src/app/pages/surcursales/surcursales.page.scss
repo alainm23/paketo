@@ -18,6 +18,10 @@
     font-family: AvenirBook;
     src : url('/assets/font/Avenir Book.ttf')
 }
+@font-face{
+    font-family: PoppinsRegular;
+    src : url('/assets/font/Poppins-Regular.ttf')
+}
 #map{
     width: 100%;
     height: 100%;
@@ -42,7 +46,7 @@
     height: 256px;
     margin: 0px;
     background-color: transparent;
-    border: 8px solid #fff;
+    border: 1px solid #BFBFBF;
     border-radius: 10px;
     margin-top: 26px;
     .img-mapa
@@ -51,6 +55,17 @@
         height: 100%;
         border-radius: 10px;
     }
+}
+.btn-mapa
+{
+    font-family: AvenirHeavy;
+    --background: #FF640A;
+    --background-activated: #FF640A;
+    --border-radius: 1.875rem;
+    font-size: 1.1875rem;
+    width: 70%;
+    margin: 0px;
+    margin-top: 1.875rem;
 }
 ion-content
 {
@@ -79,7 +94,7 @@ h1
 }
 .item-input
 {
-    --background: #EBEBEB;
+    --background: #F8F8F8;
     --border-radius: 15px;
     position: relative;
     ion-input
@@ -174,6 +189,8 @@ ion-slides
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 1.6875rem;
+    padding-right: 1.6875rem;
 }
 ion-footer 
 {
@@ -191,26 +208,23 @@ ion-footer
 .btn-guardar
 {
     font-family: AvenirHeavy;
-    --background: #FF0F0F;
-    --background-activated: #FF0F0F;
+    --background: #FF640A;
+    --background-activated: #FF640A;
     --border-radius: 1.875rem;
-    font-size: 1.1875rem;
-    width: 70%;
+    font-size: 1.0625rem;
+    width: 50%;
     margin: 0px;
-}
-.btn-widht-cero
-{
-    width: auto !important;
 }
 .btn-terminar
 {
     font-family: AvenirHeavy;
-    --background: #4EC124;
-    --background-activated:#4EC124;
+    --background:  #29A0EC;
+    --background-activated: #29A0EC;
     --border-radius: 1.875rem;
-    font-size: 1.1875rem;
+    font-size: 1.0625rem;
     margin: 0px;
     margin-left: 0.375rem;
+    width: 50%;
 }
 .div-foto
 {
@@ -272,9 +286,35 @@ ion-footer
     margin-bottom: 0px;
     font-family: AvenirBook;
 }
+.item-checbox
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    ion-checkbox
+    {
+        margin-left: 0px;
+        margin-right: 10px;
+        --border-color: #707070;
+        --background-checked: #FF640A;
+        --border-width: 1px;
+        --border-style: solid;
+        --border-color-checked: #FF640A;
+    }
+    .label-check
+    {
+        color: #6E6E6E;
+        font-family: PoppinsRegular;
+        font-size: 0.875rem;
+    }
+}
 @media (min-width: 768px)
 {
     ion-slide
+    {
+        padding-left: 8.75rem;
+        padding-right: 8.75rem;
+    }
+    .div-absolute-slider
     {
         padding-left: 8.75rem;
         padding-right: 8.75rem;

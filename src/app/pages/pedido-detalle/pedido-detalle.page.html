@@ -1,6 +1,7 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
     <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
     <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
       {{ cart_item_count | async }}
@@ -16,31 +17,26 @@
 
   <ion-list>
     <ion-item lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-awesome-calendar-alt-1.png" class="img-datos">
       <ion-label class="lable-dato">Fecha de compra: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
         {{ get_format (pedido?.fecha, 'L') }}
       </span></ion-label>
     </ion-item>
     <ion-item lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-awesome-calendar-alt-1.png" class="img-datos">
       <ion-label class="lable-dato">Fecha de entrega: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
       </span></ion-label>
     </ion-item>
 
     <ion-item *ngIf="pedido?.total?.soles" lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-awesome-calculadora-alt-1.png" class="img-datos">
       <ion-label class="lable-dato">Monto total (S/): <span>{{ pedido?.total?.soles | currency:'S/.' }}</span></ion-label>
     </ion-item>
 
     <ion-item *ngIf="pedido?.total?.dolares" lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-awesome-calculadora-alt-1.png" class="img-datos">
       <ion-label class="lable-dato">Monto total (USD): <span>{{ pedido?.total?.dolares | currency:'USD' }}</span></ion-label>
     </ion-item>
 
     <ion-item lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-metro-shop.png" class="img-datos">
       <ion-label class="lable-dato">Sucursal: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
         {{ pedido?.sucursal }}
@@ -48,7 +44,6 @@
     </ion-item>
 
     <ion-item lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-metro-shop.png" class="img-datos">
       <ion-label class="lable-dato">Estado: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
         {{ get_estado (pedido?.estado) }}
@@ -56,7 +51,6 @@
     </ion-item>
 
     <ion-item lines="none" class="ion-no-padding item-datos">
-      <img src="assets/img/icon-metro-shop.png" class="img-datos">
       <ion-label class="lable-dato">Proceso: <span>
         <ion-skeleton-text *ngIf="loading" animated></ion-skeleton-text>
         <span *ngIf="pedido?.procesado == 1">Pagado</span>
@@ -110,5 +104,5 @@
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center" mode="ios">
   <ion-button mode="ios" class="btn-guardar" (click)="go_root ('home')">Nuevo pedido</ion-button>
-  <ion-button mode="ios" class="btn-guardar" (click)="voler_pedir ()">Volver a pedir</ion-button>
+  <ion-button mode="ios" class="btn-guardar" (click)="voler_pedir ()" style="--background: #29A0EC;">Volver a pedir</ion-button>
 </ion-footer>
