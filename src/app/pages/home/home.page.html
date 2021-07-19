@@ -266,6 +266,10 @@
       <ion-slides pager="false" [options]="slideOpts" mode="ios">
         <ion-slide *ngFor="let item of categoria.items" class="slider-card">
           <ion-card (click)="ver_pedido (item)" class="card-categorias">
+            <ion-badge class="div-img-pocentaje">
+              <span class="spna-porcentaje">15% dcto</span>
+            </ion-badge>
+              
             <ion-avatar
               [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
               class="avatar-categoria">

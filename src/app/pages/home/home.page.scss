@@ -294,6 +294,29 @@ ion-slide.slider-card
         padding-bottom: 0.5rem;
         margin: 0px;
         position: relative;
+        .div-img-pocentaje
+        {
+            background-image: url('/assets/img/trazado-2195.png');
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 83px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 0px;
+            --background: transparent;
+            .spna-porcentaje
+            {
+                font-family: AvenirMedium;
+                font-size: 0.8125rem;
+                transform: rotate(314deg);
+                position: absolute; 
+                left: 6%;
+                top: 28%;
+            }
+        }
         .avatar-categoria
         {
             width: 100%;
