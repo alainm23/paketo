@@ -4,7 +4,7 @@
       <ion-icon name="menu-outline" class="icon-menu" (click)="open_menu ()"></ion-icon>
       <ion-label class="lable-ciudad">{{ auth?.USER_DATA?.persona_contacto }}</ion-label>
       <h1 class="h1-nombre-empersa">{{ auth?.USER_DATA?.name }}</h1>
-      <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+      <img (click)="go_page ('carrito')" src="assets/img/Icon material-add-shopping-cart.png" class="icon-cart-menu">
       <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">
         {{ cart_item_count | async }}
       </ion-badge>
@@ -370,7 +370,7 @@
     <div class="div-categoria-list">
       <h6 class="h6-categorias">Ultimas ofertas</h6>
       <ion-slides pager="false" [options]="slideOpts" mode="ios">
-        <ion-slide *ngFor="let item of ofertas">
+        <ion-slide *ngFor="let item of ofertas" class="slider-card">
           <ion-card (click)="_ver_pedido (item.id_producto)" class="card-categorias">
             <ion-avatar
               [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"

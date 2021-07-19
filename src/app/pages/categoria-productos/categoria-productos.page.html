@@ -1,7 +1,8 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
     <ion-button (click)="back ()" mode="ios" class="btn-atras">< Buscar</ion-button>
-    <img (click)="go_page ('carrito')" src="assets/img/cart.png" class="icon-cart-menu">
+    <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
+    <img (click)="go_page ('carrito')" src="assets/img/Icon material-add-shopping-cart.png" class="icon-cart-menu">
     <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
   </ion-toolbar>
 </ion-header>
@@ -15,9 +16,14 @@
   <div *ngIf="filtros.length > 0" class="div-filtro">
     <ion-item class="ion-no-padding item-filtro" lines="none">
       <ion-label class="label-filtro">Filtrar mi selección</ion-label>
-      <ion-button (click)="filter_toogled ()" slot="end" mode="ios" class="btn-acordion">
+      <ion-badge (click)="filter_toogled ()" slot="end" mode="ios" class="badge-acordion">
+        <span class="span-filtro">{{show_filter === true ? 'Cerrar': 'Abrir' }}</span>
+        <ion-icon [name]="show_filter === true ? 'remove-sharp': 'add-sharp'" class="icon-acordion"></ion-icon>
+      </ion-badge>
+      <!--<ion-button (click)="filter_toogled ()" slot="end" mode="ios" class="btn-acordion">
+        <span class="span-filtro">Abrir</span>
         <ion-icon [ngStyle]="{'transform': show_filter ? 'rotate(45deg)' : 'none' }" name="add-outline" class="icon-acordion transition"></ion-icon>
-      </ion-button>
+      </ion-button>-->
     </ion-item>
     <ion-list *ngIf="show_filter">
       <ion-item *ngFor="let item of filtros" class="ion-no-padding item-check" lines="none" mode="md">
@@ -120,11 +126,9 @@
               <ion-icon name="chevron-forward-outline"></ion-icon>
             </ion-button>
           </ion-card-content>
-          <ion-button
-              (click)="favorite_toggled (item, $event)" mode="ios"
-              [class.btn-list-categoria-favorited]="item.tengo_favorito === true"
-              class="btn-list-categoria">
-              <img src="assets/img/icon-material-playlist-add-check.png" class="img-list-categoria">
+          <ion-button mode="ios"  (click)="favorite_toggled (item, $event)" mode="ios"
+            [class.btn-favorito-avtivo]="item.tengo_favorito === true" class="btn-favorito" >
+              <ion-icon [name]="item.tengo_favorito === true ? 'heart': 'heart-outline'"></ion-icon>
           </ion-button>
         </ion-card>
       </ion-col>
@@ -137,24 +141,41 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+
 <ion-footer class="ion-no-border">
   <ion-toolbar class="toolbar-footer">
     <div class="div-footer">
-      <ion-button (click)="go_root ('home')" mode="ios" class="btn-icon-footer btn-padding-left-cero">
-        <img src="assets/img/icon-feather-home.png" id="img-home">
-      </ion-button>
-      <ion-button (click)="go_page ('favorites')" mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-playlist-add-check.png" id="img-list">
-      </ion-button>
-      <ion-button (click)="go_page ('carrito')" mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-add-shopping-cart-1.png" id="img-cart-add">
-      </ion-button>
-      <ion-button (click)="go_page ('historial')"mode="ios" class="btn-icon-footer">
-        <img src="assets/img/icon-material-history.png" id="img-historial">
-      </ion-button>
-      <ion-button (click)="share_wp ()" mode="ios" class="btn-icon-footer border-cero-right btn-padding-right-cero">
-        <img src="assets/img/icon-awesome-whatsapp.png" id="img-wassap">
-      </ion-button>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('home')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2746.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Inicio</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('favorites')">
+        <div class="div-img-footer">
+          <img src="assets/img/icon-feather-heart-footer.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Favoritos</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('carrito')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2745.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Carrito</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="go_page ('historial')">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2747.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Historial</p>
+      </div>
+      <div class="div-footer-tag ion-text-center" (click)="share_wp ()">
+        <div class="div-img-footer">
+          <img src="assets/img/grupo-2744.png">
+        </div>
+        <p class="ion-no-margin p-footer-plomo">Contacto</p>
+      </div>
     </div>
   </ion-toolbar>
+  <div class="div-linea-azul"></div>
 </ion-footer>
