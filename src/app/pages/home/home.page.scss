@@ -347,10 +347,13 @@ ion-slide.slider-card
         ion-card-subtitle
         {
             width: 100%;
-            color: #AAAAAA;
             font-family: AvenirBook;
             font-size: 0.75rem;
-            font-weight: 100;
+        }
+        ion-card-subtitle.subtitle-anaranjado
+        {
+            color: #FF640A;
+            font-family: PoppinsMedium;
         }
         ion-card-content 
         {
