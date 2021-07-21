@@ -82,7 +82,7 @@ export class PedidoDetallePage implements OnInit {
       loading.dismiss ();
       
       if (res.status === true) {
-        this.cartService.get_cloud_cart ().then (() => {
+        this.cartService.get_cloud_cart (true).then (() => {
           this.utils.presen_css_toast ('Agregado correctamente', 'El pedido a sido agregado al carrito nuevamente');
           this.navController.navigateForward (['carrito']);
         });

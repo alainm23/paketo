@@ -61,14 +61,8 @@
     <ion-card *ngIf="selected_segment == 'deposito_bancario'" class="card-tarjeta" >
       <ion-card-content class="ion-text-center">
         <div class="div-losgos-tarjeta">
-          <ion-avatar class="avatar-tarjeta" (click)="view_datos_bancarios ('bcp')">
-            <img src="assets/img/bcp.jpg">
-          </ion-avatar>
-          <ion-avatar class="avatar-tarjeta" (click)="view_datos_bancarios ('bbva')">
-            <img src="assets/img/bbva.png">
-          </ion-avatar>
-          <ion-avatar class="avatar-tarjeta" (click)="view_datos_bancarios ('interbank')">
-            <img src="assets/img/interbank.jpg">
+          <ion-avatar *ngFor="let item of bancos" class="avatar-tarjeta" (click)="view_datos_bancarios (item)">
+            <img [src]="item.icono">
           </ion-avatar>
         </div>
         <ion-button (click)="selectImageSource (fileInput)" mode="ios" class="btn-tarjeta">

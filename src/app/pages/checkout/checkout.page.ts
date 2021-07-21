@@ -19,6 +19,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class CheckoutPage implements OnInit {
   cart: any [] = [];
   surcursales: any [] = [];
+  bancos: any [] = [];
   user: any;
 
   surcursal_selected: any = null;
@@ -34,12 +35,29 @@ export class CheckoutPage implements OnInit {
     private utils: UtilsService,
     private loadingController: LoadingController) { }
 
-  ngOnInit () {
+  async ngOnInit () {
     this.user = this.auth.USER_DATA;
     this.cart = this.cartService.get_cart ();
 
     console.log (this.cart);
     console.log (this.user);
+
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
+    this.database.get_datos ('bancos').toPromise ().then ((res: any) => {
+      console.log (res);
+      loading.dismiss ();
+      this.bancos = res;
+    }, error => {
+      loading.dismiss ();
+      console.log (error);
+    });
 
     this.auth.get_surcursales ().subscribe ((res: any []) => {
       console.log (res);
@@ -127,7 +145,7 @@ export class CheckoutPage implements OnInit {
     });
   }
 
-  async view_datos_bancarios (banco: string) {
+  async view_datos_bancarios (banco: any) {
     const modal = await this.modalController.create({
       component: DatosBancariosPage,
       componentProps: {

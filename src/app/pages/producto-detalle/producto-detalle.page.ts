@@ -23,6 +23,7 @@ export class ProductoDetallePage implements OnInit {
   producto: any;
   galeria: any [] = [];
   imagen: string = '';
+  variante: any;
   cart: Map <number, any> = new Map <number, any> ();
   cart_item_count: BehaviorSubject<number>;
   
@@ -67,11 +68,20 @@ export class ProductoDetallePage implements OnInit {
         this.cart.set (variate.id, {cantidad: 0, precio: variate.precio_venta});
       });
 
+      if (res.variantes.length > 0) {
+        this.variante = res.variantes [0];
+      }
+
       loading.dismiss ();
     }, error => {
       loading.dismiss ();
       console.log (error);
     });
+  }
+
+  set_variante (item: any) {
+    console.log (item);
+    this.variante = item;
   }
 
   go_page (page: string) {
