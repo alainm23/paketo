@@ -49,6 +49,10 @@ export class HomePage implements OnInit {
     private auth: AuthService) { }
 
   async ngOnInit () {
+    this.cartService.get_categoria_observable ().subscribe ((res: any) => {
+      this.toggle_view ();
+    });
+
     this.cart_item_count = this.cartService.get_cart_item_count ();
     this.get_data (null);
   }
@@ -128,7 +132,7 @@ export class HomePage implements OnInit {
     this.get_data (event);
   }
 
-  toggle_view (view: string) {
+  toggle_view () {
     if (this.segment === 'home') {
       this.segment = 'categorias';
       if (this.categorias.length <= 0) {
@@ -218,6 +222,12 @@ export class HomePage implements OnInit {
     }
   }
 
+  close_search () {
+    this.search_result.categorias = [];
+    this.search_result.productos = [];
+    this.search_text = '';
+  }
+
   get_search_visible () {
     return (this.search_result.categorias.length + this.search_result.productos.length) > 0;
   }
@@ -233,5 +243,17 @@ export class HomePage implements OnInit {
 
   share_wp () {
     window.open ('https://wa.me/51996280066', '_system', 'location=yes');
+  }
+
+  agregar_promociones (promociones: any) {
+    console.log (promociones);
+    this.database.add_carrito (promociones.id).subscribe ((res: any) => {
+      console.log (res);
+      if (res.status === true) {
+        this.cartService.add_product (promociones);
+      }
+    }, error => {
+      console.log (error);
+    });
   }
 }

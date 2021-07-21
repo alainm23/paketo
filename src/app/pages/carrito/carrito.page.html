@@ -25,7 +25,8 @@
         <ion-card class="card-favorito">
           <div class="div-btn-icon">
             <ion-button (click)="delete_item (item)" mode="ios" class="btn-cart-delete btn-delete">
-              <img src="assets/img/icon-feather-trash.png" class="img-delete">
+              <ion-spinner color="dark" *ngIf="item.loading === true"></ion-spinner>
+              <img *ngIf="item.loading !== true" src="assets/img/icon-feather-trash.png" class="img-delete">
             </ion-button>
           </div>
           <ion-avatar

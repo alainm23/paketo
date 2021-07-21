@@ -14,14 +14,16 @@
     </ion-header>
     <ion-content>
       <ion-list class="ion-no-padding">
-        <ion-item class="ion-no-padding" lines="none" [routerLink]="['/categoria']" (click)="closeFirst()">
-          <ion-icon name="layers" slot="start" class="iconos-menu"></ion-icon>
-          <div>
-            <p class="p-nombres-menu">Categorias</p>
-            <p class="p-descripciones">Ver todas las categorias</p>
-          </div>
-          <ion-icon name="arrow-forward" slot="end" class="icon-flecha"></ion-icon>
-        </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="ver_categoria ()" class="ion-no-padding" lines="none">
+            <ion-icon name="layers" slot="start" class="iconos-menu"></ion-icon>
+            <div>
+              <p class="p-nombres-menu">Categorias</p>
+              <p class="p-descripciones">Ver todas las categorias</p>
+            </div>
+            <ion-icon name="arrow-forward" slot="end" class="icon-flecha"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
 
         <ion-menu-toggle auto-hide="false">
           <ion-item class="ion-no-padding item-top" lines="none" [routerLink]="['/carrito']">
@@ -68,7 +70,7 @@
         </ion-menu-toggle>
         
         <ion-menu-toggle auto-hide="false">
-          <ion-item [routerLink]="['/sobre-paketo']" class="ion-no-padding item-top" lines="none" [routerLink]="['/sobre-paketo']" (click)="closeFirst()">
+          <ion-item [routerLink]="['/sobre-paketo']" class="ion-no-padding item-top" lines="none" [routerLink]="['/sobre-paketo']">
             <ion-icon name="folder-open" slot="start" class="iconos-menu"></ion-icon>
             <div>
               <p class="p-nombres-menu">Sobre Paketo</p>

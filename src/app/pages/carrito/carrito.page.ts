@@ -32,6 +32,7 @@ export class CarritoPage implements OnInit {
 
   delete_item (item: any) {
     console.log  (item);
+    item.loading = true;
     this.database.quitar_carrito (item.id).subscribe ((res: any) => {
       console.log (res);
       if (res.status === true) {
