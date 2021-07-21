@@ -6,16 +6,18 @@
 
 <ion-content>
   <div class="div-center">
-    <ion-card class="card-slide top-slider"></ion-card>
+    <ion-card class="card-slide top-slider">
+      <img src="assets/img/logo-paketo.png">
+    </ion-card>
   </div>
   <h1 class="ion-text-center top-titulo">Ingresa a tu cuenta</h1>
   <form [formGroup]="form">
     <ion-item lines="none" class="item-input" mode="ios">
-      <ion-input formControlName="email" mode="ios" type="email" placeholder="Correo *"></ion-input>
+      <ion-input formControlName="email" mode="ios" type="email" placeholder="Correo"></ion-input>
     </ion-item>
     <ion-item lines="none" class="item-input item-top" mode="ios">
-      <ion-input formControlName="password" mode="ios" [type]="type_password" placeholder="Contraseña *" class=""></ion-input>
-      <ion-icon (click)="password_toggled ()" [name]="type_password === 'password' ? 'eye': 'eye-off'" class="iconinterrogativo"></ion-icon>
+      <ion-input formControlName="password" mode="ios" [type]="type_password" placeholder="Contraseña" class=""></ion-input>
+      <ion-icon (click)="password_toggled ()" name="help-circle" class="iconinterrogativo"></ion-icon>
     </ion-item>
   </form>
 

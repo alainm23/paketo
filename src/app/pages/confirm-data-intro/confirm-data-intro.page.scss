@@ -43,11 +43,15 @@ h1
 }
 .card-slide
 {
-    border-radius: 1.25rem;
-    --background: #EAEAEA;
-    width: 11.8125rem;
-    height: 15.125rem;
+    border-radius: 0rem;
+    box-shadow: none;
+    width: 12.1875rem;
+    height: 17.8125rem;
     margin-bottom: 0px;
+    background-image: url('/assets/img/grupo-2813.ttf');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .top-p
 {
@@ -56,8 +60,9 @@ h1
 .btn-guardar
 {
     font-family: AvenirHeavy;
-    --background: #FF0F0F;
-    --background-activated: #FF0F0F;
+    --background: #FF640A;
+    --color: #fff;
+    --background-activated: #FF640A;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
     width: 70%;

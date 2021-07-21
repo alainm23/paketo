@@ -16,11 +16,12 @@ ion-header
 }
 ion-toolbar
 {
-    --background: #FFFFFF;
+    --background: #29A0EC;
     --padding-top: 1.875rem;
     --padding-start: 2.5rem;;
     --padding-end: 0rem;
     --padding-bottom: 1.875rem;
+    border-radius: 0px 0px 20px 20px;
 }
 .titulo-header
 {
@@ -28,7 +29,7 @@ ion-toolbar
     padding-right: 2.5rem;
     font-family: PoppinsMedium;
     font-size: 1.375rem;
-    margin-top: 0rem;
+    margin-top: 1.1875rem;
     margin-bottom: 0px;
 }
 ion-content
@@ -53,11 +54,11 @@ ion-content
     --padding-end: 0px;
     --padding-top: 0px;
     --padding-bottom: 0px;
-    --color: #000000;
+    --color: #fff;
     font-size: 1.125rem;
     font-family: PoppinsMedium;
-    --background: #FFFFFF;
-    --background-activated: #ffffff;
+    --background: #29A0EC;
+    --background-activated: #29A0EC;
     margin: 0px;
     height: auto;
 }
@@ -71,7 +72,7 @@ ion-content
 }
 .badge-rojo
 {
-    --background: #FF0000;
+    --background: #FF640A;
     border-radius: 50%;
     --color: #fff;
     font-family: AvenirHeavy;
@@ -99,11 +100,17 @@ ion-content
 }
 .card-slide
 {
-    border-radius: 1.25rem;
-    --background: #EAEAEA;
+    border-radius: 0px;
     width: 10.75rem;
     height: 10.875rem;
     margin-bottom: 0px;
+    background-image: url('/assets/img/sinfondo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: none;
+    margin: 0px;
+    width: 100%;
 }
 .top-slider
 {
@@ -142,6 +149,14 @@ ion-footer
         margin-left: 1rem;
     }
 }
+.icon-serach
+{
+    color: #fff;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
+    font-size: 1.75rem;
+}
 @media (min-width: 540px)
 {
     .grid-padding-left-right
@@ -149,9 +164,21 @@ ion-footer
         padding-left: 1.875rem;
         padding-right: 1.875rem;
     }
+    .card-slide
+    {
+        height: 17.5rem;
+    }
 }
 @media (min-width: 768px)
 {
+    .card-slide
+    {
+        height: 23.125rem;
+    }
+    .icon-serach
+    {
+        right: 8rem;
+    }
     ion-toolbar
     {
         --padding-start: 5rem;

@@ -19,7 +19,7 @@
     <p class="p-medium" *ngIf="data?.soles > 0">{{ data?.soles | currency:'S/.' }}</p>
     <p class="p-medium" *ngIf="data?.dolares > 0">{{ data?.dolares | currency:'USD' }}</p>
   </div>
-  <div class="ion-text-center div-top-dos">
+  <div class="ion-text-center div-top-dos div-bottom">
     <h6 class="h6-black">Fecha de compra:</h6>
     <p class="p-medium">{{ get_date_format (data?.fecha, 'll') }}</p>
   </div>
