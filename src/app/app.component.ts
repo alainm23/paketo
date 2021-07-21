@@ -40,6 +40,10 @@ export class AppComponent {
     }
   }
 
+  ver_categoria () {
+    this.cartService.categoria_changed (true);
+  }
+
   async init () {
     App.addListener ('backButton', () => {
       if (this.location.isCurrentPathEqualTo ('/onboarding') || 

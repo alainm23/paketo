@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { DatabaseService } from '../../services/database.service';
+import { Clipboard } from '@capacitor/clipboard';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-datos-bancarios',
@@ -8,31 +10,22 @@ import { DatabaseService } from '../../services/database.service';
   styleUrls: ['./datos-bancarios.page.scss'],
 })
 export class DatosBancariosPage implements OnInit {
-
+  @Input () banco: any;
   constructor (private modalController: ModalController, private database: DatabaseService,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    private utils: UtilsService) { }
 
   async ngOnInit () {
-    const loading = await this.loadingController.create ({
-      translucent: true,
-      spinner: 'lines-small',
-      mode: 'ios'
-    });
-
-    await loading.present ();
-
-    this.database.get_datos ('bancos').toPromise ().then ((res: any) => {
-      console.log (res);
-      loading.dismiss ();
-    }, error => {
-      loading.dismiss ();
-      console.log (error);
-    });
+    console.log (this.banco);
   }
 
   view_checkout () {
     this.modalController.dismiss ();
   }
 
-
+  async copy (text: string) {
+    Clipboard.write({string: text}).then (() => {
+      this.utils.presentToast ('Copiado al portapapeles', 'success');
+    });
+  }
 }

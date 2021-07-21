@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 // Services
 import { DatabaseService } from '../services/database.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { UtilsService } from './utils.service';
 
 @Injectable({
@@ -12,10 +12,19 @@ export class CartService {
 
   private cart = [];
   private cart_item_count = new BehaviorSubject (0);
+  private categoria_subject = new Subject<boolean> ();
 
   constructor (private database: DatabaseService,
     private utils: UtilsService) {
 
+  }
+
+  categoria_changed (data: any) {
+    this.categoria_subject.next (data);
+  }
+
+  get_categoria_observable (): Subject<any> {
+    return this.categoria_subject;
   }
 
   async get_cloud_cart (reset: boolean=false): Promise<boolean> {

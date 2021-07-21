@@ -2,15 +2,15 @@
   <div class="div-flex">
     <ion-card>
       <ion-icon name="close-outline" class="icon-close" (click)="view_checkout()"></ion-icon>
-      <h1>BCP Paketo</h1>
+      <h1>{{ banco.nombre }}</h1>
       <p class="p-ahorro">Ahorros soles</p>
       <ion-item class="ion-no-padding" lines="none">
-        <p class="ion-no-margin"><span class="span-cuenta">Numero de cuenta</span><br><span class="span-numero">1234567890123</span></p>
-        <ion-icon name="copy-outline" slot="end" class="icon-copy"></ion-icon>
+        <p class="ion-no-margin"><span class="span-cuenta">Numero de cuenta</span><br><span class="span-numero">{{ banco?.numero_cuenta }}</span></p>
+        <ion-icon (click)="copy (banco?.numero_cuenta)" name="copy-outline" slot="end" class="icon-copy"></ion-icon>
       </ion-item>
       <ion-item class="ion-no-padding item-top" lines="none">
-        <p class="ion-no-margin"><span class="span-cuenta">Numero de cuenta</span><br><span class="span-numero">1234567890123</span></p>
-        <ion-icon name="copy-outline" slot="end" class="icon-copy"></ion-icon>
+        <p class="ion-no-margin"><span class="span-cuenta">Numero de cuenta interbancario</span><br><span class="span-numero">{{ banco?.codigo_interbancario }}</span></p>
+        <ion-icon (click)="copy (banco?.codigo_interbancario)" name="copy-outline" slot="end" class="icon-copy"></ion-icon>
       </ion-item>
     </ion-card>
   </div>

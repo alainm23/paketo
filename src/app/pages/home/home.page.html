@@ -21,7 +21,10 @@
     </div>
     
     <ion-card *ngIf="get_search_visible () || search_text !== ''">
-      <ion-header>Resultados</ion-header>
+      <ion-header>
+        Resultados
+        <ion-button (click)="close_search ()">X</ion-button>
+      </ion-header>
       <ion-list>
         <ion-list-header>Productos</ion-list-header>
         <ion-item (click)="ver_pedido (item.searchable)" *ngFor="let item of search_result.productos">

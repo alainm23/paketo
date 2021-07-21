@@ -32,10 +32,14 @@
     <p class="p-descripcion">{{ producto?.descripcion }}</p>
   </div>
   <div class="div-padding-left-right">
+    <h6 class="subtitulo-h6">Marca:</h6>
+    <p class="p-descripcion">{{ producto?.marca }}</p>
+  </div>
+  <div class="div-padding-left-right">
     <h6 class="subtitulo-h6">Variaciones:</h6>
     <ion-list class="ion-no-padding">
       <ion-item *ngFor="let item of producto?.variantes" class="ion-no-padding item-contador" lines="none">
-        <p class="label-nombre label-right-primero">{{ item.nombre }}</p>
+        <p (click)="set_variante (item)" class="label-nombre label-right-primero">{{ item.nombre }}</p>
         <div class="div-contador">
           <p class="label-nombre label-right-segundo">
             {{ item.precio_venta | currency:producto.moneda }}
@@ -51,7 +55,10 @@
   </div>
   <div class="div-padding-left-right div-bottom">
     <h6 class="subtitulo-h6 subtitulo-top">Especificaciones técnicas:</h6>
-    <p class="p-descripcion">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et.</p>
+    <p>Presentacion: {{ variante?.presentacion }}</p>
+    <p class="p-descripcion">
+      {{ variante?.especificacion_tecnica }}
+    </p>
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
