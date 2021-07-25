@@ -1,9 +1,21 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-button (click)="back ()" mode="ios" class="btn-atras">< Atrás</ion-button>
+    <ion-button (click)="back ()" mode="ios" class="btn-atras"
+      >< Atrás</ion-button
+    >
     <ion-icon name="search-sharp" class="icon-serach"></ion-icon>
-    <img (click)="go_page ('carrito')" src="assets/img/Icon material-add-shopping-cart.png" class="icon-cart-menu">
-    <ion-badge *ngIf="(cart_item_count | async) > 0" (click)="go_page ('carrito')" mode="ios" class="badge-rojo">{{ cart_item_count | async }}</ion-badge>
+    <img
+      (click)="go_page ('carrito')"
+      src="assets/img/Icon material-add-shopping-cart.png"
+      class="icon-cart-menu"
+    />
+    <ion-badge
+      *ngIf="(cart_item_count | async) > 0"
+      (click)="go_page ('carrito')"
+      mode="ios"
+      class="badge-rojo"
+      >{{ cart_item_count | async }}</ion-badge
+    >
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -14,7 +26,12 @@
   <h1 class="titulo-header ion-text-center">Mi carrito</h1>
   <ion-grid class="grid-padding-left-right">
     <ion-row>
-      <ion-col *ngIf="cart.length <= 0" size="12" size-md="12" class="col-favoritos">
+      <ion-col
+        *ngIf="cart.length <= 0"
+        size="12"
+        size-md="12"
+        class="col-favoritos"
+      >
         <ion-item class="ion-text-center">
           <ion-label>
             <h2>Carrito vacio</h2>
@@ -22,35 +39,68 @@
           </ion-label>
         </ion-item>
       </ion-col>
-      <ion-col *ngFor="let item of cart" size="12" size-md="12" class="col-favoritos">
+      <ion-col
+        *ngFor="let item of cart"
+        size="12"
+        size-md="12"
+        class="col-favoritos"
+      >
         <ion-card class="card-favorito">
           <div class="div-btn-icon">
-            <ion-button (click)="delete_item (item)" mode="ios" class="btn-cart-delete btn-delete">
-              <ion-spinner color="dark" *ngIf="item.loading === true"></ion-spinner>
-              <img *ngIf="item.loading !== true" src="assets/img/icon-feather-trash.png" class="img-delete">
+            <ion-button
+              (click)="delete_item (item)"
+              mode="ios"
+              class="btn-cart-delete btn-delete"
+            >
+              <ion-spinner
+                color="dark"
+                *ngIf="item.loading === true"
+              ></ion-spinner>
+              <img
+                *ngIf="item.loading !== true"
+                src="assets/img/icon-feather-trash.png"
+                class="img-delete"
+              />
             </ion-button>
           </div>
           <ion-avatar
             [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
-            class="avatar-categoria">
+            class="avatar-categoria"
+          >
           </ion-avatar>
           <div class="div-titulo-texto">
             <h6 class="h6-titulo-favorito">{{ item.nombre }}</h6>
-            <p class="p-especifiacion">{{ item.precio | currency:item.moneda }}</p>
+            <p class="p-especifiacion">
+              {{ item.precio | currency:item.moneda }}
+            </p>
             <ion-label class="label-categoria">{{ item.marca }}</ion-label>
           </div>
           <div>
             <div class="div-contador">
-              <ion-button [disabled]="item.cantidad <= 1" (click)="update_cantidad ('restar', item)" mode="ios" class="btn-add-rest">-</ion-button>
+              <ion-button
+                [disabled]="item.cantidad <= 1"
+                (click)="update_cantidad ('restar', item)"
+                mode="ios"
+                class="btn-add-rest"
+                >-</ion-button
+              >
               <ion-input
                 debounce="1500"
                 (ngModelChange)="valid_change ($event, item)"
                 [(ngModel)]="item.cantidad"
                 [max]="item.cantidad_disponible"
-                min="1" type="number"
-                [value]="item.cantidad" class="input-number">
+                min="1"
+                type="number"
+                [value]="item.cantidad"
+                class="input-number"
+              >
               </ion-input>
-              <ion-button (click)="update_cantidad ('sumar', item)" mode="ios" class="btn-add-rest">+</ion-button>
+              <ion-button
+                (click)="update_cantidad ('sumar', item)"
+                mode="ios"
+                class="btn-add-rest"
+                >+</ion-button
+              >
             </div>
             <p class="ion-text-center p-precio">
               {{ item.precio * item.cantidad | currency:item.moneda }}
@@ -66,15 +116,30 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card class="car-fixed ion-text-center">
+  <ion-card class="car-fixed ion-text-center" *ngIf="valid_alerta ()">
     <h6 class="ion-no-margin h6-titulo-card">Atencion:</h6>
-    <p class="p-cad-fixed">El monto mínimo para pedido es de S/XXX, por favor agregue al carrito</p>
+    <p class="p-cad-fixed">
+      El monto mínimo para pedido es de
+      <span *ngIf="compra_minima_dolares > get_total ('USD')">
+        {{ compra_minima_dolares | currency:'USD' }}
+      </span>
+      <span *ngIf="compra_minima_soles > get_total ('S/.')">
+        y {{ compra_minima_soles | currency:'S/.' }}
+      </span>, por
+      favor agregue al carrito
+    </p>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border">
   <div class="div-footer">
     <p class="p-footer">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
     <p class="p-footer">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
-    <ion-button mode="ios" [disabled]="cart.length <= 0" (click)="submit ()" class="btn-caja">Ir a la caja</ion-button>
+    <ion-button
+      mode="ios"
+      [disabled]="cart.length <= 0"
+      (click)="submit ()"
+      class="btn-caja"
+      >Ir a la caja</ion-button
+    >
   </div>
 </ion-footer>

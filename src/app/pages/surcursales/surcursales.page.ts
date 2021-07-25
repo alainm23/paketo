@@ -65,6 +65,7 @@ export class SurcursalesPage implements OnInit {
     this.surcursal = this.route.snapshot.paramMap.get ('surcursal');
     this.page = this.route.snapshot.paramMap.get ('page');
 
+    console.log(this.auth.USER_DATA);
     console.log (this.surcursal);
     console.log (this.page);
 
@@ -113,7 +114,7 @@ export class SurcursalesPage implements OnInit {
       console.log (res);
       this.departamentos = res;
       this.init_map ();
-      this.initAutocomplete ();
+      // this.initAutocomplete ();
     }, error => {
       console.log (error);
       loading.dismiss ();
@@ -398,7 +399,7 @@ export class SurcursalesPage implements OnInit {
     });
   }
 
-  async get_googlemaps_position (event: any) {
+  async get_googlemaps_position () {
     const loading = await this.loadingController.create ({
       translucent: true,
       spinner: 'lines-small',
@@ -407,7 +408,7 @@ export class SurcursalesPage implements OnInit {
 
     await loading.present ();
 
-    let address: string = event.detail.value.nombre + ' ' + this.departamento_nombre + ' ' + this.provincias_nombre;
+    let address: string = this.form.value.direccion + ' ' + this.form.value.distrito.nombre + ' ' + this.departamento_nombre + ' ' + this.provincias_nombre;
 
     this.geocoder.geocode ({'address': address}, (results: any, status: any) => {
       loading.dismiss ();
@@ -470,6 +471,21 @@ export class SurcursalesPage implements OnInit {
   }
 
   ver_mapa_f () {
+    this.get_googlemaps_position ();
     this.ver_mapa = true;
+  }
+
+  autocompletar(event: any) {
+    console.log(event.detail.checked);
+
+    if (event.detail.checked) {
+      this.form.controls ['nombres_contacto'].setValue (this.auth.USER_DATA.persona_contacto);
+      this.form.controls ['telefono_contacto'].setValue (this.auth.USER_DATA.telefono);
+      this.form.controls ['email_contacto'].setValue (this.auth.USER_DATA.email);
+    } else {
+      this.form.controls ['nombres_contacto'].setValue ('');
+      this.form.controls ['telefono_contacto'].setValue ('');
+      this.form.controls ['email_contacto'].setValue ('');
+    }
   }
 }

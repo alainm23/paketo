@@ -111,11 +111,14 @@ export class ConfirmDataPage implements OnInit {
     await loading.present ();
 
     this.auth.save_confirm_data (request).subscribe ((res: any) => {
-      console.log (res);
-      loading.dismiss ();
-
       if (res.status === true) {
-        this.navController.navigateForward (['surcursales', 'new', 'categorias-interes']);
+        this.auth.update_user_data ().then ((res: any) => {
+          loading.dismiss ();
+          this.navController.navigateForward (['surcursales', 'new', 'categorias-interes']);
+        }, error => {
+          loading.dismiss ();
+          this.navController.navigateForward (['surcursales', 'new', 'categorias-interes']);
+        });
       }
     }, error => {
       loading.dismiss ();

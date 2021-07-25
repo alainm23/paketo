@@ -13,6 +13,8 @@ export class CartService {
   private cart = [];
   private cart_item_count = new BehaviorSubject (0);
   private categoria_subject = new Subject<boolean> ();
+  public compra_minima_dolares: number = 0;
+  public compra_minima_soles: number = 0;
 
   constructor (private database: DatabaseService,
     private utils: UtilsService) {
@@ -35,6 +37,10 @@ export class CartService {
     return await new Promise ((resolve, reject) => {
       this.database.get_carrito ().toPromise ().then ((res: any) => {
         console.log (res);
+
+        this.compra_minima_dolares = parseFloat (res.compra_minima_dolares);
+        this.compra_minima_soles =  parseFloat (res.compra_minima_soles);
+
         res.items.forEach ((producto: any) => {
           this.cart.push (producto);
           this.cart_item_count.next (this.cart.length);

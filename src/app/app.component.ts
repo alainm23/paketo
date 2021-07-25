@@ -9,6 +9,7 @@ import { CartService } from './services/cart.service';
 import { AuthService } from './services/auth.service';
 import { App } from '@capacitor/app';
 import { Location } from '@angular/common';
+import { OnesignalService } from './services/onesignal.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
       private navController: NavController,
       private menuController: MenuController,
       private alertController: AlertController,
-      private loadingController: LoadingController) {
+      private loadingController: LoadingController,
+      private onesignal: OnesignalService) {
     this.OnInit ();
   }
 
@@ -65,6 +67,10 @@ export class AppComponent {
       this.auth.USER_ACCESS = user_access;
 
       this.cartService.get_cloud_cart ();
+
+      if (Capacitor.isNativePlatform ()) {
+        this.onesignal.init_onesignal ();
+      }
 
       this.auth.update_user_data ().then ((res: any) => {
         console.log (res);

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup , FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { UtilsService } from '../../services/utils.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { OnesignalService } from 'src/app/services/onesignal.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginPage implements OnInit {
   constructor (private auth: AuthService, private utils: UtilsService,
       private navController: NavController,
       private alertController: AlertController,
-      private loadingController: LoadingController) { }
+      private loadingController: LoadingController,
+      private onesignal: OnesignalService) { }
 
   ngOnInit () {
     this.form = new FormGroup ({
@@ -77,6 +79,7 @@ export class LoginPage implements OnInit {
           } else if (res.categorias <= 0) {
             this.navController.navigateForward ('categorias-interes');
           } else {
+            this.onesignal.init_onesignal ();
             this.navController.navigateRoot (['home']);
           }
         });

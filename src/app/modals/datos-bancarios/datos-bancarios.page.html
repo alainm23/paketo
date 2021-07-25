@@ -3,7 +3,7 @@
     <ion-card>
       <ion-icon name="close-outline" class="icon-close" (click)="view_checkout()"></ion-icon>
       <h1>{{ banco.nombre }}</h1>
-      <p class="p-ahorro">Ahorros soles</p>
+      <p class="p-ahorro">{{ banco.tipo_cuenta }}</p>
       <ion-item class="ion-no-padding" lines="none">
         <p class="ion-no-margin"><span class="span-cuenta">Numero de cuenta</span><br><span class="span-numero">{{ banco?.numero_cuenta }}</span></p>
         <ion-icon (click)="copy (banco?.numero_cuenta)" name="copy-outline" slot="end" class="icon-copy"></ion-icon>

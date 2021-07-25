@@ -215,4 +215,14 @@ export class DatabaseService {
 
     return this.http.post (URL, { id_producto: id }, { headers });
   }
+
+  save_onesignal_player_id (player_id: string) {
+    let url = 'https://paketo.demoperu.site/api/auth/guardar/playerID';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (url, {onesignal_player_id: player_id}, { headers });
+  }
 }

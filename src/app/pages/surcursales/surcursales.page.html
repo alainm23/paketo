@@ -62,7 +62,7 @@
         <ion-icon name="chevron-down-outline" class="icon-slect"></ion-icon>
       </ion-item>
       <ion-item lines="none" class="item-input item-top">
-        <ion-select [disabled]="!show_distrito" (ionChange)="get_googlemaps_position ($event)" formControlName="distrito" placeholder="Distrito">
+        <ion-select [disabled]="!show_distrito" formControlName="distrito" placeholder="Distrito">
           <ion-select-option [value]="item" *ngFor="let item of distritos">
             {{ item.nombre }}
           </ion-select-option>
@@ -83,7 +83,7 @@
       <h6 class="h6-nombres-campos h6-top-bottom">Datos de tienda</h6>
       <ion-item lines="none" class="item-checbox">
         <ion-label class="ion-text-wrap label-check">Yo mismo seré la persona de contacto</ion-label>
-        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-checkbox (ionChange)="autocompletar($event)" slot="start"></ion-checkbox>
       </ion-item>
       <ion-item lines="none" class="item-input">
         <ion-input formControlName="nombres_contacto" placeholder="Persona de contacto" type="text"></ion-input>

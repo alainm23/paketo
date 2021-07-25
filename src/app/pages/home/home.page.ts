@@ -99,7 +99,7 @@ export class HomePage implements OnInit {
       this.loadins.promociones = false;
       console.log (res);
 
-      this.promociones = res [0];
+      this.promociones = res;
 
       if (event) {
         this.check_main_loading (event);
@@ -251,14 +251,17 @@ export class HomePage implements OnInit {
     window.open ('https://wa.me/51996280066', '_system', 'location=yes');
   }
 
-  agregar_promociones (promociones: any) {
-    console.log (promociones);
-    this.database.add_carrito (promociones.id).subscribe ((res: any) => {
+  agregar_promociones (item: any) {
+    item.loading = true;
+    console.log (item);
+    this.database.add_carrito (item.id).subscribe ((res: any) => {
       console.log (res);
       if (res.status === true) {
-        this.cartService.add_product (promociones);
+        item.loading = false;
+        this.cartService.add_product (item);
       }
     }, error => {
+      item.loading = false;
       console.log (error);
     });
   }

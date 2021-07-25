@@ -29,7 +29,7 @@
         <ion-list-header>Productos</ion-list-header>
         <ion-item (click)="ver_pedido (item.searchable)" *ngFor="let item of search_result.productos">
           <ion-label>
-            {{ item.title }}
+            <b>{{ item.title }} - {{ item.searchable.marca }}</b>
           </ion-label>
         </ion-item>
 
@@ -51,33 +51,16 @@
 
   <ng-container *ngIf="segment === 'home'">
     <ion-slides pager="false" [options]="slideOptscard" style="padding-left: 0px;margin-top: 0px;;">
-      <ion-slide class="ion-no-padding">
+      <ion-slide *ngFor="let item of promociones" class="ion-no-padding">
         <ion-card
-          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
+          [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
           class="card-banner">
           <div class="div-banner">
-            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
-            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
-          </div>
-        </ion-card>
-      </ion-slide>
-      <ion-slide class="ion-no-padding">
-        <ion-card
-          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
-          class="card-banner">
-          <div class="div-banner">
-            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
-            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
-          </div>
-        </ion-card>
-      </ion-slide>
-      <ion-slide class="ion-no-padding">
-        <ion-card
-          [ngStyle]="{'background-image': 'url(' + promociones?.imagen + ')'}"
-          class="card-banner">
-          <div class="div-banner">
-            <h1 class="titulo-baaner">{{ promociones?.nombre }}</h1>
-            <ion-button mode="ios" class="btn-carrito">Agregar al carrito</ion-button>
+            <h1 class="titulo-baaner">{{ item.nombre }}</h1>
+            <ion-button [disabled]="item.loading === true" (click)="agregar_promociones (item)" mode="ios" class="btn-carrito">
+              <ng-container *ngIf="item.loading !== true">Agregar al carrito</ng-container>
+              <ion-spinner *ngIf="item.loading === true"></ion-spinner>
+            </ion-button>
           </div>
         </ion-card>
       </ion-slide>
@@ -163,7 +146,7 @@
 
         <ion-slide *ngFor="let item of ofertas" class="slider-card">
           <ion-card (click)="_ver_pedido (item.id_producto)" class="card-categorias">
-            <ion-badge class="bag-porcentaje">15%</ion-badge>
+            <ion-badge class="bag-porcentaje">{{ item.descuento |  number:'1.0-0' }}%</ion-badge>
             <ion-avatar
               [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
               class="avatar-categoria">
@@ -175,7 +158,6 @@
             <ion-card-content class="ion-no-padding">
               <ion-label class="label-precio">
                 {{ item.precio | currency:item.moneda }}
-                {{ item.descuento }}%
               </ion-label>
               <ion-button mode="ios" class="btn-add-categoria">
                 <ion-icon name="chevron-forward-outline"></ion-icon>

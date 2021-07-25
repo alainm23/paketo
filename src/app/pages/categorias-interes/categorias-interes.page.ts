@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { OnesignalService } from 'src/app/services/onesignal.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class CategoriasInteresPage implements OnInit {
     private auth: AuthService,
     private navController: NavController,
     private loadingController: LoadingController,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private onesignal: OnesignalService) { }
 
   async ngOnInit() {
     this.type = this.route.snapshot.paramMap.get ('type');
@@ -85,20 +87,16 @@ export class CategoriasInteresPage implements OnInit {
     this.auth.asignar_categorias ({categorias: categorias}).subscribe ((res: any) => {
       console.log (res);
       if (res.status === true) {
-        if (this.type === 'black') {
-          this.utils.presentToast ('Las categorias fueron actualizadas', 'success').then (() => {
-            loading.dismiss ();
-            this.navController.back ();
-          });
-        } else {
-          this.auth.update_user_data ().then ((res: any) => {
-            loading.dismiss ();
+        this.onesignal.init_onesignal ().then (() => {
+          if (this.type === 'black') {
+            this.utils.presentToast ('Las categorias fueron actualizadas', 'success').then (() => {
+              loading.dismiss ();
+              this.navController.back ();
+            });
+          } else {
             this.navController.navigateRoot (['home']);
-          }, error => {
-            loading.dismiss ();
-            this.navController.navigateRoot (['home']);
-          });
-        }
+          }
+        });
       }
     }, error => {
       loading.dismiss ();
