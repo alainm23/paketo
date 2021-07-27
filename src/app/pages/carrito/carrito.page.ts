@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 // Services
 import { DatabaseService } from 'src/app/services/database.service';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart.service';
 import { BehaviorSubject } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
+import { SearchPage } from 'src/app/modals/search/search.page';
 
 @Component({
   selector: 'app-carrito',
@@ -23,7 +24,8 @@ export class CarritoPage implements OnInit {
     private database: DatabaseService,
     private navController: NavController,
     public cartService: CartService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -201,5 +203,14 @@ export class CarritoPage implements OnInit {
     }
 
     return returned;
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

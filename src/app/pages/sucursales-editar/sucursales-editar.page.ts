@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { SearchPage } from 'src/app/modals/search/search.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -18,7 +19,8 @@ export class SucursalesEditarPage implements OnInit {
     private cartService: CartService,
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private utils: UtilsService) { }
+    private utils: UtilsService,
+    private modalController: ModalController) { }
 
   ngOnInit () {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -101,5 +103,14 @@ export class SucursalesEditarPage implements OnInit {
 
   go_page (page: string) {
     this.navController.navigateForward (page);
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

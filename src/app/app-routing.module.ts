@@ -113,6 +113,10 @@ const routes: Routes = [
     path: 'sucursales-editar',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/sucursales-editar/sucursales-editar.module').then( m => m.SucursalesEditarPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./modals/search/search.module').then( m => m.SearchPageModule)
   }
 ];
 

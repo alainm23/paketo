@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { SearchPage } from 'src/app/modals/search/search.page';
 import { CartService } from 'src/app/services/cart.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -32,7 +33,8 @@ export class ProductoDetallePage implements OnInit {
     private database: DatabaseService,
     private route: ActivatedRoute,
     private utils: UtilsService,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    private modalController: ModalController) { }
 
   async ngOnInit () {
     this.id = JSON.parse (this.route.snapshot.paramMap.get ('id'));
@@ -192,5 +194,14 @@ export class ProductoDetallePage implements OnInit {
       console.log (error);
       loading.dismiss ();
     });
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

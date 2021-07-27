@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { SearchPage } from 'src/app/modals/search/search.page';
 import { CartService } from 'src/app/services/cart.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -25,7 +26,8 @@ export class CategoriaProductosPage implements OnInit {
   constructor (private route: ActivatedRoute,
     private navController: NavController,
     private database: DatabaseService,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private modalController: ModalController) { }
 
   ngOnInit () {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -155,5 +157,14 @@ export class CategoriaProductosPage implements OnInit {
 
   share_wp () {
     window.open ('https://wa.me/51996280066', '_system', 'location=yes');
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

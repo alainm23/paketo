@@ -85,12 +85,12 @@ export class CategoriasInteresPage implements OnInit {
     await loading.present ();
 
     this.auth.asignar_categorias ({categorias: categorias}).subscribe ((res: any) => {
+      loading.dismiss ();
       console.log (res);
       if (res.status === true) {
         this.onesignal.init_onesignal ().then (() => {
           if (this.type === 'black') {
             this.utils.presentToast ('Las categorias fueron actualizadas', 'success').then (() => {
-              loading.dismiss ();
               this.navController.back ();
             });
           } else {

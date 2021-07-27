@@ -16,6 +16,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 // Modals
 import { UpdateSentDataPageModule } from './modals/update-sent-data/update-sent-data.module';
 import { DatosBancariosPageModule } from './modals/datos-bancarios/datos-bancarios.module';
+import { SearchPageModule } from './modals/search/search.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,8 @@ import { DatosBancariosPageModule } from './modals/datos-bancarios/datos-bancari
     ReactiveFormsModule,
     FormsModule,
     UpdateSentDataPageModule,
-    DatosBancariosPageModule
+    DatosBancariosPageModule,
+    SearchPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
