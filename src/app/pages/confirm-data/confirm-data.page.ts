@@ -93,7 +93,6 @@ export class ConfirmDataPage implements OnInit {
       this.modificar ();
       return;
     }
-    
 
     let request: any = {
       ruc: this.ruc,

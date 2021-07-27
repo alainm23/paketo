@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Services
 import { DatabaseService } from 'src/app/services/database.service';
-import { ModalController, NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart.service';
 import { BehaviorSubject } from 'rxjs';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -25,7 +25,8 @@ export class CarritoPage implements OnInit {
     private navController: NavController,
     public cartService: CartService,
     private utils: UtilsService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {
@@ -53,17 +54,23 @@ export class CarritoPage implements OnInit {
     );
   }
 
-  update_cantidad(action: string, item: any) {
+  async update_cantidad(action: string, item: any) {
     const request: any = {
       id_variante: item.id,
       action: action,
     };
 
-    console.log(request);
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
 
     this.database.sumar_restar_carrito(request).subscribe(
       (res: any) => {
-        console.log(res);
+        loading.dismiss ();
         if (res.status === true) {
           if (action === 'sumar') {
             this.cartService.add_product(item, false);
@@ -73,6 +80,7 @@ export class CarritoPage implements OnInit {
         }
       },
       (error) => {
+        loading.dismiss ();
         this.utils.presentToast(error.error.message, 'danger');
         console.log(error);
       }
@@ -111,12 +119,9 @@ export class CarritoPage implements OnInit {
       );
       return;
     }
-    
-    if (this.valid_alerta ()) {
-      this.utils.presentToast(
-        'Su pedido no supera el monto minimo',
-        'danger'
-      );
+
+    if (this.valid_alerta()) {
+      this.utils.presentToast('Su pedido no supera el monto minimo', 'danger');
       return;
     }
 
@@ -124,9 +129,6 @@ export class CarritoPage implements OnInit {
   }
 
   valid_change(event: any, item: any) {
-    console.log(event);
-    console.log(item);
-
     if (event <= 0) {
       this.utils.presentToast(
         'Ingrese un producto con una cantidad valida',
@@ -205,10 +207,10 @@ export class CarritoPage implements OnInit {
     return returned;
   }
 
-  async open_search () {
+  async open_search() {
     const modal = await this.modalController.create({
       component: SearchPage,
-      swipeToClose: true
+      swipeToClose: true,
     });
 
     return await modal.present();

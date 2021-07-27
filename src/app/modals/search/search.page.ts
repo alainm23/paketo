@@ -54,7 +54,7 @@ export class SearchPage implements OnInit {
     });
   }
 
-  close () {
+  back () {
     this.modalController.dismiss ();
   }
 }
