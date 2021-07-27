@@ -33,8 +33,8 @@ export class HomePage implements OnInit {
 
   slideOpts = {
     initialSlide: 0,
-    slidesPerView: 3,
-    spaceBetween: 10,
+    slidesPerView: 2,
+    spaceBetween: 15,
   };
 
   slideOptscard = {

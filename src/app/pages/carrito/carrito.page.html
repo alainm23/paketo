@@ -65,7 +65,7 @@
           </div>
           <ion-avatar
             [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
-            class="avatar-categoria"
+            class="avatar-favorito"
           >
           </ion-avatar>
           <div class="div-titulo-texto">
@@ -132,8 +132,11 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <div class="div-footer">
-    <p class="p-footer">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
-    <p class="p-footer">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
+    <p class="p-footer">Items en carrito (14)</p>
+    <div>
+      <p class="p-footer">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
+      <p class="p-footer">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
+    </div>
     <ion-button
       mode="ios"
       [disabled]="cart.length <= 0"
