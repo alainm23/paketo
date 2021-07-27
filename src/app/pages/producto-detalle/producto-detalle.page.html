@@ -36,11 +36,11 @@
     <p class="p-descripcion">{{ producto?.marca }}</p>
   </div>
   <div class="div-padding-left-right">
-    <h6 class="subtitulo-h6">Variaciones:</h6>
+    <h6 class="subtitulo-h6">Variaciones con oferta:</h6>
     <ion-list class="ion-no-padding">
-      <ion-item *ngFor="let item of producto?.variantes" class="ion-no-padding item-contador" lines="none">
-        <p (click)="set_variante (item)" class="label-nombre label-right-primero">{{ item.nombre }}</p>
-        <div class="div-contador">
+      <ion-card *ngFor="let item of producto?.variantes" class="ion-no-padding item-contador" lines="none">
+        <p (click)="set_variante (item)" class="label-nombre label-right-primero">{{ item.nombre }}<br><span class="span-promo">2x1</span></p>
+        <div class="div-contador div-widht">
           <p class="label-nombre label-right-segundo">
             {{ item.precio_venta | currency:producto.moneda }}
           </p>
@@ -50,12 +50,30 @@
             <ion-button (click)="update (+1, item)" mode="ios" class="btn-add-rest">+</ion-button>
           </div>
         </div>
-      </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+  <div class="div-padding-left-right">
+    <h6 class="subtitulo-h6">Otras variaciones:</h6>
+    <ion-list class="ion-no-padding">
+      <ion-card *ngFor="let item of producto?.variantes" class="ion-no-padding item-contador" lines="none">
+        <p (click)="set_variante (item)" class="label-nombre label-right-primero">{{ item.nombre }}</p>
+        <div class="div-contador div-widht">
+          <p class="label-nombre label-right-segundo">
+            {{ item.precio_venta | currency:producto.moneda }}
+          </p>
+          <div class="div-contador">
+            <ion-button (click)="update (-1, item)" mode="ios" class="btn-add-rest">-</ion-button>
+            <ion-input (ionChange)="valid_change ($event, item)" type="number" [value]="cart.get (item.id).cantidad" class="input-number"></ion-input>
+            <ion-button (click)="update (+1, item)" mode="ios" class="btn-add-rest">+</ion-button>
+          </div>
+        </div>
+      </ion-card>
     </ion-list>
   </div>
   <div class="div-padding-left-right div-bottom">
     <h6 class="subtitulo-h6 subtitulo-top">Especificaciones técnicas:</h6>
-    <p>Presentacion: {{ variante?.presentacion }}</p>
+    <p class="p-descripcion">Presentacion: <ins>{{ variante?.presentacion }}</ins></p>
     <p class="p-descripcion">
       {{ variante?.especificacion_tecnica }}
     </p>

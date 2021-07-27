@@ -134,6 +134,7 @@ ion-content
         background-repeat: no-repeat;
         background-size: cover !important;
         background: #EAEAEA;
+        box-shadow: 0px 3px 9px #00000029;
     }
 }
 .div-card-fotos
@@ -147,6 +148,7 @@ ion-content
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover !important;
+        border: 1px solid #e4e4e4;
     }
     .avatar-top
     {
@@ -155,8 +157,8 @@ ion-content
 }
 .div-padding-left-right
 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin-top: 1.125rem;
 }
 .subtitulo-h6
@@ -173,7 +175,7 @@ ion-content
     font-family: PoppinsRegular;
     font-size: 0.9375rem;
     margin: 0px;
-    margin-top: 0.125rem !important;
+    margin-top: 0px !important;
 }
 .subtitulo-top
 {
@@ -205,14 +207,22 @@ ion-slides
 .item-contador
 {
     --inner-padding-end: 0px;
-    height: 1.875rem;
-    align-items: baseline;
+    align-items: flex-start;
+    display: flex;
+    height: auto;
+    margin: 0px;
+    box-shadow: none;
+    margin-bottom: 10px;
     .label-nombre
     {
         color: #6E6E6E;
         font-family: PoppinsRegular;
         font-size: 0.9375rem;
         margin: 0px;
+        .span-promo
+        {
+            color: #FF640A;
+        }
     }
     .label-right-primero
     {
@@ -224,11 +234,15 @@ ion-slides
         margin-right: 1.125rem;
     }
 }
+.div-widht
+{
+    width: 47% !important;
+}
 .div-contador
 {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     .btn-add-rest
     {
         margin: 0px;
@@ -257,7 +271,7 @@ ion-slides
 }
 ion-list
 {
-    margin-top: 0.625rem;
+    margin-top: 0px;
 }
 ion-footer
 {

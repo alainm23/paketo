@@ -157,6 +157,7 @@
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
               <ion-label class="label-precio">
+                <span class="span-des">Desde</span><br>
                 {{ item.precio | currency:item.moneda }}
               </ion-label>
               <ion-button mode="ios" class="btn-add-categoria">
@@ -264,7 +265,7 @@
               <ion-card-subtitle class="subtitle-anaranjado">{{ item.marca }}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
-              <ion-label class="label-precio">{{ item.precio_menor | currency:item.moneda }}</ion-label>
+              <ion-label class="label-precio"><span class="span-des">Desde</span><br>{{ item.precio_menor | currency:item.moneda }}</ion-label>
               <ion-button mode="ios" class="btn-add-categoria">
                 <ion-icon name="chevron-forward-outline"></ion-icon>
               </ion-button>
