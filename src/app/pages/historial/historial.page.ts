@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import * as moment from 'moment';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart.service';
 import { BehaviorSubject } from 'rxjs';
+import { SearchPage } from 'src/app/modals/search/search.page';
 
 @Component({
   selector: 'app-historial',
@@ -23,7 +24,8 @@ export class HistorialPage implements OnInit {
 
   constructor (private database: DatabaseService,
     private navController: NavController,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private modalController: ModalController) { }
 
   ngOnInit () {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -108,5 +110,14 @@ export class HistorialPage implements OnInit {
     }
 
     return text;
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

@@ -113,11 +113,11 @@ const routes: Routes = [
     path: 'sucursales-editar',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/sucursales-editar/sucursales-editar.module').then( m => m.SucursalesEditarPageModule)
-  },  {
-    path: 'buscador',
-    loadChildren: () => import('./buscador/buscador.module').then( m => m.BuscadorPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./modals/search/search.module').then( m => m.SearchPageModule)
   }
-
 ];
 
 @NgModule({

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 // Services
 import { DatabaseService } from '../../services/database.service';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart.service';
 import { BehaviorSubject } from 'rxjs';
+import { SearchPage } from 'src/app/modals/search/search.page';
 
 @Component({
   selector: 'app-favorites',
@@ -30,7 +31,8 @@ export class FavoritesPage implements OnInit {
   
   constructor (private database: DatabaseService,
     private navController: NavController,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private modalController: ModalController) { }
 
   ngOnInit () {
     this.cart_item_count = this.cartService.get_cart_item_count ();
@@ -143,5 +145,14 @@ export class FavoritesPage implements OnInit {
   ver_pedido (item: any) {
     console.log (item);
     this.navController.navigateForward (['producto-detalle', item.id]);
+  }
+
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

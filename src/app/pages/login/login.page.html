@@ -16,8 +16,8 @@
       <ion-input formControlName="email" mode="ios" type="email" placeholder="Correo"></ion-input>
     </ion-item>
     <ion-item lines="none" class="item-input item-top" mode="ios">
-      <ion-input formControlName="password" mode="ios" [type]="type_password" placeholder="Contraseña" class=""></ion-input>
-      <ion-icon (click)="password_toggled ()" name="help-circle" class="iconinterrogativo"></ion-icon>
+      <ion-input formControlName="password" mode="ios" [type]="type_password" placeholder="Contraseña"></ion-input>
+      <ion-icon (click)="password_toggled ()" [name]="type_password === 'text' ? 'eye' : 'eye-off'" class="iconinterrogativo"></ion-icon>
     </ion-item>
   </form>
 

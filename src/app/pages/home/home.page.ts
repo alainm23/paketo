@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 // Services
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, ModalController, NavController } from '@ionic/angular';
 import { DatabaseService } from 'src/app/services/database.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { CartService } from '../../services/cart.service';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { SearchPage } from '../../modals/search/search.page';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +53,8 @@ export class HomePage implements OnInit {
     private utils: UtilsService,
     private cartService: CartService,
     private menuController: MenuController,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private modalController: ModalController) { }
 
   async ngOnInit () {
     this.cartService.get_categoria_observable ().subscribe ((res: any) => {
@@ -264,5 +266,14 @@ export class HomePage implements OnInit {
       item.loading = false;
       console.log (error);
     });
+  }
+  
+  async open_search () {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      swipeToClose: true
+    });
+
+    return await modal.present();
   }
 }

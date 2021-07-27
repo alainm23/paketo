@@ -487,17 +487,19 @@ ion-slide.slider-card
     }
     .div-circulo
     {
-        border-radius: 50%;
-        background: #EAEAEA;
         width: 3.125rem;
         height: 3.125rem;
+        background-image:  url('/assets/img/grupo-2663.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .p-catogoria
     {
         color: #6E6E6E;
         font-family: AvenirBook;
         font-size: 0.75rem;
-        margin-top: 0.1875rem;
+        margin-top: 0.4375rem;
         margin-bottom: 0px;
         display: -webkit-box;
         -webkit-line-clamp: 2;
