@@ -75,10 +75,11 @@ ion-footer
     margin-bottom: 0.25rem;
     .div-circulo
     {
-        border-radius: 50%;
-        background: #EAEAEA;
         width: 3.125rem;
         height: 3.125rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .p-catogoria
     {
@@ -99,7 +100,7 @@ ion-footer
     background: #8B8B8B;
     .div-circulo
     {
-        background: #ffffff;
+        /*background: #ffffff;*/
     }
     .p-catogoria
     {

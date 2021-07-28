@@ -5,7 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="search_text" (ionChange)="search_change ($event)"></ion-searchbar>
+  <ion-item>
+    <ion-searchbar [(ngModel)]="search_text" (ionChange)="search_change ($event)"></ion-searchbar>
+    <ion-spinner slot="end" *ngIf="loadins.search === true"></ion-spinner>
+  </ion-item>
   <ion-list>
     <ng-container *ngIf="search_result.productos.length > 0">
       <ion-list-header>Productos</ion-list-header>

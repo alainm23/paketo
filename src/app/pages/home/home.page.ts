@@ -47,7 +47,8 @@ export class HomePage implements OnInit {
   segment: string = 'home';
   search_text: string = '';
   cart_item_count: BehaviorSubject<number>;
-
+  default_icon: string = '/assets/img/grupo-2663.png';
+  
   constructor (private database: DatabaseService,
     private navController: NavController,
     private utils: UtilsService,
@@ -267,7 +268,15 @@ export class HomePage implements OnInit {
       console.log (error);
     });
   }
-  
+
+  get_icono (item: any) {
+    if (item.icono === null) {
+      return this.default_icon;
+    }
+
+    return item.icono;
+  }
+
   async open_search () {
     const modal = await this.modalController.create({
       component: SearchPage,

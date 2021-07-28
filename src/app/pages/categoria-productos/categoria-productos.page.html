@@ -112,6 +112,11 @@
 
       <ion-col *ngFor="let item of items" size="6" size-md="3" class="col-padding-left-right">
         <ion-card (click)="detalle (item)" class="card-categorias">
+          <ion-badge class="div-img-pocentaje">
+            <span class="spna-porcentaje" *ngIf="item.descuento > 0">
+              {{ item.descuento | number:'1.0-0' }}% dcto
+            </span>
+          </ion-badge>
           <ion-avatar
             [ngStyle]="{'background-image': 'url(' + item.imagen + ')'}"
             class="avatar-categoria">

@@ -3,7 +3,11 @@
     <ion-button (click)="back ()" mode="ios" class="btn-atras"
       >< Atrás</ion-button
     >
-    <ion-icon (click)="open_search ()" name="search-sharp" class="icon-serach"></ion-icon>
+    <ion-icon
+      (click)="open_search ()"
+      name="search-sharp"
+      class="icon-serach"
+    ></ion-icon>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -112,18 +116,17 @@
         {{ compra_minima_dolares | currency:'USD' }}
       </span>
       <span *ngIf="compra_minima_soles > get_total ('S/.')">
-        y {{ compra_minima_soles | currency:'S/.' }}
-      </span>, por
-      favor agregue al carrito
+        y {{ compra_minima_soles | currency:'S/.' }} </span
+      >, por favor agregue al carrito
     </p>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border">
   <div class="div-footer">
-    <p class="p-footer">Items en carrito (14)</p>
+    <p class="p-footer">Items en carrito ({{ cart_item_count | async }})</p>
     <div>
-      <p class="p-footer">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
-      <p class="p-footer">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
+      <p class="p-footer" *ngIf="get_total ('S/.') > 0">Soles: {{ get_total ('S/.') | currency:'S/.' }}</p>
+      <p class="p-footer" *ngIf="get_total ('USD') > 0">Dolares: {{ get_total ('USD') | currency:'USD' }}</p>
     </div>
     <ion-button
       mode="ios"

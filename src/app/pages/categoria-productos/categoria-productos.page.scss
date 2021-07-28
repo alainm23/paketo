@@ -254,6 +254,29 @@ ion-list
     box-shadow: 0px 15px 23px #00000029;
     margin-bottom: 1.125rem;
     border-radius: 8px;
+    .div-img-pocentaje
+        {
+            background-image: url('/assets/img/trazado-2195.png');
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 83px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 0px;
+            --background: transparent;
+            .spna-porcentaje
+            {
+                font-family: AvenirMedium;
+                font-size: 0.8125rem;
+                transform: rotate(314deg);
+                position: absolute; 
+                left: 6%;
+                top: 28%;
+            }
+        }
     .avatar-categoria
     {
         width: 100%;
