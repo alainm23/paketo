@@ -9,18 +9,18 @@
   <ion-slides (ionSlideDidChange)="ionSlideDidChange ()" pager="false" [options]="slideOpts">
     <ion-slide>
       <h1 class="ion-text-center top-slider bottom-cero">
-        Sucursales
+        Tu Ferreteria
       </h1>
       <p *ngIf="surcursal !== 'new'" class="p-medium ion-text-center p-top">
         Actualiza la información que necesitas de tu ferretería
       </p>
       <p *ngIf="surcursal === 'new'" class="p-medium ion-text-center p-top">
-        Comencemos, si tiene más que una sucursal la podrá registrar más adelante.
+        Si tienes más de una ferretería, la podrás registrar más  adelante.
       </p>
       <div class="div-top-uno">
         <h6 class="h6-nombres-campos">Nombre</h6>
         <ion-item lines="none" class="item-input">
-          <ion-input formControlName="denominacion" placeholder="Ingresa el nombre de la sucursal"></ion-input>
+          <ion-input formControlName="denominacion" placeholder="Ingresa el nombre de la ferretería"></ion-input>
         </ion-item>
       </div>
       <div class="div-top-dos">
@@ -72,7 +72,7 @@
       <ion-item lines="none" class="item-input item-top">
         <ion-input #searchbar placeholder="Dirección" formControlName="direccion"></ion-input>
       </ion-item>
-      <ion-button (click)="ver_mapa_f ()" class="btn-mapa" mode="ios">Mostrar mapa</ion-button>
+      <p (click)="ver_mapa_f ()" class="btn-mapa" mode="ios">Mostrar mapa</p>
       <ion-card [ngStyle]="{'opacity':ver_mapa === true ? '1' : '0' }" class="card-mapa">
         <div #map id="map"></div>
       </ion-card>
@@ -82,7 +82,7 @@
       <p class="p-medium ion-text-center p-top">¿Con quién nos debemos comunicar acerca de tus pedidos?</p>
       <h6 class="h6-nombres-campos h6-top-bottom">Datos de tienda</h6>
       <ion-item lines="none" class="item-checbox">
-        <ion-label class="ion-text-wrap label-check">Yo mismo seré la persona de contacto</ion-label>
+        <ion-label class="ion-text-wrap label-check">Yo seré la persona de contacto</ion-label>
         <ion-checkbox (ionChange)="autocompletar($event)" slot="start"></ion-checkbox>
       </ion-item>
       <ion-item lines="none" class="item-input">
@@ -99,12 +99,15 @@
   </form>
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center" mode="ios">
-  <ion-button *ngIf="index === 0 || index === 1" mode="ios" class="btn-guardar" (click)="submit_slide_next ()">
-    Continuar
-  </ion-button>
+  <div *ngIf="index === 0 || index === 1">
+    <ion-button mode="ios" class="btn-guardar" (click)="submit_slide_next ()">
+      Continuar
+    </ion-button>
+    <p class="ion-text-center p-footer"><ins>Lo haré mas tarde</ins> <ion-icon name="chevron-forward"></ion-icon></p>
+  </div>
   <div *ngIf="index === 2" class="ion-text-center div-absolute-slider">
     <ng-container *ngIf="surcursal === 'new'">
-      <ion-button mode="ios" class="btn-guardar btn-widht-cero"(click)="submit (false)">Agregar sucursal</ion-button>
+      <ion-button mode="ios" class="btn-guardar btn-widht-cero"(click)="submit (false)">Agregar ferretería</ion-button>
       <ion-button mode="ios" class="btn-terminar" (click)="submit (true)">Terminar</ion-button>
     </ng-container>
 
