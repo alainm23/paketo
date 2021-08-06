@@ -8,16 +8,16 @@
   <ion-searchbar [(ngModel)]="search_text" (ionChange)="search_change ($event)"></ion-searchbar>
   <ion-list>
     <ng-container *ngIf="search_result.productos.length > 0">
-      <ion-list-header>Productos</ion-list-header>
+      <ion-list-header><b>Productos</b></ion-list-header>
       <ion-item (click)="ver_pedido (item.searchable)" *ngFor="let item of search_result.productos">
         <ion-label>
-          <b>{{ item.title }} - {{ item.searchable.marca }}</b>
+          {{ item.title }} - {{ item.searchable.marca }}
         </ion-label>
       </ion-item>
     </ng-container>
 
     <ng-container *ngIf="search_result.categorias.length > 0">
-      <ion-list-header>Categorias</ion-list-header>
+      <ion-list-header id="bottomcategoria"><b>Categorias</b></ion-list-header>
       <ion-item (click)="ver_categoria (item.searchable)" *ngFor="let item of search_result.categorias">
         <ion-label>
           {{ item.title }}

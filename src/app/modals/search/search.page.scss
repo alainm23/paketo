@@ -41,6 +41,15 @@ ion-content
     margin: 0px;
     height: auto;
 }
+#bottomcategoria
+{
+    margin-top: 2rem;
+}
+ion-list-header
+{
+    font-family: PoppinsMedium;
+    color: #000;
+}
 ion-item
 {
     --padding-start: 1.25rem;
@@ -50,6 +59,19 @@ ion-item
         font-family: PoppinsMedium;
         color: #000;
     }
+}
+ion-searchbar
+{
+    --background: #F8F8F8;
+    --border-radius: 10px;
+    --box-shadow: none;
+    --color: #6E6E6E;
+    --placeholder-color: rgb(110 110 110 / 50%);
+    --placeholder-opacity: 1;
+    font-family: PoppinsRegular;
+    margin-top: 1.25rem;
+    padding: 0px 1.25rem;
+    margin-bottom: 2rem;
 }
 @media (min-width: 540px)
 {
