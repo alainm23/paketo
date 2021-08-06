@@ -76,9 +76,12 @@ ion-footer
     .div-circulo
     {
         border-radius: 50%;
-        background: #EAEAEA;
         width: 3.125rem;
         height: 3.125rem;
+        background-image:  url('/assets/img/grupo-2663.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
     .p-catogoria
     {
@@ -96,11 +99,7 @@ ion-footer
 }
 .card-categoria-activo
 {
-    background: #8B8B8B;
-    .div-circulo
-    {
-        background: #ffffff;
-    }
+    background: #996DCC;
     .p-catogoria
     {
         color: #ffffff;

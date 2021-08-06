@@ -15,6 +15,7 @@ ion-content
     --background: #ffffff;
     --padding-start: 1.6875rem;
     --padding-end: 1.6875rem;
+    --padding-bottom: 2rem;
 }
 h1
 {
@@ -24,13 +25,14 @@ h1
 }
 .top-slider
 {
-    margin-top: 3.75rem;
+    margin-top:6.25rem;
 }
 .p-descripcion
 {
   color: #6E6E6E;
   font-family: PoppinsRegular;
   font-size: 0.9375rem;
+  padding: 0px 2.25rem;
 }
 .div-center
 {
@@ -48,14 +50,14 @@ h1
     width: 12.1875rem;
     height: 17.8125rem;
     margin-bottom: 0px;
-    background-image: url('/assets/img/grupo-2813.ttf');
+    background-image: url('/assets/img/grupo-2813.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .top-p
 {
-    margin-top: 3.75rem;
+    margin-top: 3rem;
 }
 .btn-guardar
 {
@@ -65,8 +67,11 @@ h1
     --background-activated: #FF640A;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
-    width: 70%;
-    margin: 0px;
+    width: 80%;
+    margin-left: 10%;
+    height: 3.75rem;
+    margin-top: 3.125rem;
+
 }
 ion-footer 
 {
@@ -82,11 +87,7 @@ ion-footer
     .card-slide
     {
         width: 8.75rem;
-        height: 8.75rem;
-    }
-    .btn-guardar
-    {
-        width: 45%;
+        height: 12.8125rem;
     }
     
 }
