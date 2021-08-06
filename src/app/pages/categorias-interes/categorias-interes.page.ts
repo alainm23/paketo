@@ -34,7 +34,7 @@ export class CategoriasInteresPage implements OnInit {
       return this.default_icon;
     }
 
-    return item.icono;
+    return '' + item.icono;
   }
 
   async ngOnInit() {

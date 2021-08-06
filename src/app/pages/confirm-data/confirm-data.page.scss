@@ -19,6 +19,7 @@ ion-content
     --background: #ffffff;
     --padding-start: 1.6875rem;
     --padding-end: 1.6875rem;
+    --padding-bottom: 2rem;
 }
 h1
 {
@@ -28,7 +29,7 @@ h1
 }
 .top-slider
 {
-    margin-top: 20%;
+    margin-top: 6.25rem;
 }
 .h6-black
 {
@@ -47,7 +48,7 @@ h1
 }
 .div-top
 {
-    margin-top: 1.75rem;
+    margin-top: 1rem;
 }
 .btn-confirmar
 {
@@ -56,8 +57,10 @@ h1
     --background-activated:#FF640A;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
-    width: 70%;
-    margin: 0px;
+    width: 80%;
+    margin-left: 10%;
+    height: 3.75rem;
+    margin-top: 17.875rem;
 }
 .btn-guardar
 {
@@ -66,9 +69,10 @@ h1
     --background-activated: #29A0EC ;
     --border-radius: 1.875rem;
     font-size: 1.1875rem;
-    width: 70%;
-    margin: 0px;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 0.625rem;
+    height: 3.75rem;
 }
 ion-footer 
 {
@@ -80,16 +84,6 @@ ion-footer
     {
         --padding-start: 8.75rem;
         --padding-end: 8.75rem;
-    }
-    .btn-guardar
-    {
-        width: 45%;
-        margin-top: 0rem;
-        margin-left: 0.625rem;
-    }
-    .btn-confirmar
-    {
-        width: 45%;
     }
     
 }

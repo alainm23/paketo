@@ -52,13 +52,13 @@ export class UpdateSentDataPage implements OnInit {
     this.form_values_description.set ('persona_contacto', 'Persona de contacto');
 
     if (this.nuevo_usuario) {
-      this.form_values_description.set ('email', 'Correo electrónico');
+      this.form_values_description.set ('email', 'El formato de correo electrónico en incorrecto');
       this.form_erros_description.set ('email', 'correo invalido');
     }
     
-    this.form_erros_description.set ('minlength', 'su RUC debe tener 11 digitos');
-    this.form_erros_description.set ('maxlength', 'su RUC debe tener 11 digitos');
-    this.form_erros_description.set ('pattern', 'su RUC debe tener solo numeros');
+    this.form_erros_description.set ('minlength', 'RUC debe tener 11 digitos');
+    this.form_erros_description.set ('maxlength', 'RUC debe tener 11 digitos');
+    this.form_erros_description.set ('pattern', 'RUC debe tener solo numeros');
     this.form_erros_description.set ('required', 'requerido');
   }
 
